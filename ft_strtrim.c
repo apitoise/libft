@@ -12,9 +12,19 @@
 
 #include "libft.h"
 
-int			ft_isset(char c, char const *set))
+int		ft_conststrlen(char const *str)
 {
-	int		i;
+	int	len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
+}
+
+int		ft_isset(char c, char const *set)
+{
+	int	i;
 
 	i = 0;
 	while (set[i])
@@ -26,10 +36,11 @@ int			ft_isset(char c, char const *set))
 	return (0);
 }
 
-int			ft_nbset(char const *s1, char const *set)
+int		ft_nbset(char const *s1, char const *set)
 {
-	int		idx;
-	int		nb;
+	int	idx;
+	int	nb;
+	int	end;
 
 	idx = 0;
 	nb = 0;
@@ -38,27 +49,46 @@ int			ft_nbset(char const *s1, char const *set)
 		nb++;
 		idx++;
 	}
+	end = ft_conststrlen(s1);
+	while (ft_isset(s1[end], set) == 1 && end > 0)
+	{
+		nb++;
+		end--;
+	}
 	return (nb);
+}
+
+int		ft_nbsetmax(char const *s1, char const *set)
+{
+	int	len;
+
+	len = ft_conststrlen(s1) - 1;
+	while (ft_isset(s1[len], set) == 1 && len > 0)
+		len--;
+	return (len);
 }
 
 char		*ft_strtrim(char const *s1, char const *set)
 {
 	char	*res;
-	int		idx;
-	int		min;
-	int		max;
+	int	idx;
+	int	min;
+	int	max;
 
-	idx = 0;
 	min = 0;
-	res = (char *)malloc((ft_strlen(s1) - ft_nbset(s1, set) * sizeof(char) + 1))
-	while (s1[min])
+	while (ft_isset(s1[min], set) == 1)
+		min++;
+	max = ft_nbsetmax(s1, set);
+	res = (char *)malloc((max - min) * sizeof(char) + 1);
+	if (res == 0)
+		return (0);
+	idx = 0;
+	while (min <= max)
 	{
-		if (ft_isset(s1[min], set) == 1)
-			min++;
-		
-
-int		main(int argc, char **argv)
-{
-	printf("%s", ft_strtrim(argv[1], argv[2]));
-	return (0);
+		res[idx] = s1[min];
+		min++;
+		idx++;
+	}
+	res[idx] = '\0';
+	return (res);
 }
