@@ -17,6 +17,12 @@
 # include <string.h>
 # include <stdio.h>
 
+typedef struct		s_list
+{
+	void		*content;
+	struct s_list	*next;
+}			t_list;
+
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_atoi(const char *str);
