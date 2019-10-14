@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 18:41:33 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/10 13:04:32 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/14 15:20:52 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		*ft_calloc(size_t count, size_t size)
 	remplir = 0;
 	while (remplir < count)
 	{
-		((char *)res)[remplir] == 0;
+		((char *)res)[remplir] = 0;
 		remplir++;
 	}
 	return (res);

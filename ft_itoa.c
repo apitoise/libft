@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/14 12:26:27 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/14 12:26:30 by apitoise         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int		ft_len(int n)
+int			ft_len(int n)
 {
 	int	res;
 
@@ -21,18 +33,15 @@ int		ft_len(int n)
 char		*ft_itoa(int n)
 {
 	char	*res;
-	int	len;
-	int	idx;
+	int		idx;
 
-	len = ft_len(n);
-	res = (char *)malloc((len + 1) * sizeof(char));
+	res = (char *)malloc((ft_len(n) + 1) * sizeof(char));
 	if (res == 0)
 		return (0);
 	idx = 0;
 	if (n < 0)
 	{
-		res[idx] = '-';
-		idx++;
+		res[idx++] = '-';
 		n = n * -1;
 	}
 	while (n > 0)

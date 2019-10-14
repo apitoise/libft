@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 17:59:17 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/09 13:03:47 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/14 15:19:07 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ void	*ft_bzero(void *s, size_t n)
 	new = s;
 	while (n--)
 		*new++ = '\0';
-	return (b);
+	return (s);
 }

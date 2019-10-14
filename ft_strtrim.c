@@ -6,13 +6,13 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 10:56:50 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/11 15:09:54 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/14 12:00:35 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_conststrlen(char const *str)
+int			ft_conststrlen(char const *str)
 {
 	int	len;
 
@@ -22,7 +22,7 @@ int		ft_conststrlen(char const *str)
 	return (len);
 }
 
-int		ft_isset(char c, char const *set)
+int			ft_isset(char c, char const *set)
 {
 	int	i;
 
@@ -36,7 +36,7 @@ int		ft_isset(char c, char const *set)
 	return (0);
 }
 
-int		ft_nbset(char const *s1, char const *set)
+int			ft_nbset(char const *s1, char const *set)
 {
 	int	idx;
 	int	nb;
@@ -58,7 +58,7 @@ int		ft_nbset(char const *s1, char const *set)
 	return (nb);
 }
 
-int		ft_nbsetmax(char const *s1, char const *set)
+int			ft_nbsetmax(char const *s1, char const *set)
 {
 	int	len;
 
@@ -71,9 +71,9 @@ int		ft_nbsetmax(char const *s1, char const *set)
 char		*ft_strtrim(char const *s1, char const *set)
 {
 	char	*res;
-	int	idx;
-	int	min;
-	int	max;
+	int		idx;
+	int		min;
+	int		max;
 
 	min = 0;
 	while (ft_isset(s1[min], set) == 1)

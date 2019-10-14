@@ -1,13 +1,22 @@
-//#include "libft.h"
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/11 10:48:49 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/11 10:50:01 by apitoise         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
 
 char		*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*res;
-	int	cpy;
-	
+	int		cpy;
+
 	if (*s == 0)
 		return (0);
 	res = (char *)malloc(len * sizeof(char) + 1);
@@ -23,12 +32,4 @@ char		*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	res[cpy] = '\0';
 	return (res);
-}
-
-int		main()
-{
-	char const *str = "Salut a tous les amis";
-
-	printf("%s", ft_substr(str, 9, 5));
-	return (0);
 }

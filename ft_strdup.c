@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 13:01:52 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/10 13:14:04 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/14 15:23:23 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char		*ft_strdup(const char *s1)
 	len = 0;
 	while (s1[len])
 	{
-		res[len] == s1[len];
+		res[len] = s1[len];
 		len++;
 	}
 	res[len] = '\0';
