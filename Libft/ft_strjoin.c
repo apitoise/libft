@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 10:50:14 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/11 10:50:39 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/15 15:55:59 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	char	*res;
 	int		cpy;
 
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
 	size = ft_strlen((char *)s1) + ft_strlen((char *)s2);
 	res = (char *)malloc(size * sizeof(char) + 1);
 	if (res == 0)

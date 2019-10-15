@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:26:27 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/14 12:26:30 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/15 17:44:45 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ char		*ft_itoa(int n)
 	if (res == 0)
 		return (0);
 	idx = 0;
+	if (n == 0)
+	{
+		res[idx] = '0';
+		idx++;
+	}
 	if (n < 0)
 	{
 		res[idx++] = '-';
@@ -48,11 +53,6 @@ char		*ft_itoa(int n)
 	{
 		res[idx] = (n % 10) + 48;
 		n = n / 10;
-		idx++;
-	}
-	if (n == 0)
-	{
-		res[idx] = '0';
 		idx++;
 	}
 	res[idx] = '\0';

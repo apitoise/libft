@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:26:58 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/14 15:22:58 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/15 18:02:03 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,9 @@ void		ft_putnbr_fd(int n, int fd)
 	}
 	else
 		nbr = n;
-	if (n >= 10)
-	{
+	if (n / 10)
 		ft_putnbr_fd(nbr / 10, fd);
-		ft_putchar_fd((nbr % 10) + 48, fd);
-	}
-	if (n < 10)
-		ft_putchar_fd(nbr + 48, fd);
+	ft_putchar_fd((nbr % 10) + 48, fd);
+//	if (n < 10)
+//		ft_putchar_fd(nbr + 48, fd);
 }

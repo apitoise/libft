@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 10:56:50 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/14 12:00:35 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/15 16:14:50 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,16 @@ char		*ft_strtrim(char const *s1, char const *set)
 	int		idx;
 	int		min;
 	int		max;
+	int		len;
 
+	if (!set || !s1)
+		return (NULL);
 	min = 0;
 	while (ft_isset(s1[min], set) == 1)
 		min++;
 	max = ft_nbsetmax(s1, set);
-	res = (char *)malloc((max - min) * sizeof(char) + 1);
+	len = ft_strlen((char *)s1) - ft_nbset(s1, set);
+	res = (char *)malloc((len) * sizeof(char) + 1);
 	if (res == 0)
 		return (0);
 	idx = 0;

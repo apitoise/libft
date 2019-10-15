@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 13:06:46 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/14 15:50:06 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/15 17:18:32 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char				*ft_strchr(const char *str, int c);
 char				*ft_strdup(const char *s1);
 size_t				ft_strlcat(char *dest, const char *src, size_t size);
 size_t				ft_strlcpy(char *dest, const char *src, size_t size);
-int					ft_strlen(char *str);
+size_t				ft_strlen(char *str);
 int					ft_strncmp(const char *s1, const char *s2, size_t i);
 char				*ft_strnstr(const char *haystack, const char *needle,
 					size_t len);

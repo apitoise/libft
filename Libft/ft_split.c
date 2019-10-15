@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:27:13 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/14 15:24:22 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/15 17:28:12 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char		**ft_split(char const *s, char c)
 	int		cpy;
 
 	res = (char **)malloc((ft_countwords(s, c) + 1) * sizeof(char *));
+	if (res == 0)
+		return (0);
 	idx = 0;
 	nb = 0;
 	while (s[idx])

@@ -6,15 +6,17 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 17:05:34 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/09 13:02:43 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/15 15:36:28 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int		ft_atoi(const char *str)
 {
-	int	res;
-	int	neg;
-	int	pos;
+	unsigned long	res;
+	int				neg;
+	int				pos;
 
 	pos = 0;
 	while (str[pos] == '\t' || str[pos] == '\n' || str[pos] == '\v'

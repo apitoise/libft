@@ -6,11 +6,13 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 12:19:02 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/08 12:19:03 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/15 17:19:55 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strlen(char *str)
+#include "libft.h"
+
+size_t		ft_strlen(char *str)
 {
 	int compteur;
 

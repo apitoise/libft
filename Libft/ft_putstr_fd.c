@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:26:51 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/14 12:26:53 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/15 17:50:39 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void		ft_putstr_fd(char *s, int fd)
 	int	idx;
 
 	idx = 0;
+	if (s == NULL)
+		return ;
 	while (s[idx])
 	{
-		write(fd, &s[idx], 1);
+		ft_putchar_fd(s[idx], fd);
 		idx++;
 	}
 }
