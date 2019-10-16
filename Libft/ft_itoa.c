@@ -17,6 +17,8 @@ int			ft_len(int n)
 	int	res;
 
 	res = 0;
+	if (n == 0)
+		return (1);
 	if (n < 0)
 	{
 		res++;
@@ -33,28 +35,28 @@ int			ft_len(int n)
 char		*ft_itoa(int n)
 {
 	char	*res;
+	long long	nb;
 	int		idx;
 
-	res = (char *)malloc((ft_len(n) + 1) * sizeof(char));
+	nb = n;
+	idx = ft_len(nb);
+	res = (char *)malloc((idx + 1) * sizeof(char));
 	if (res == 0)
 		return (0);
-	idx = 0;
-	if (n == 0)
-	{
-		res[idx] = '0';
-		idx++;
-	}
-	if (n < 0)
-	{
-		res[idx++] = '-';
-		n = n * -1;
-	}
-	while (n > 0)
-	{
-		res[idx] = (n % 10) + 48;
-		n = n / 10;
-		idx++;
-	}
 	res[idx] = '\0';
+	idx = idx - 1;
+	if (nb == 0)
+		res[idx] = 48;
+	if (nb < 0)
+	{
+		res[0] = '-';
+		nb = -nb;
+	}
+	while (nb > 0)
+	{
+		res[idx] = (nb % 10) + 48;
+		nb = nb / 10;
+		idx--;
+	}
 	return (res);
 }
