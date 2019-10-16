@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int			ft_countwords(char const *s, char c)
+int		ft_countword(char const *s, char c)
 {
 	int	res;
 	int	new;
@@ -26,40 +26,63 @@ int			ft_countwords(char const *s, char c)
 			res++;
 			new = 0;
 		}
-		if (*s == c)
+		if (*s == c && new == 0)
 			new = 1;
 		s++;
 	}
 	return (res);
 }
 
+int		ft_wordlen(char const *s, char c)
+{
+	int	len;
+
+	len = 0;
+	while (*s != c && *s)
+	{
+		len++;
+		s++;
+	}
+	return (len);
+}
+
+void		ft_createword(char **str, const char *src, char c)
+{
+	char	*word;
+
+	*str = malloc((ft_wordlen(src, c) + 1) * sizeof(char));
+	word = *str;
+	while (*src && *src != c)
+	{
+		*word = *src;
+		word++;
+		src++;
+	}
+	*word = '\0';
+}
+
 char		**ft_split(char const *s, char c)
 {
 	char	**res;
-	int		idx;
-	int		nb;
-	int		len;
-	int		cpy;
+	char	**res2;
+	int	new;
 
-	res = (char **)malloc((ft_countwords(s, c) + 1) * sizeof(char *));
-	if (res == 0)
-		return (0);
-	idx = 0;
-	nb = 0;
-	while (s[idx])
+	if (!s || !(res = malloc((ft_countword(s, c) + 1) * sizeof(char *))))
+		return (NULL);
+	res2 = res;
+	new = 0;
+	while (*s)
 	{
-		len = 0;
-		while (s[idx] == c)
-			idx++;
-		while (s[idx + len] != c)
-			len++;
-		res[nb] = (char *)malloc((len + 1) * sizeof(char));
-		cpy = 0;
-		while (s[idx] != c && s[idx])
-			res[nb][cpy++] = s[idx++];
-		res[nb][cpy] = '\0';
-		nb++;
+		if (*s != c && new == 0)
+		{
+			new = 1;
+			ft_createword(res, s, c);
+			res++;
+		}
+		if (*s == c && new == 1)
+			new = 0;
+		s++;
 	}
-	res[nb] = 0;
-	return (res);
+	*res = NULL;
+	return (res2);
 }

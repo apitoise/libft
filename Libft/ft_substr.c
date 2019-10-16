@@ -18,7 +18,7 @@ char		*ft_substr(char const *s, unsigned int start, size_t len)
 	int		cpy;
 	size_t	lalen;
 
-	if (s == NULL || start < 0)
+	if (s == NULL)
 		return (NULL);
 	lalen = ft_strlen((char *)s);
 	if (start >= lalen)
