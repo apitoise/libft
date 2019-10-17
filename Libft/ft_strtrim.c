@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 10:56:50 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/17 15:04:45 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/17 15:39:55 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int			ft_nbsetmax(char const *s1, char const *set)
 	return (len);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char				*ft_strtrim(char const *s1, char const *set)
 {
 	char	*res;
 	int		idx;
