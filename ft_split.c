@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:27:13 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/17 18:45:12 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/17 19:01:04 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,26 @@ static int			ft_wordlen(char const *s, char c)
 	return (len);
 }
 
+static void			ft_free(char **str)
+{
+	while (*str != NULL)
+	{
+		free(*str);
+		str++;
+	}
+	free(str);
+}
+
 static void			ft_createword(char **str, const char *src, char c)
 {
 	char	*word;
 
 	*str = malloc((ft_wordlen(src, c) + 1) * sizeof(char));
 	if (*str == 0)
+	{
+		ft_free(str);
 		return ;
+	}
 	word = *str;
 	while (*src && *src != c)
 	{
