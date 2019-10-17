@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 13:06:46 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/15 17:18:32 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/17 14:59:49 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void				*ft_memmove(void *dst, const void *src, size_t len);
 int					ft_atoi(const char *str);
 void				*ft_bzero(void *s, size_t n);
 void				*ft_calloc(size_t count, size_t size);
-int					ft_isalbum(int c);
+int					ft_isalnum(int c);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);
 int					ft_isdigit(int c);
