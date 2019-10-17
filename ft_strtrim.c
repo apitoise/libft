@@ -5,52 +5,94 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 16:03:02 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/17 16:03:05 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/11 10:56:50 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/17 16:23:30 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_get_size(char const *s1, char const *set)
+static int			ft_conststrlen(char const *str)
 {
-	int len;
-	int slen;
-	int i;
+	int	len;
 
-	i = 0;
 	len = 0;
-	slen = ft_strlen(s1);
-	while (i < slen && ft_strchr(set, s1[i]))
-	{
-		i++;
+	while (str[len])
 		len++;
-	}
-	i = slen - 1;
-	while (i >= 0 && ft_strchr(set, s1[i]))
-	{
-		i--;
-		len++;
-	}
-	if (slen < len)
-		return (len - slen);
-	return (slen - len);
+	return (len);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+static int			ft_isset(char c, char const *set)
 {
-	char	*tab;
-	size_t	i;
-	int		size;
+	int	i;
 
 	i = 0;
-	if (!s1 || !set)
-		return (0);
-	size = ft_get_size(s1, set);
-	if (!(tab = (char *)malloc(sizeof(char) * (size + 1))))
-		return (0);
-	while (i < ft_strlen(s1) && ft_strchr(set, s1[i]))
+	while (set[i])
+	{
+		if (c == set[i])
+			return (1);
 		i++;
-	ft_strlcpy(tab, &s1[i], size + 1);
-	return (tab);
+	}
+	return (0);
+}
+
+static int			ft_nbset(char const *s1, char const *set)
+{
+	int	idx;
+	int	nb;
+	int	end;
+
+	idx = 0;
+	nb = 0;
+	while (ft_isset(s1[idx], set) == 1 && s1[idx])
+	{
+		nb++;
+		idx++;
+	}
+	end = ft_conststrlen(s1);
+	while (ft_isset(s1[end], set) == 1 && end > 0)
+	{
+		nb++;
+		end--;
+	}
+	return (nb);
+}
+
+static int			ft_nbsetmax(char const *s1, char const *set)
+{
+	int	len;
+
+	len = ft_conststrlen(s1) - 1;
+	while (ft_isset(s1[len], set) == 1 && len > 0)
+		len--;
+	return (len);
+}
+
+char				*ft_strtrim(char const *s1, char const *set)
+{
+	char	*res;
+	int		idx;
+	int		min;
+	int		max;
+	int		len;
+
+	if (!set || !s1)
+		return (NULL);
+	min = 0;
+	while (ft_isset(s1[min], set) == 1)
+		min++;
+	max = ft_nbsetmax(s1, set);
+	len = ft_strlen((char *)s1) - ft_nbset(s1, set);
+	res = (char *)malloc((len) * sizeof(char) + 1);
+	if (res == 0)
+		return (0);
+	idx = 0;
+	while (min <= max)
+	{
+		res[idx] = s1[min];
+		min++;
+		idx++;
+	}
+	res[idx] = '\0';
+	return (res);
 }
