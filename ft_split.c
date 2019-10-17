@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:27:13 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/17 15:03:11 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/17 18:38:33 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ char				**ft_split(char const *s, char c)
 			new = 0;
 		s++;
 	}
+	free(res);
 	*res = NULL;
 	return (res2);
 }
