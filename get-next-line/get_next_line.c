@@ -6,55 +6,86 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 13:11:03 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/19 16:58:20 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/21 18:41:27 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		ft_createline(char	**res, char **line, size_t len)
+size_t				ft_strlen(char *str)
+{
+	size_t	len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
+}
+
+static int			ft_createline(char	**res, char **line, size_t len, int fd)
 {
 	char	*tmp;
 
-	if (!(line = malloc((len + 1) * sizeof(char))))
-		return (-1);
-	if (len > 0)
+	if (res[fd][len] == '\n')
 	{
-		if(!(*line = ft_substr(*res, 0, len)));
+		if(!(*line = ft_substr(res[fd], 0, len)))
 			return (-1);
-		if(!(tmp = ft_strdup(*res + len + 1)))
+		if(!(tmp = ft_strdup(res[fd] + len + 1)))
 			return (-1);
-		free(*res);
-		*res = tmp;
-		return (1);
+		free(res[fd]);
+		res[fd] = tmp;
 	}
-	return (0);
+	else
+	{
+		if (!(*line = ft_strdup(res[fd])))
+			return (-1);
+		free(res[fd]);
+	}
+	return (1);
 }
 
-int		ft_read(char **res, char **line, int len)
+static int		ft_read(int fd, char **res, size_t ret)
 {
-	while (*line = read(*res, *line, len))
-	return(0);
+	char	buff[BUFFER_SIZE + 1];
+	char	*tmp;
+
+	while (ret == read(fd, &buff, BUFFER_SIZE) > 0)
+	{
+		buff[ret] = '\0';
+		if (!(tmp = ft_strjoin(res[fd], buff)))
+			return (-1);
+		free(res[fd]);
+		res[fd] = tmp;
+		if (ft_strchr(buff, '\n'))
+			break ;
+	}
+	return (ret);
 }	
 
-int		get_next_line(int fd, char **line)
+int				get_next_line(int fd, char **line)
 {
-	static char *res[fd];
+	static char 	*res[MAX_FD];
 	size_t			len;
+	static int 		ret;
 
+	ret = 1;
 	len = 0;
-	if (!fd || !line)
-		return (-1);	
-	if (!(res[fd] = malloc(1)))
+	if (fd < 0 || line == NULL || fd > MAX_FD || BUFFER_SIZE < 1)
 		return (-1);
-	while (fd != 0)
+	if (!res[fd])
+		if (!(res[fd] = (char *)malloc(1)))
+			return (-1);
+	while (res[fd][len] != '\n' && res[fd][len] != '\0')
+		len++;
+	if (res[fd][len + 1] == '\n')
+		return (ft_createline(res, line, len, fd));
+	else
 	{
-		while (*res[fd] != '\n' ||*res[fd] != '\0')
-		{
-			len++;
-			fd++;
-		}
-		ft_createline(res, line, len);
+		ret = ft_read(fd, res, ret);
+		if (ret < 0)
+			return (-1);
+		else if (ret == 0 || res[fd][0] == '\0')
+			return (0);
 	}
-	ft_read(res, line, len);
+	return (ft_createline(res, line, len, fd));
 }	

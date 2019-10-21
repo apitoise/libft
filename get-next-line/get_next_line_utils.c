@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 15:57:15 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/19 15:59:50 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/21 15:10:47 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,44 @@ char		*ft_strdup(const char *s1)
 	}
 	res[len] = '\0';
 	return (res);
+}
+
+char		*ft_strjoin(char const *s1, char const *s2)
+{
+	int		size;
+	char	*res;
+	int		cpy;
+
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	size = ft_strlen((char *)s1) + ft_strlen((char *)s2);
+	res = (char *)malloc(size * sizeof(char) + 1);
+	if (res == 0)
+		return (0);
+	cpy = 0;
+	while (*s1)
+	{
+		res[cpy] = *s1;
+		cpy++;
+		s1++;
+	}
+	while (*s2)
+	{
+		res[cpy] = *s2;
+		cpy++;
+		s2++;
+	}
+	res[cpy] = '\0';
+	return (res);
+}
+
+char		*ft_strchr(const char *str, int c)
+{
+	while (*str != (char)c)
+	{
+		if (*str == '\0' && (char)c != '\0')
+			return (0);
+		str++;
+	}
+	return ((char *)str);
 }
