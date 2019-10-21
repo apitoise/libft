@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h> // a supprimer
 
 size_t				ft_strlen(char *str)
 {
@@ -28,6 +29,7 @@ static int			ft_createline(char	**res, char **line, size_t len, int fd)
 
 	if (res[fd][len] == '\n')
 	{
+		printf("%ld\n", len);
 		if(!(*line = ft_substr(res[fd], 0, len)))
 			return (-1);
 		if(!(tmp = ft_strdup(res[fd] + len + 1)))
@@ -77,14 +79,15 @@ int				get_next_line(int fd, char **line)
 			return (-1);
 	while (res[fd][len] != '\n' && res[fd][len] != '\0')
 		len++;
-	if (res[fd][len + 1] == '\n')
+	printf("%ld\n", len);
+	if (res[fd][len] == '\n')
 		return (ft_createline(res, line, len, fd));
 	else
 	{
 		ret = ft_read(fd, res, ret);
 		if (ret < 0)
 			return (-1);
-		else if (ret == 0 || res[fd][0] == '\0')
+		else if (ret == 0 && res[fd][0] == '\0')
 			return (0);
 	}
 	return (ft_createline(res, line, len, fd));
