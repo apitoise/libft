@@ -6,7 +6,7 @@
 /*   By: thbeaumo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 15:15:47 by thbeaumo          #+#    #+#             */
-/*   Updated: 2019/10/21 18:12:04 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/22 18:09:20 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ int        main(int ac, char **av)
 		else
 			printf(RED"Error, < read error > \t\t\t ❌  \n");
 	}
+	system("leaks a.out");
 	return (0);
 }
