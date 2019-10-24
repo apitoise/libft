@@ -6,21 +6,11 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 14:52:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/22 18:31:23 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/23 18:21:58 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-size_t			ft_strlen(char *str)
-{
-	int		len;
-
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
-}
 
 static int		ft_read(int fd, char **file)
 {
@@ -31,10 +21,12 @@ static int		ft_read(int fd, char **file)
 	while ((ret = read(fd, buff, BUFFER_SIZE)))
 	{
 		buff[ret] = '\0';
-		tmp = *file;
-		if (!(*file = ft_strjoin(tmp, buff)))
+		if (!(tmp = ft_strjoin(*file, buff)))
 			return (-1);
+		*file = tmp;
 		free(tmp);
+		if (ft_strchr(buff, '\n'))
+			break ;
 	}
 	return (ret);
 }
@@ -47,25 +39,21 @@ int				get_next_line(int fd, char **line)
 
 	if (fd < 0 || !line || BUFFER_SIZE < 1)
 		return (-1);
-	ret = ft_read(fd, &file);
-	if (ret < 0)
+	if (!(ret = ft_read(fd, &file)))
 		return (-1);
 	pos = 0;
+	if (!file)
+		if (!(file = malloc(1)))
+			return (-1);
 	while (file[pos] && file[pos] != '\n')
 		pos++;
-	free(*line);
 	if (!(*line = ft_substr(file, 0, pos)))
 		return (-1);
-	if (file[pos] || pos != ret)
+	if (file[pos] || ret != 0)
 	{
 		file += pos + 1;
-//		free(*line);
 		return (1);
 	}
 	else
-	{
-		free(*line);
-		line = NULL;
 		return (0);
-	}
 }

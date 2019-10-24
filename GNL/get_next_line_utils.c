@@ -6,11 +6,32 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 15:57:15 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/22 17:35:46 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/23 18:23:43 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+size_t		ft_strlen(char *str)
+{
+	size_t	len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
+}
+
+char		*ft_strchr(const char *str, int c)
+{
+	while (*str != (char)c)
+	{
+		if (*str == '\0' && (char)c != '\0')
+			return (0);
+		str++;
+	}
+	return ((char *)str);
+}
 
 char		*ft_substr(char const *s, unsigned int start, size_t len)
 {
