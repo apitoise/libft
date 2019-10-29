@@ -6,7 +6,7 @@
 /*   By: thbeaumo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 15:15:47 by thbeaumo          #+#    #+#             */
-/*   Updated: 2019/10/22 18:09:20 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/29 16:48:04 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int        main(int ac, char **av)
 		while ((ret1 = get_next_line(fd1, &str)) > 0)
 		{
 			printf(MAG"line %d "GRE"file 1 : %s\n", i, str);
-//			free(str);
+			free(str);
 		}
 		i++;
 		close(fd1);
@@ -81,16 +81,22 @@ int        main(int ac, char **av)
 	}
 	else
 	{
+		printf("ret = %d\n", ret1);
 		printf(RED"Error, number of arguments or BUFF_SIZE!\t\t\t ❌  \n");
 		error = 1;
 	}
 	if (!error)
 	{
 		if (ret1 == 0 && ret2 == 0 && ret3 == 0)
+{		
+printf("ret = %d\n", ret1);
 			printf(NRM"\nLecture finie:\t\t\t\t ✅ \n");
-		else
+}		
+	else
+{
+		printf("ret = %d\n", ret1);
 			printf(RED"Error, < read error > \t\t\t ❌  \n");
+}
 	}
-	system("leaks a.out");
 	return (0);
 }

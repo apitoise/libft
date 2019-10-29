@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 14:52:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/23 18:21:58 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/29 18:01:47 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static int		ft_read(int fd, char **file)
 		buff[ret] = '\0';
 		if (!(tmp = ft_strjoin(*file, buff)))
 			return (-1);
+		free(*file);
 		*file = tmp;
-		free(tmp);
 		if (ft_strchr(buff, '\n'))
 			break ;
 	}
@@ -36,24 +36,27 @@ int				get_next_line(int fd, char **line)
 	static char		*file;
 	int				pos;
 	int				ret;
+	char			*tmp;
 
+	pos = 0;
 	if (fd < 0 || !line || BUFFER_SIZE < 1)
 		return (-1);
-	if (!(ret = ft_read(fd, &file)))
+	if ((ret = ft_read(fd, &file) < 0))
 		return (-1);
-	pos = 0;
-	if (!file)
-		if (!(file = malloc(1)))
-			return (-1);
-	while (file[pos] && file[pos] != '\n')
-		pos++;
-	if (!(*line = ft_substr(file, 0, pos)))
-		return (-1);
-	if (file[pos] || ret != 0)
+	if (!(file))
+		file = malloc(1);
+	printf("ret = %d\n", ret);	
+	if (file[pos])
 	{
-		file += pos + 1;
+		while (file[pos] && file[pos] != '\n')
+			pos++;
+		if (!(*line = ft_substr(file, 0, pos)))
+			return (-1);
+		tmp = ft_strdup(file + pos + 1);
+		free(file);
+		file = tmp;
 		return (1);
 	}
-	else
-		return (0);
+	*line = ft_strdup("");
+	return (0);
 }
