@@ -6,7 +6,7 @@
 /*   By: thbeaumo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 15:15:47 by thbeaumo          #+#    #+#             */
-/*   Updated: 2019/10/29 16:48:04 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/30 13:25:15 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,13 @@ int        main(int ac, char **av)
 	{
 		if (ret1 == 0 && ret2 == 0 && ret3 == 0)
 {		
+	system("leaks a.out");
 printf("ret = %d\n", ret1);
 			printf(NRM"\nLecture finie:\t\t\t\t ✅ \n");
 }		
 	else
 {
+	system("leaks a.out");
 		printf("ret = %d\n", ret1);
 			printf(RED"Error, < read error > \t\t\t ❌  \n");
 }
