@@ -6,13 +6,13 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 15:50:06 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/30 16:39:44 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/31 12:57:25 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_parsing(char *str, int len, char *res)
+char	*ft_parsing(char *str, int len, char *res)
 {
 	if (str[len + 1] == 'c')
 		return (pf_c(res, len));
@@ -29,5 +29,5 @@ int		ft_parsing(char *str, int len, char *res)
 //	if (str[len + 1] == 'X')
 //		return (pf_cx());
 	else
-		return (-1);
+		return (NULL);
 }

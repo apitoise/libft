@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 15:55:13 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/30 16:45:56 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/31 12:57:50 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <stdio.h>
 # include <unistd.h>
 
-int		ft_parsing(char *str, int len, char *res);
+char	*ft_parsing(char *str, int len, char *res);
 int		ft_printf(const char *str, ...);
-int		pf_c(char *str, int len);
+char	*pf_c(char *str, int len);
 
 #endif

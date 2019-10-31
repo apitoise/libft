@@ -6,14 +6,14 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:04:48 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/30 16:34:05 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/10/31 13:21:27 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		pf_c(char *res, int len)
+char	*pf_c(char *res, int len)
 {
-	res[len + 1] = 'A';
-	return (0);
+	res[len] = 'A';
+	return (res);
 }
