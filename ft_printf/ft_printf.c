@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:42:26 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/03 17:43:35 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/03 18:06:37 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		ft_printf(const char *str, ...)
 		{
 			while (data.str[data.pos] && data.str[data.pos] != '%')
 				data.pos++;
-			if (data.pos > 0)
+			if (data.pos > 0 && data.str[data.pos])
 				ft_strlcpy(resultat.res, data.str, data.pos + 1);
 			if (data.str[data.pos] == '%')
 			{
