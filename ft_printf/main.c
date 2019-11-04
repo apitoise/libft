@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:16:41 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/03 17:31:12 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/04 15:31:53 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int		main(void)
 {
-	ft_printf("Salut %c", 'p');
+	ft_printf("Salut %c, comment vas tu %c?%c", 'A', 'A', 'B');
 	return (0);
 }

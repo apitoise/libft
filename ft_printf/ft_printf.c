@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 14:42:26 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/03 18:06:37 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/04 17:00:53 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,20 @@ int		ft_printf(const char *str, ...)
 	else
 	{
 		data.pos = 0;
+		resultat.tmpidx = 0;
 		while (data.str[data.pos])
 		{
 			while (data.str[data.pos] && data.str[data.pos] != '%')
 				data.pos++;
-			if (data.pos > 0 && data.str[data.pos])
-				ft_strlcpy(resultat.res, data.str, data.pos + 1);
 			if (data.str[data.pos] == '%')
 			{
 				data.conv = data.str[data.pos + 1];
+				printf("printftmp: %s\n", resultat.tmp);
+				resultat.tmp = ft_tmp(data, &resultat);
+				printf("printftmp: %s\n", resultat.tmp);
 				resultat.res = ft_parsing(va, data, resultat);
+				data.pos += 2;
 			}
-			data.pos++;
 		}
 	}
 	ft_putstr(resultat.res);

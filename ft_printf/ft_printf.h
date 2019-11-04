@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 15:55:13 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/03 17:44:44 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/04 17:02:04 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 typedef	struct		s_resultat
 {
 	char	*res;
+	char	*tmp;
+	int		tmpidx;
 }					t_resultat;
 
 typedef	struct		s_data
@@ -35,5 +37,6 @@ int		ft_printf(const char *str, ...);
 char	*pf_c(va_list va, t_data data, t_resultat *resultat);
 int		check_error(const char *str, int pos);
 int		percent_nb(char *str);
+char	*ft_tmp(t_data data, t_resultat *resultat);
 
 #endif

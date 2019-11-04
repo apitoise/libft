@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/11 10:50:14 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/15 15:55:59 by apitoise         ###   ########.fr       */
+/*   Created: 2019/11/04 13:32:44 by apitoise          #+#    #+#             */
+/*   Updated: 2019/11/04 13:34:00 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 char		*ft_strjoin(char const *s1, char const *s2)
 {
-	int		size;
-	char	*res;
-	int		cpy;
+	size_t	i;
+	size_t	j;
+	size_t	s1_len;
+	size_t	s2_len;
+	char	*result;
 
-	if (s1 == NULL || s2 == NULL)
+	s1_len = s1 ? ft_strlen((char *)s1) : 0;
+	s2_len = s2 ? ft_strlen((char *)s2) : 0;
+	if (!(result = malloc(sizeof(char) *
+	(s1_len + s2_len + 1))))
 		return (NULL);
-	size = ft_strlen((char *)s1) + ft_strlen((char *)s2);
-	res = (char *)malloc(size * sizeof(char) + 1);
-	if (res == 0)
-		return (0);
-	cpy = 0;
-	while (*s1)
+	i = 0;
+	j = 0;
+	while (i < s1_len)
 	{
-		res[cpy] = *s1;
-		cpy++;
-		s1++;
+		result[i] = s1[i];
+		i++;
 	}
-	while (*s2)
+	while (j < s2_len)
 	{
-		res[cpy] = *s2;
-		cpy++;
-		s2++;
+		result[i + j] = s2[j];
+		j++;
 	}
-	res[cpy] = '\0';
-	return (res);
+	result[i + j] = '\0';
+	return (result);
 }
