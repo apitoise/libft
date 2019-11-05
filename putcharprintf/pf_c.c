@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_percent.c                                    :+:      :+:    :+:   */
+/*   pf_c.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 15:14:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/04 17:40:29 by apitoise         ###   ########.fr       */
+/*   Created: 2019/11/05 15:39:38 by apitoise          #+#    #+#             */
+/*   Updated: 2019/11/05 15:47:46 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		percent_nb(char *str)
+int		pf_c(va_list va)
 {
-	int		pos;
-	int		num;
+	char	c;
 
-	pos = 0;
-	num = 0;
-	while (str[pos])
-	{
-		if (str[pos] == '%')
-		{
-			if (check_error(str, pos) == -1)
-				return (-1);
-			if (str[pos + 1] == '%')
-				pos++;
-			num++;
-		}
-		pos++;
-	}
-	return (num);
+	c = va_arg(va, int);
+	write(1, &c, 1);
+	return (0);
 }

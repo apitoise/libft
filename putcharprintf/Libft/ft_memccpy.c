@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_percent.c                                    :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 15:14:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/04 17:40:29 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/09 13:32:45 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/19 13:22:50 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		percent_nb(char *str)
+void		*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	int		pos;
-	int		num;
+	unsigned char	*new;
+	unsigned char	*source;
+	size_t			i;
 
-	pos = 0;
-	num = 0;
-	while (str[pos])
+	source = (unsigned char *)src;
+	new = (unsigned char *)dst;
+	i = 0;
+	while (i < n)
 	{
-		if (str[pos] == '%')
-		{
-			if (check_error(str, pos) == -1)
-				return (-1);
-			if (str[pos + 1] == '%')
-				pos++;
-			num++;
-		}
-		pos++;
+		new[i] = source[i];
+		if (new[i] == (unsigned char)c)
+			return ((unsigned char *)dst + i + 1);
+		i++;
 	}
-	return (num);
+	return (NULL);
 }

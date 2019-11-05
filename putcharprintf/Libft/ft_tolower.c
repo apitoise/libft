@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_percent.c                                    :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 15:14:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/04 17:40:29 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/08 12:19:24 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/08 12:19:25 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int		percent_nb(char *str)
+int		ft_tolower(int c)
 {
-	int		pos;
-	int		num;
-
-	pos = 0;
-	num = 0;
-	while (str[pos])
-	{
-		if (str[pos] == '%')
-		{
-			if (check_error(str, pos) == -1)
-				return (-1);
-			if (str[pos + 1] == '%')
-				pos++;
-			num++;
-		}
-		pos++;
-	}
-	return (num);
+	if (c >= 65 && c <= 90)
+		return (c + 32);
+	return (c);
 }

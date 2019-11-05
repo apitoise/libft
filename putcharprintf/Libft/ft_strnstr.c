@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_percent.c                                    :+:      :+:    :+:   */
+/*   strnstr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 15:14:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/04 17:40:29 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/08 16:22:08 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/15 15:11:56 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		percent_nb(char *str)
+char		*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int		pos;
-	int		num;
+	size_t			i;
+	size_t			j;
 
-	pos = 0;
-	num = 0;
-	while (str[pos])
+	if (*needle == '\0' || needle == NULL)
+		return ((char *)haystack);
+	i = 0;
+	while (haystack[i] && i < len)
 	{
-		if (str[pos] == '%')
+		j = 0;
+		while (haystack[i + j] == needle[j] && i + j < len)
 		{
-			if (check_error(str, pos) == -1)
-				return (-1);
-			if (str[pos + 1] == '%')
-				pos++;
-			num++;
+			if (needle[j + 1] == '\0')
+				return ((char *)haystack + i);
+			j++;
 		}
-		pos++;
+		i++;
 	}
-	return (num);
+	return (NULL);
 }

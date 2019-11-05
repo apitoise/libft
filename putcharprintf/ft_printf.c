@@ -1,35 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_percent.c                                    :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 15:14:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/04 17:40:29 by apitoise         ###   ########.fr       */
+/*   Created: 2019/11/05 15:19:34 by apitoise          #+#    #+#             */
+/*   Updated: 2019/11/05 15:50:20 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		percent_nb(char *str)
+int		ft_printf(const char *str, ...)
 {
-	int		pos;
-	int		num;
+	va_list		va;
+	int			idx;
 
-	pos = 0;
-	num = 0;
-	while (str[pos])
+	va_start(va, str);
+	if (percent_nb((char *)str) < 0)
+		return (-1);
+	if (!(percent_nb((char *)str)))
 	{
-		if (str[pos] == '%')
-		{
-			if (check_error(str, pos) == -1)
-				return (-1);
-			if (str[pos + 1] == '%')
-				pos++;
-			num++;
-		}
-		pos++;
+		ft_putstr((char *)str);
+		return (0);
 	}
-	return (num);
+	else
+	{
+		idx = 0;
+		while (str[idx])
+		{
+			if (str[idx] == '%')
+			{
+				ft_parsing(va, str, idx);
+				idx += 2;
+			}
+			while (str[idx] && str[idx] != '%')
+			{
+				write(1, &str[idx], 1);
+				idx++;
+			}
+		}
+	}
+	return (0);
 }

@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_percent.c                                    :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 15:14:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/04 17:40:29 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/09 18:21:03 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/14 18:05:33 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		percent_nb(char *str)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int		pos;
-	int		num;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-	pos = 0;
-	num = 0;
-	while (str[pos])
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	if (s1 == s2 || n == 0)
+		return (0);
+	while (n > 0)
 	{
-		if (str[pos] == '%')
-		{
-			if (check_error(str, pos) == -1)
-				return (-1);
-			if (str[pos + 1] == '%')
-				pos++;
-			num++;
-		}
-		pos++;
+		if (*str1 != *str2)
+			return (*str1 - *str2);
+		n--;
+		str1++;
+		str2++;
 	}
-	return (num);
+	return (0);
 }

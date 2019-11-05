@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_percent.c                                    :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 15:14:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/04 17:40:29 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/09 17:51:46 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/14 17:44:49 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		percent_nb(char *str)
+void		*ft_memchr(const void *s, int c, size_t n)
 {
-	int		pos;
-	int		num;
+	int		i;
+	char	*s2;
 
-	pos = 0;
-	num = 0;
-	while (str[pos])
+	i = 0;
+	s2 = (char *)s;
+	while (n)
 	{
-		if (str[pos] == '%')
-		{
-			if (check_error(str, pos) == -1)
-				return (-1);
-			if (str[pos + 1] == '%')
-				pos++;
-			num++;
-		}
-		pos++;
+		if (s2[i] == (char)c)
+			return (s2 + i);
+		n--;
+		i++;
 	}
-	return (num);
+	return (NULL);
 }

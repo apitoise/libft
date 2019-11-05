@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_percent.c                                    :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 15:14:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/04 17:40:29 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/30 15:55:13 by apitoise          #+#    #+#             */
+/*   Updated: 2019/11/05 17:28:34 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# include <stdarg.h>
+# include "Libft/libft.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
 
-int		percent_nb(char *str)
-{
-	int		pos;
-	int		num;
+int		ft_parsing(va_list va, const char *str, int pos);
+int		ft_printf(const char *str, ...);
+int		pf_c(va_list va);
+int		pf_s(va_list va);
+int		pf_idu(va_list va);
+int		check_error(const char *str, int pos);
+int		percent_nb(char *str);
 
-	pos = 0;
-	num = 0;
-	while (str[pos])
-	{
-		if (str[pos] == '%')
-		{
-			if (check_error(str, pos) == -1)
-				return (-1);
-			if (str[pos + 1] == '%')
-				pos++;
-			num++;
-		}
-		pos++;
-	}
-	return (num);
-}
+#endif

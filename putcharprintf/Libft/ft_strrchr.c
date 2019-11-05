@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_percent.c                                    :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 15:14:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/04 17:40:29 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/08 12:19:16 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/08 12:19:18 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int		percent_nb(char *str)
+char		*ft_strrchr(const char *str, int c)
 {
-	int		pos;
-	int		num;
+	int	rev;
+	int	save;
 
-	pos = 0;
-	num = 0;
-	while (str[pos])
+	rev = 0;
+	save = 0;
+	while (str[rev] != '\0')
+		rev++;
+	while (str[rev] != (char)c)
 	{
-		if (str[pos] == '%')
-		{
-			if (check_error(str, pos) == -1)
-				return (-1);
-			if (str[pos + 1] == '%')
-				pos++;
-			num++;
-		}
-		pos++;
+		if (str[rev] == str[0] && (char)c != str[0])
+			return (0);
+		rev--;
 	}
-	return (num);
+	while (save < rev)
+	{
+		str++;
+		save++;
+	}
+	return ((char *)str);
 }

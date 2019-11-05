@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_percent.c                                    :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 15:14:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/04 17:40:29 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/14 12:04:42 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/14 12:05:57 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		percent_nb(char *str)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int		pos;
-	int		num;
+	int		idx;
+	char	*res;
 
-	pos = 0;
-	num = 0;
-	while (str[pos])
+	idx = 0;
+	if (!s || !f)
+		return (0);
+	res = (char *)malloc(ft_strlen((char *)s) * sizeof(char) + 1);
+	if (res == 0)
+		return (0);
+	while (s[idx])
 	{
-		if (str[pos] == '%')
-		{
-			if (check_error(str, pos) == -1)
-				return (-1);
-			if (str[pos + 1] == '%')
-				pos++;
-			num++;
-		}
-		pos++;
+		res[idx] = f(idx, s[idx]);
+		idx++;
 	}
-	return (num);
+	res[idx] = '\0';
+	return (res);
 }

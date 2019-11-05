@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 15:32:28 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/04 17:01:51 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/05 15:20:45 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ char		*ft_tmp(t_data data, t_resultat *resultat)
 	int		index;
 	char	*tmptmp;
 
-	if (resultat->tmpidx == 0)
+	if (resultat->tmp == NULL)
 	{
 		resultat->tmpidx = 1;
-//		ft_strlcpy(resultat->tmp, data.str, data.pos + 1);
+		ft_strlcpy(resultat->tmp, data.str, data.pos + 1);
 	}
 	else
 	{

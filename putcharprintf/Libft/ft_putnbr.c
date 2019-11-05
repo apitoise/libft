@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_percent.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 15:14:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/04 17:40:29 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/14 12:26:58 by apitoise          #+#    #+#             */
+/*   Updated: 2019/11/05 17:18:01 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		percent_nb(char *str)
+void		ft_putnbr(int n)
 {
-	int		pos;
-	int		num;
+	unsigned int	nbr;
 
-	pos = 0;
-	num = 0;
-	while (str[pos])
+	if (n < 0)
 	{
-		if (str[pos] == '%')
-		{
-			if (check_error(str, pos) == -1)
-				return (-1);
-			if (str[pos + 1] == '%')
-				pos++;
-			num++;
-		}
-		pos++;
+		nbr = n * -1;
+		ft_putchar('-');
 	}
-	return (num);
+	else
+		nbr = n;
+	if (n / 10)
+		ft_putnbr(nbr / 10);
+	ft_putchar((nbr % 10) + 48);
 }

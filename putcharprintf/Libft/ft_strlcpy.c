@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_percent.c                                    :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 15:14:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/04 17:40:29 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/08 12:22:54 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/15 16:18:05 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		percent_nb(char *str)
+size_t		ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	int		pos;
-	int		num;
+	size_t	tab;
+	size_t	max;
 
-	pos = 0;
-	num = 0;
-	while (str[pos])
+	if (size == 0)
+		return (ft_strlen((char *)src));
+	tab = 0;
+	max = size;
+	size = ft_strlen((char *)src);
+	if (max > 0)
 	{
-		if (str[pos] == '%')
+		while (src[tab] && tab < max - 1)
 		{
-			if (check_error(str, pos) == -1)
-				return (-1);
-			if (str[pos + 1] == '%')
-				pos++;
-			num++;
+			dest[tab] = src[tab];
+			tab++;
 		}
-		pos++;
 	}
-	return (num);
+	dest[tab] = '\0';
+	return (size);
 }

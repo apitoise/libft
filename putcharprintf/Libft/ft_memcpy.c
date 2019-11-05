@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_percent.c                                    :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 15:14:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/04 17:40:29 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/09 12:23:18 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/19 17:58:14 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		percent_nb(char *str)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int		pos;
-	int		num;
+	size_t	i;
+	char	*str1;
+	char	*str2;
 
-	pos = 0;
-	num = 0;
-	while (str[pos])
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	i = 0;
+	str1 = (char *)src;
+	str2 = (char *)dst;
+	while (i < n)
 	{
-		if (str[pos] == '%')
-		{
-			if (check_error(str, pos) == -1)
-				return (-1);
-			if (str[pos + 1] == '%')
-				pos++;
-			num++;
-		}
-		pos++;
+		str2[i] = str1[i];
+		i++;
 	}
-	return (num);
+	return (dst);
 }

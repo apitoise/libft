@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_percent.c                                    :+:      :+:    :+:   */
+/*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 15:14:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/04 17:40:29 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/30 15:50:06 by apitoise          #+#    #+#             */
+/*   Updated: 2019/11/05 17:28:23 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		percent_nb(char *str)
+int			ft_parsing(va_list va, const char *str, int pos)
 {
-	int		pos;
-	int		num;
-
-	pos = 0;
-	num = 0;
-	while (str[pos])
-	{
-		if (str[pos] == '%')
-		{
-			if (check_error(str, pos) == -1)
-				return (-1);
-			if (str[pos + 1] == '%')
-				pos++;
-			num++;
-		}
-		pos++;
-	}
-	return (num);
+	if (str[pos + 1] == 'c')
+		return (pf_c(va));
+	if (str[pos + 1] == 'd' || str[pos + 1] == 'i' || str[pos + 1] == 'u')
+		return (pf_idu(va));
+	if (str[pos + 1] == 's')
+		return (pf_s(va));
+//	if (resultat.res == 'p')
+//		return (pf_p());
+//	if (resultat.res == 'x')
+//		return (pf_x());
+//	if (resultat.res == 'X')
+//		return (pf_cx());
+	else
+		return (-1);
 }

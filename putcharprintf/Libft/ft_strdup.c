@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_percent.c                                    :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 15:14:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/04 17:40:29 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/10 13:01:52 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/19 14:34:44 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		percent_nb(char *str)
+char		*ft_strdup(const char *s1)
 {
-	int		pos;
-	int		num;
+	int		len;
+	char	*res;
 
-	pos = 0;
-	num = 0;
-	while (str[pos])
+	len = 0;
+	while (s1[len])
+		len++;
+	res = malloc(len * sizeof(char) + 1);
+	if (res == 0)
+		return (NULL);
+	len = 0;
+	while (s1[len])
 	{
-		if (str[pos] == '%')
-		{
-			if (check_error(str, pos) == -1)
-				return (-1);
-			if (str[pos + 1] == '%')
-				pos++;
-			num++;
-		}
-		pos++;
+		res[len] = s1[len];
+		len++;
 	}
-	return (num);
+	res[len] = '\0';
+	return (res);
 }

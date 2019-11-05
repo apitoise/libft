@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_percent.c                                    :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 15:14:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/04 17:40:29 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/08 15:03:08 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/15 16:15:46 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		percent_nb(char *str)
+size_t		ft_strlcat(char *dest, const char *src, size_t size)
 {
-	int		pos;
-	int		num;
+	size_t	i;
+	size_t	len;
 
-	pos = 0;
-	num = 0;
-	while (str[pos])
+	len = 0;
+	while (dest[len] && len < size)
+		len = len + 1;
+	i = len;
+	while (src[len - i] && len + 1 < size)
 	{
-		if (str[pos] == '%')
-		{
-			if (check_error(str, pos) == -1)
-				return (-1);
-			if (str[pos + 1] == '%')
-				pos++;
-			num++;
-		}
-		pos++;
+		dest[len] = src[len - i];
+		len = len + 1;
 	}
-	return (num);
+	if (i < size)
+		dest[len] = '\0';
+	return (i + ft_strlen((char *)src));
 }
