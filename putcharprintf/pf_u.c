@@ -1,46 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   pf_u.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 15:19:34 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/06 16:51:55 by apitoise         ###   ########.fr       */
+/*   Created: 2019/11/06 13:10:02 by apitoise          #+#    #+#             */
+/*   Updated: 2019/11/06 13:12:17 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *str, ...)
+int		pf_u(va_list va)
 {
-	va_list		va;
-	int			idx;
-
-	va_start(va, str);
-	if (percent_nb((char *)str) < 0)
-		return (-1);
-	if (!(percent_nb((char *)str)))
-	{
-		ft_putstr((char *)str);
-		return (0);
-	}
-	else
-	{
-		idx = 0;
-		while (str[idx])
-		{
-			if (str[idx] == '%')
-			{
-				ft_parsing(va, str, idx);
-				idx += 2;
-			}
-			while (str[idx] && str[idx] != '%')
-			{
-				write(1, &str[idx], 1);
-				idx++;
-			}
-		}
-	}
+	ft_putunbr(va_arg(va, int));
 	return (0);
 }

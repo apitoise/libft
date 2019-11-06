@@ -6,14 +6,14 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 17:00:33 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/05 17:27:53 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/06 13:15:53 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		pf_idu(va_list va)
+int		pf_id(va_list va)
 {
-	ft_putnbr(va_arg(va, int));
+	ft_putnbr(va_arg(va, unsigned int));
 	return (0);
 }

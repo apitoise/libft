@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 13:06:46 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/05 17:17:06 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/06 17:01:35 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr(int n);
 void				ft_putstr(char *str);
 void				ft_putchar(char c);
+void				ft_putunbr(int n);
+void				ft_putnbr_basehexa(unsigned long int n, char *base);
 
 #endif

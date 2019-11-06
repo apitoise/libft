@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 15:47:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/05 17:32:15 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/06 17:10:25 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int		main(void)
 {
-	ft_printf("Salut %d comment vas-tu %s?%c dfjdjfdhf\n", 6, "Arthur", 'B');
-	printf("Salut %X comment vas-tu %s?%c dfjdjfdhf\n", 'X', "Arthur", 'B');
+	char	str[6] = "Salut";
+	ft_printf("ft_printf: Salut %X\n", 665684);
+	printf("printf: Salut %X\n", 665684);
 	return (0);
 }
