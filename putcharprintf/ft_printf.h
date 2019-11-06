@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 15:55:13 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/06 17:11:03 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/06 18:43:09 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ int		pf_cx(va_list va);
 int		pf_percent(va_list va);
 int		check_error(const char *str, int pos);
 int		percent_nb(char *str);
+void	init_struct(t_flags *flags);
+int		search_flags(const char *str, int pos, t_flags *flags);
 
 #endif

@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_u.c                                             :+:      :+:    :+:   */
+/*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 13:10:02 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/06 17:47:35 by apitoise         ###   ########.fr       */
+/*   Created: 2019/11/06 18:17:32 by apitoise          #+#    #+#             */
+/*   Updated: 2019/11/06 18:39:23 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		pf_u(va_list va)
+void		init_struct(t_flags	*flags)
 {
-	ft_putunbr(va_arg(va, int));
-	return (0);
+	flags->flag = 1;
+	flags->dash = 0;
+	flags->zero = 0;
+	flags->dot = 0;
+	flags->star = 0;
 }
