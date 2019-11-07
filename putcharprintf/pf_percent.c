@@ -6,14 +6,14 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 13:38:09 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/06 13:39:26 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/07 15:53:44 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		pf_percent(va_list va)
+int		pf_percent(va_list va, int pos, t_flags flags)
 {
 	ft_putchar('%');
-	return (0);
+	return (pos + 1);
 }

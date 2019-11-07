@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_id.c                                            :+:      :+:    :+:   */
+/*   is_conv.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 17:00:33 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/07 15:54:48 by apitoise         ###   ########.fr       */
+/*   Created: 2019/11/07 13:30:03 by apitoise          #+#    #+#             */
+/*   Updated: 2019/11/07 13:33:10 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		pf_id(va_list va, int pos, t_flags flags)
+int		is_conv(const char *str, int pos)
 {
-	ft_putnbr(va_arg(va, unsigned int));
-	return (pos + 1);
+	if (str[pos] == 'c' || str[pos] == 'd' || str[pos] == 'i' ||str[pos] == 'u'
+		|| str[pos] == 's' || str[pos] == 'p' || str[pos] == 'c'
+		|| str[pos] == 'X' || str[pos] == '%')
+		return (1);
+	else
+		return (0);
 }

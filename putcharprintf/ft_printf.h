@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 15:55:13 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/06 18:43:09 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/07 18:26:50 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,19 @@ typedef	struct		s_flags
 
 int		ft_parsing(va_list va, const char *str, int pos);
 int		ft_printf(const char *str, ...);
-int		pf_c(va_list va);
-int		pf_s(va_list va);
-int		pf_id(va_list va);
-int		pf_p(va_list va);
-int		pf_u(va_list va);
-int		pf_x(va_list va);
-int		pf_cx(va_list va);
-int		pf_percent(va_list va);
+int		pf_c(va_list va, int pos, t_flags flags);
+int		pf_s(va_list va, int pos, t_flags flags);
+int		pf_id(va_list va, int pos, t_flags flags);
+int		pf_p(va_list va, int pos, t_flags flags);
+int		pf_u(va_list va, int pos, t_flags flags);
+int		pf_x(va_list va, int pos, t_flags flags);
+int		pf_cx(va_list va, int pos, t_flags flags);
+int		pf_percent(va_list va, int pos, t_flags flags);
 int		check_error(const char *str, int pos);
 int		percent_nb(char *str);
 void	init_struct(t_flags *flags);
 int		search_flags(const char *str, int pos, t_flags *flags);
+int		is_conv(const char *str, int pos);
+int		is_flag(const char *str, int pos);
 
 #endif

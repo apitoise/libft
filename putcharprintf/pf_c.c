@@ -6,17 +6,17 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 15:39:38 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/05 15:47:46 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/07 15:51:46 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		pf_c(va_list va)
+int		pf_c(va_list va, int pos, t_flags flags)
 {
 	char	c;
 
 	c = va_arg(va, int);
 	write(1, &c, 1);
-	return (0);
+	return (pos + 1);
 }

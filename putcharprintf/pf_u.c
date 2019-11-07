@@ -6,14 +6,14 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 13:10:02 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/06 17:47:35 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/07 15:54:37 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		pf_u(va_list va)
+int		pf_u(va_list va, int pos, t_flags flags)
 {
 	ft_putunbr(va_arg(va, int));
-	return (0);
+	return (pos + 1);
 }
