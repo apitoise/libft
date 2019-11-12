@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 15:55:13 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/07 18:26:50 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/12 17:18:37 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef	struct		s_flags
 	int		zero;
 	int		dot;
 	int		star;
+	int		width;
 }					t_flags;
 
 int		ft_parsing(va_list va, const char *str, int pos);

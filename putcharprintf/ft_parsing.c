@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 15:50:06 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/07 17:02:35 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/12 18:08:32 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@ int			ft_parsing(va_list va, const char *str, int pos)
 	pos += 1;
 	while (!(is_conv(str, pos)))
 		pos = search_flags(str, pos, &flags);
-	printf("dash: %d\n", flags.dash);
-	printf("zero: %d\n", flags.zero);
-	printf("dot: %d\n", flags.dot);
-	printf("star: %d\n", flags.star);
-	printf("flag: %d\n", flags.flag);
 	if (str[pos] == 'c')
 		return (pf_c(va, pos, flags));
 	if (str[pos] == 'd' || str[pos + 1] == 'i')
