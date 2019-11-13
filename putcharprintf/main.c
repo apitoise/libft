@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 15:47:53 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/12 18:56:41 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/13 18:02:22 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		main(void)
 {
 	char	str[6] = "Salut";
-	ft_printf("Salut %025cComment tu vas ?\n",'A');
-	printf("Salut %025cComment tu vas ?\n",'A');
+	ft_printf("Salut %*d, %025-10c Comment tu vas ?\n", 25, 10, 'B');
+	printf("Salut %*d, %025-10c Comment tu vas ?\n", 25, 10, 'B');
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 15:19:34 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/07 18:26:48 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/13 17:46:39 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,6 @@ int		ft_printf(const char *str, ...)
 	int			idx;
 
 	va_start(va, str);
-//	if (percent_nb((char *)str) < 0)
-//		return (-1);
-//	if (!(percent_nb((char *)str)))
-//	{
-//		ft_putstr((char *)str);
-//		return (0);
-//	}
-//	else
 	{
 		idx = 0;
 		while (str[idx])
@@ -39,5 +31,6 @@ int		ft_printf(const char *str, ...)
 			}
 		}
 	}
+	va_end(va);
 	return (0);
 }

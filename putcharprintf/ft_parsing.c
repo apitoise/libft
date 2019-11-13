@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 15:50:06 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/12 18:08:32 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/13 17:23:32 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int			ft_parsing(va_list va, const char *str, int pos)
 	init_struct(&flags);
 	pos += 1;
 	while (!(is_conv(str, pos)))
-		pos = search_flags(str, pos, &flags);
+		pos = search_flags(va, str, pos, &flags);
 	if (str[pos] == 'c')
 		return (pf_c(va, pos, flags));
-	if (str[pos] == 'd' || str[pos + 1] == 'i')
+	if (str[pos] == 'd' || str[pos] == 'i')
 		return (pf_id(va, pos, flags));
 	if (str[pos] == 'u')
 		return (pf_u(va, pos, flags));
@@ -36,6 +36,5 @@ int			ft_parsing(va_list va, const char *str, int pos)
 		return (pf_cx(va, pos, flags));
 	if (str[pos] == '%')
 		return (pf_percent(va, pos, flags));
-	else
-		return (-1);
+	return (-1);
 }

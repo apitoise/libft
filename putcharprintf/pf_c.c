@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 15:39:38 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/12 17:55:28 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/13 16:47:07 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	flags_c(va_list va, int pos, t_flags *flags)
 		}
 		ft_putchar(va_arg(va, int));
 	}
+	if (flags->dot > 0)
+		ft_putchar(va_arg(va, int));
 }	
 
 int		pf_c(va_list va, int pos, t_flags flags)
