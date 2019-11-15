@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 17:00:33 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/15 17:40:41 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/15 17:56:24 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,32 @@ int		itoa_func(int nbr)
 	return (len);
 }
 
-void	flags_id(int nbr, int pos, t_flags *flags)
+void	ft_dot(int nbr, int pos, t_flags *flags)
 {
 	int		lenbis;
 
+	lenbis = itoa_func(nbr);
+	if (nbr < 0)
+	{
+		lenbis -= 1;
+		flags->len += 1;
+	}
+	while (flags->width > flags->len && flags->dash == 0)
+	{
+		ft_putchar(' ');
+		flags->width--;
+	}
+	if (nbr < 0)
+		ft_putchar('-');
+	while (flags->precision > lenbis)
+	{
+		ft_putchar('0');
+		flags->precision--;
+	}
+}
+
+void	flags_id(int nbr, int pos, t_flags *flags)
+{
 	if (flags->dash > 0 || flags->dot > 0)
 		flags->zero = 0;
 	if (nbr < 0 && flags->dot == 0)
@@ -40,26 +62,7 @@ void	flags_id(int nbr, int pos, t_flags *flags)
 		}
 	}
 	if (flags->dot > 0)
-	{
-		lenbis = itoa_func(nbr);
-		if (nbr < 0)
-		{
-			lenbis -= 1;
-			flags->len += 1;
-		}
-		while (flags->width > flags->len && flags->dash == 0)
-		{
-			ft_putchar(' ');
-			flags->width--;
-		}
-		if (nbr < 0)
-			ft_putchar('-');
-		while (flags->precision > lenbis)
-		{
-			ft_putchar('0');
-			flags->precision--;
-		}
-	}
+		ft_dot(nbr, pos, flags);
 	ft_putnbr(nbr);
 	if (flags->dash > 0)
 	{
