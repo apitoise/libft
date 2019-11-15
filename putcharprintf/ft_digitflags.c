@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_struct.c                                      :+:      :+:    :+:   */
+/*   ft_digitflags.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 18:17:32 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/15 16:15:03 by apitoise         ###   ########.fr       */
+/*   Created: 2019/11/14 12:56:29 by apitoise          #+#    #+#             */
+/*   Updated: 2019/11/15 16:09:48 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		init_struct(t_flags	*flags)
+int		ft_digitflags(va_list va, const char *str, int pos, t_flags *flags)
 {
-	flags->flag = 0;
-	flags->dash = 0;
-	flags->zero = 0;
-	flags->dot = 0;
-	flags->star = 0;
-	flags->width = 0;
-	flags->precision = 0;
-}
+	flags->width = ft_atoi(&str[pos]);
+	while (ft_isdigit(str[pos]))
+		pos++;
+	return (pos);
+}			

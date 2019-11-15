@@ -6,52 +6,88 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 17:00:33 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/13 18:02:13 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/15 17:40:41 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	flags_id(va_list va, int pos, t_flags *flags)
+int		itoa_func(int nbr)
 {
-	if (flags->dash > 0)
-	{
+	char	*tmp;
+	int		len;
+
+	tmp = ft_itoa(nbr);
+	len = ft_strlen(tmp);
+	free(tmp);
+	return (len);
+}
+
+void	flags_id(int nbr, int pos, t_flags *flags)
+{
+	int		lenbis;
+
+	if (flags->dash > 0 || flags->dot > 0)
 		flags->zero = 0;
-		ft_putnbr(va_arg(va, unsigned int));
-		while (flags->width > 1)
-		{
-			ft_putchar(' ');
-			flags->width--;
-		}
-	}
+	if (nbr < 0 && flags->dot == 0)
+		ft_putchar('-');
 	if (flags->zero > 0)
 	{
-		while (flags->width > 1)
+		while (flags->width > flags->len)
 		{
 			ft_putchar('0');
 			flags->width--;
 		}
-		ft_putnbr(va_arg(va, unsigned int));
 	}
 	if (flags->dot > 0)
-		ft_putnbr(va_arg(va, unsigned int));
-	if (flags->star > 0)
 	{
-		flags->width = va_arg(va, int);
-		while (flags->width > 1)
+		lenbis = itoa_func(nbr);
+		if (nbr < 0)
+		{
+			lenbis -= 1;
+			flags->len += 1;
+		}
+		while (flags->width > flags->len && flags->dash == 0)
 		{
 			ft_putchar(' ');
 			flags->width--;
 		}
-		ft_putnbr(va_arg(va, unsigned int));
+		if (nbr < 0)
+			ft_putchar('-');
+		while (flags->precision > lenbis)
+		{
+			ft_putchar('0');
+			flags->precision--;
+		}
+	}
+	ft_putnbr(nbr);
+	if (flags->dash > 0)
+	{
+		while (flags->width > flags->len)
+		{
+			ft_putchar(' ');
+			flags->width--;
+		}
 	}
 }
 
-int		pf_id(va_list va, int pos, t_flags flags)
+int		pf_id(int nbr, int pos, t_flags *flags)
 {
-	if (flags.flag > 0)
-		flags_id(va, pos, &flags);
+	flags->len = itoa_func(nbr);
+	flags->len = (flags->len > flags->precision) ? flags->len
+		: flags->precision;
+	if (flags->flag > 0)
+		flags_id(nbr, pos, flags);
 	else
-		ft_putnbr(va_arg(va, unsigned int));
+	{
+		while (flags->width > flags->len)
+		{
+			ft_putchar(' ');
+			flags->width--;
+		}
+		if (nbr < 0)
+			ft_putchar('-');
+		ft_putnbr(nbr);
+	}
 	return (pos + 1);
 }

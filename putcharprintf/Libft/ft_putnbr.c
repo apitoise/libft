@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:26:58 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/06 13:06:23 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/15 16:52:22 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ void		ft_putnbr(int n)
 	unsigned int	nbr;
 
 	if (n < 0)
-	{
 		nbr = n * -1;
-		ft_putchar('-');
-	}
 	else
 		nbr = n;
 	if (n / 10)
