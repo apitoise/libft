@@ -6,13 +6,14 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 17:14:43 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/05 17:18:23 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/18 14:41:11 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_putchar(char c)
+void		ft_putchar(char c, t_flags *flags)
 {
 	write(1, &c, 1);
+	flags->ret++;
 }

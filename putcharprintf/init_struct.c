@@ -6,14 +6,22 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 18:17:32 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/15 16:15:03 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/18 16:36:05 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "Libft/libft.h"
 
 void		init_struct(t_flags	*flags)
 {
+	int		first;
+
+	if (first != 1)
+	{
+		first = 1;
+		flags->ret = 0;
+	}
 	flags->flag = 0;
 	flags->dash = 0;
 	flags->zero = 0;

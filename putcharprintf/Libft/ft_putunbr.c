@@ -6,13 +6,13 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:26:58 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/06 17:47:11 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/18 14:43:41 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_putunbr(int n)
+void		ft_putunbr(int n, t_flags *flags)
 {
 	unsigned int	nbr;
 
@@ -21,6 +21,6 @@ void		ft_putunbr(int n)
 	else
 		nbr = n;
 	if (n / 10)
-		ft_putnbr(nbr / 10);
-	ft_putchar((nbr % 10) + 48);
+		ft_putnbr(nbr / 10, flags);
+	ft_putchar(((nbr % 10) + 48), flags);
 }

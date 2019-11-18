@@ -6,11 +6,12 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 18:30:08 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/15 17:28:38 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/18 13:47:52 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "Libft/libft.h"
 
 int		ft_star(va_list va, const char *str, int pos, t_flags *flags)
 {

@@ -6,11 +6,12 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 13:30:03 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/14 16:13:59 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/18 13:50:12 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "Libft/libft.h"
 
 int		is_conv(const char *str, int pos)
 {

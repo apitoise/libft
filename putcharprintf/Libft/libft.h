@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 13:06:46 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/06 17:01:35 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/18 14:44:48 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdio.h>
+# include "../ft_printf.h"
 
 typedef struct		s_list
 {
@@ -57,10 +58,10 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
-void				ft_putnbr(int n);
+void				ft_putnbr(int n, t_flags *flags);
 void				ft_putstr(char *str);
-void				ft_putchar(char c);
-void				ft_putunbr(int n);
-void				ft_putnbr_basehexa(unsigned long int n, char *base);
+void				ft_putchar(char c, t_flags *flags);
+void				ft_putunbr(int n, t_flags *flags);
+void				ft_putnbr_basehexa(unsigned long int n, char *base, t_flags *flags);
 
 #endif
