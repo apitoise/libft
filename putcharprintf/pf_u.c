@@ -6,14 +6,14 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 13:10:02 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/18 16:36:03 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:43:15 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "Libft/libft.h"
 
-int		itoa_func_u(int nbr)
+int		itoa_func_u(unsigned int nbr)
 {
 	char	*tmp;
 	int		len;
@@ -30,10 +30,7 @@ void	ft_dot_u(int nbr, int pos, t_flags *flags)
 
 	lenbis = itoa_func_u(nbr);
 	if (nbr < 0)
-	{
-		lenbis -= 1;
 		flags->len += 1;
-	}
 	while (flags->width > flags->len && flags->dash == 0)
 	{
 		ft_putchar(' ', flags);
@@ -73,11 +70,17 @@ void	flags_u(int nbr, int pos, t_flags *flags)
 
 int		pf_u(int nbr, int pos, t_flags *flags)
 {
-	flags->len = itoa_func_u(nbr);
+	unsigned int		n;
+
+	if (nbr < 0)
+		n = 4294967295 + nbr + 1;
+	else
+		nbr = n;
+	flags->len = itoa_func_u(n);
 	flags->len = (flags->len > flags->precision) ? flags->len
 		: flags->precision;
 	if (flags->flag > 0)
-		flags_u(nbr, pos, flags);
+		flags_u(n, pos, flags);
 	else
 	{
 		while (flags->width > flags->len)
@@ -85,7 +88,7 @@ int		pf_u(int nbr, int pos, t_flags *flags)
 			ft_putchar(' ', flags);
 			flags->width--;
 		}
-		ft_putunbr(nbr, flags);
+		ft_putunbr(n, flags);
 	}
 	return (pos + 1);
 }

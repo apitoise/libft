@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:26:27 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/18 14:39:09 by apitoise         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:41:10 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int			ft_len(long int n)
 	return (res);
 }
 
-char				*ft_itoa(int n)
+char				*ft_itoa(long long n)
 {
 	char		*res;
 	long long	nb;
