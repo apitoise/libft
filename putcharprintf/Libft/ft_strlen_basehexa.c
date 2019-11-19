@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_strlen_basehexa.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 15:51:03 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/19 17:35:52 by apitoise         ###   ########.fr       */
+/*   Created: 2019/11/19 16:50:28 by apitoise          #+#    #+#             */
+/*   Updated: 2019/11/19 17:29:56 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../ft_printf.h"
 
-void		ft_putnbr_basehexa(unsigned long int n, char *base, t_flags *flags)
+int		ft_strlen_basehexa(unsigned long int n, char *base, t_flags *flags,
+			int len)
 {
-	char			c;
-
 	if (n >= 16)
-		ft_putnbr_basehexa(n / 16, base, flags);
-	c = base[n % 16];
-	ft_putchar(c, flags);
+		len = ft_strlen_basehexa(n / 16, base, flags, len);
+	len++;
+	return (len);
 }
-

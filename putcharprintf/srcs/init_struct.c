@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 15:51:03 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/19 17:35:52 by apitoise         ###   ########.fr       */
+/*   Created: 2019/11/06 18:17:32 by apitoise          #+#    #+#             */
+/*   Updated: 2019/11/19 18:36:50 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/ft_printf.h"
+#include "../Libft/libft.h"
 
-void		ft_putnbr_basehexa(unsigned long int n, char *base, t_flags *flags)
+void		init_struct(t_flags	*flags)
 {
-	char			c;
+	int		first;
 
-	if (n >= 16)
-		ft_putnbr_basehexa(n / 16, base, flags);
-	c = base[n % 16];
-	ft_putchar(c, flags);
+	if (first != 1)
+	{
+		first = 1;
+		flags->ret = 0;
+	}
+	flags->flag = 0;
+	flags->dash = 0;
+	flags->zero = 0;
+	flags->dot = 0;
+	flags->star = 0;
+	flags->width = 0;
+	flags->precision = 0;
 }
-

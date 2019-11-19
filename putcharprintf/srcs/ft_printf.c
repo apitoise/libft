@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 15:51:03 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/19 17:35:52 by apitoise         ###   ########.fr       */
+/*   Created: 2019/11/05 15:19:34 by apitoise          #+#    #+#             */
+/*   Updated: 2019/11/19 18:36:48 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/ft_printf.h"
+#include "../Libft/libft.h"
 
-void		ft_putnbr_basehexa(unsigned long int n, char *base, t_flags *flags)
+int		ft_printf(const char *str, ...)
 {
-	char			c;
+	va_list		va;
+	int			idx;
+	t_flags		flags;
 
-	if (n >= 16)
-		ft_putnbr_basehexa(n / 16, base, flags);
-	c = base[n % 16];
-	ft_putchar(c, flags);
+	va_start(va, str);
+	{
+		idx = 0;
+		while (str[idx])
+		{
+			if (str[idx] == '%')
+				idx = ft_parsing(va, str, idx, &flags);
+			while (str[idx] && str[idx] != '%')
+			{
+				ft_putchar(str[idx], &flags);
+				idx++;
+			}
+		}
+	}
+	va_end(va);
+	return (flags.ret);
 }
-
