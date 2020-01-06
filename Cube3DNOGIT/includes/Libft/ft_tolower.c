@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:30:32 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/06 16:47:08 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/08 12:19:24 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/08 12:19:25 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
-
-int		main(void)
+int		ft_tolower(int c)
 {
-	t_data	data;
-	t_algo	algo;
-
-	init_first(&algo);
-	ft_algo(&algo, &data);
-	return (0);
+	if (c >= 65 && c <= 90)
+		return (c + 32);
+	return (c);
 }

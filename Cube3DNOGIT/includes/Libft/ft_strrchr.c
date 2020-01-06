@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:30:32 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/06 16:47:08 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/08 12:19:16 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/08 12:19:18 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
-
-int		main(void)
+char		*ft_strrchr(const char *str, int c)
 {
-	t_data	data;
-	t_algo	algo;
+	int	rev;
+	int	save;
 
-	init_first(&algo);
-	ft_algo(&algo, &data);
-	return (0);
+	rev = 0;
+	save = 0;
+	while (str[rev] != '\0')
+		rev++;
+	while (str[rev] != (char)c)
+	{
+		if (str[rev] == str[0] && (char)c != str[0])
+			return (0);
+		rev--;
+	}
+	while (save < rev)
+	{
+		str++;
+		save++;
+	}
+	return ((char *)str);
 }

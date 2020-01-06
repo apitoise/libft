@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:30:32 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/06 16:47:08 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/08 17:59:17 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/09 13:04:39 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "libft.h"
 
-int		main(void)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	t_data	data;
-	t_algo	algo;
+	unsigned char	*new;
 
-	init_first(&algo);
-	ft_algo(&algo, &data);
-	return (0);
+	new = b;
+	while (len--)
+		*new++ = (unsigned char)c;
+	return (b);
 }

@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:30:32 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/06 16:47:08 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/08 12:18:43 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/09 13:04:04 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
-
-int		main(void)
+int		ft_isprint(int c)
 {
-	t_data	data;
-	t_algo	algo;
-
-	init_first(&algo);
-	ft_algo(&algo, &data);
+	if (c >= 32 && c <= 126)
+		return (1);
 	return (0);
 }

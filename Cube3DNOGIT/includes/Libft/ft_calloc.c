@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:30:32 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/06 16:47:08 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/09 18:41:33 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/19 14:22:18 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "libft.h"
 
-int		main(void)
+void		*ft_calloc(size_t count, size_t size)
 {
-	t_data	data;
-	t_algo	algo;
+	void	*res;
+	size_t	remplir;
 
-	init_first(&algo);
-	ft_algo(&algo, &data);
-	return (0);
+	res = malloc(size * count);
+	if (res == 0)
+		return (NULL);
+	remplir = 0;
+	while (remplir < count * size)
+	{
+		((char *)res)[remplir] = 0;
+		remplir++;
+	}
+	return (res);
 }

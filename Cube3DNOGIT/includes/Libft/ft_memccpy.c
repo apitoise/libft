@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:30:32 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/06 16:47:08 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/09 13:32:45 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/19 13:22:50 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "libft.h"
 
-int		main(void)
+void		*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	t_data	data;
-	t_algo	algo;
+	unsigned char	*new;
+	unsigned char	*source;
+	size_t			i;
 
-	init_first(&algo);
-	ft_algo(&algo, &data);
-	return (0);
+	source = (unsigned char *)src;
+	new = (unsigned char *)dst;
+	i = 0;
+	while (i < n)
+	{
+		new[i] = source[i];
+		if (new[i] == (unsigned char)c)
+			return ((unsigned char *)dst + i + 1);
+		i++;
+	}
+	return (NULL);
 }

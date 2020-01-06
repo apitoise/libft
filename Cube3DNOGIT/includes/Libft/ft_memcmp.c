@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:30:32 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/06 16:47:08 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/09 18:21:03 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/14 18:05:33 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "libft.h"
 
-int		main(void)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	t_data	data;
-	t_algo	algo;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-	init_first(&algo);
-	ft_algo(&algo, &data);
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	if (s1 == s2 || n == 0)
+		return (0);
+	while (n > 0)
+	{
+		if (*str1 != *str2)
+			return (*str1 - *str2);
+		n--;
+		str1++;
+		str2++;
+	}
 	return (0);
 }

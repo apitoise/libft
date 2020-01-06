@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:30:32 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/06 16:47:08 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/08 12:19:02 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/17 16:01:45 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "libft.h"
 
-int		main(void)
+size_t		ft_strlen(const char *str)
 {
-	t_data	data;
-	t_algo	algo;
+	int compteur;
 
-	init_first(&algo);
-	ft_algo(&algo, &data);
-	return (0);
+	compteur = 0;
+	while (str[compteur] != '\0')
+		compteur++;
+	return (compteur);
 }

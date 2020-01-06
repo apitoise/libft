@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   win_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:30:32 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/06 16:47:08 by apitoise         ###   ########.fr       */
+/*   Created: 2020/01/06 16:50:22 by apitoise          #+#    #+#             */
+/*   Updated: 2020/01/06 16:53:29 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "../includes/Libft/libft.h"
+#include "../includes/cube3d.h"
 
-int		main(void)
+void	mlx_win_init(t_algo *t)
 {
-	t_data	data;
-	t_algo	algo;
-
-	init_first(&algo);
-	ft_algo(&algo, &data);
-	return (0);
-}
+	

@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:30:32 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/06 16:47:08 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/10 13:01:52 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/19 14:34:44 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "libft.h"
 
-int		main(void)
+char		*ft_strdup(const char *s1)
 {
-	t_data	data;
-	t_algo	algo;
+	int		len;
+	char	*res;
 
-	init_first(&algo);
-	ft_algo(&algo, &data);
-	return (0);
+	len = 0;
+	while (s1[len])
+		len++;
+	res = malloc(len * sizeof(char) + 1);
+	if (res == 0)
+		return (NULL);
+	len = 0;
+	while (s1[len])
+	{
+		res[len] = s1[len];
+		len++;
+	}
+	res[len] = '\0';
+	return (res);
 }

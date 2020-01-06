@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   algo_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:30:32 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/06 16:47:08 by apitoise         ###   ########.fr       */
+/*   Created: 2020/01/06 16:42:27 by apitoise          #+#    #+#             */
+/*   Updated: 2020/01/06 16:47:40 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "../includes/Libft/libft.h"
+#include "../includes/cube3d.h"
 
-int		main(void)
+void	algo_init(t_algo *t)
 {
-	t_data	data;
-	t_algo	algo;
-
-	init_first(&algo);
-	ft_algo(&algo, &data);
-	return (0);
+	t->x_pos = 3;
+	t->y_pos = 3;
+	t->x_dir = -1;
+	t->y_dir = 0;
+	t->x_plane = 0.66;
+	t->ms = 0.05;
+	t->rs = 0.05;
+	t->move_up = 0;
+	t->move_down = 0;
+	t->move_left = 0;
+	t->move_right = 0;
+	t->x_test = 0;
+	t->y_test = 0;
 }

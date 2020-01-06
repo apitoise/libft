@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:30:32 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/06 16:47:08 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/08 12:22:54 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/15 16:18:05 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "libft.h"
 
-int		main(void)
+size_t		ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	t_data	data;
-	t_algo	algo;
+	size_t	tab;
+	size_t	max;
 
-	init_first(&algo);
-	ft_algo(&algo, &data);
-	return (0);
+	if (size == 0)
+		return (ft_strlen((char *)src));
+	tab = 0;
+	max = size;
+	size = ft_strlen((char *)src);
+	if (max > 0)
+	{
+		while (src[tab] && tab < max - 1)
+		{
+			dest[tab] = src[tab];
+			tab++;
+		}
+	}
+	dest[tab] = '\0';
+	return (size);
 }

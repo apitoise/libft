@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:30:32 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/06 16:47:08 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/08 15:03:08 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/15 16:15:46 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "libft.h"
 
-int		main(void)
+size_t		ft_strlcat(char *dest, const char *src, size_t size)
 {
-	t_data	data;
-	t_algo	algo;
+	size_t	i;
+	size_t	len;
 
-	init_first(&algo);
-	ft_algo(&algo, &data);
-	return (0);
+	len = 0;
+	while (dest[len] && len < size)
+		len = len + 1;
+	i = len;
+	while (src[len - i] && len + 1 < size)
+	{
+		dest[len] = src[len - i];
+		len = len + 1;
+	}
+	if (i < size)
+		dest[len] = '\0';
+	return (i + ft_strlen((char *)src));
 }

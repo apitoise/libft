@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:30:32 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/06 16:47:08 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/14 12:26:51 by apitoise          #+#    #+#             */
+/*   Updated: 2020/01/06 16:22:26 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "libft.h"
 
-int		main(void)
+void		ft_putstr_fd(char *s)
 {
-	t_data	data;
-	t_algo	algo;
+	int	idx;
 
-	init_first(&algo);
-	ft_algo(&algo, &data);
-	return (0);
+	idx = 0;
+	if (s == NULL)
+		return ;
+	while (s[idx])
+	{
+		ft_putchar(s[idx]);
+		idx++;
+	}
 }

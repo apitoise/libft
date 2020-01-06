@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 16:30:32 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/06 16:47:08 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/14 12:04:42 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/14 12:05:57 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "libft.h"
 
-int		main(void)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	t_data	data;
-	t_algo	algo;
+	int		idx;
+	char	*res;
 
-	init_first(&algo);
-	ft_algo(&algo, &data);
-	return (0);
+	idx = 0;
+	if (!s || !f)
+		return (0);
+	res = (char *)malloc(ft_strlen((char *)s) * sizeof(char) + 1);
+	if (res == 0)
+		return (0);
+	while (s[idx])
+	{
+		res[idx] = f(idx, s[idx]);
+		idx++;
+	}
+	res[idx] = '\0';
+	return (res);
 }
