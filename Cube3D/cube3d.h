@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:02:50 by apitoise          #+#    #+#             */
-/*   Updated: 2019/12/04 16:59:20 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/01/09 14:49:09 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,18 @@ typedef	struct	s_algo
 	double		posX;
 	double		posY;
 	double		dirX;
+	double		oldDirX;
 	double		dirY;
+	double		oldDirY;
 	double		planeX;
+	double		oldPlaneX;
 	double		planeY;
+	double		oldPlaneY;
 	double		cameraX;
 	double		rayDirX;
 	double		rayDirY;
+	double		ms;
+	double		rs;
 	int			mapX;
 	int			mapY;
 	double		deltaDistX;
@@ -58,6 +64,11 @@ typedef	struct	s_algo
 	int			drawStart;
 	int			first;
 	int			drawEnd;
+	int			move_up;
+	int			move_down;
+	int			move_left;
+	int			move_right;
+	int			echapkey;
 }				t_algo;
 
 typedef	struct	s_twostruct
@@ -74,5 +85,8 @@ int		ft_algo(t_algo *algo, t_data *data);
 int		ft_keyparsing(int key, void *param);
 int		main(void);
 void	init_first(t_algo *algo);
+void	ft_painting(t_data *data, t_algo *algo);
+int		ft_move(t_algo *algo);
+void	ft_ray(t_algo *algo, t_data *data);
 
 #endif

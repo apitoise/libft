@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:49:34 by apitoise          #+#    #+#             */
-/*   Updated: 2019/12/04 17:30:15 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/01/09 14:20:53 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,17 @@
 
 int		ft_keyparsing(int key, void *param)
 {
-	t_data	data;
-
-	if (key == 13)
-		w_key(param);
-//	if (key == 0)
-//		a_key();
-//	if (key == 1)
-//		s_key();
-//	if (key == 2)
-//		d_key();
-//	if (key == 126)
-//		up_key();
-//	if (key == 123)
-//		left_key();
-//	if (key == 125)
-//		down_key();
-//	if (key == 124)
-//		right_key();
-//	if (key == 53)
-//		echap_key();
+	t_algo	*algo;
+	if (key == 13 || key == 126)
+		algo->move_up = 1;
+	if (key == 0 || key == 123)
+		algo->move_left = 1;
+	if (key == 1 || key == 125)
+		algo->move_down = 1;
+	if (key == 2 || key == 124)
+		algo->move_right = 1;
+	if (key == 53)
+		algo->echapkey = 1;
 	return (0);
 }
 

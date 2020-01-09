@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 14:09:53 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/06 16:55:07 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/01/09 13:59:09 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,19 @@ static void		init_datastruct(t_data *data)
 
 static void		init_algostruct(t_algo *algo)
 {
+	algo->move_up = 0;
+	algo->move_down = 0;
+	algo->move_right = 0;
+	algo->move_left = 0;
+	algo->echapkey = 0;
 	algo->posX = 6;
 	algo->posY = 3;
 	algo->dirX = -1;
 	algo->dirY = 0;
 	algo->planeX = 0;
 	algo->planeY = 0.66;
+	algo->ms = 0.05;
+	algo->rs = 0.05;
 	algo->x = 1;
 }
 
