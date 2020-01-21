@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 17:05:16 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/09 15:04:13 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/01/21 17:44:58 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	ft_painting(t_data *data, t_algo *algo)
 
 int		ft_algo(t_algo *algo, t_data *data)
 {
-//	if (algo->first == 0)
-//		init_struct(algo, data);
+	if (algo->first == 0)
+		init_struct(algo, data);
 	algo->x = 0;
-/*	while (algo->x < data->width)
+	while (algo->x < data->width)
 	{
 		init_loop_algostruct(algo, data);
 		if (algo->rayDirX < 0)
@@ -91,12 +91,13 @@ int		ft_algo(t_algo *algo, t_data *data)
 			data->color = (data->color / 2);
 		ft_painting(data, algo);
 		algo->x++;
-	}*/
-	if (!(algo = (t_algo *)malloc(sizeof(t_algo))))
-		return (0);
+	}
+//	if (!(algo = (t_algo *)malloc(sizeof(t_algo))))
+//		return (0);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_ptr, 0, 0);
 	mlx_key_hook(data->win_ptr, ft_keyparsing, algo);
-	init_struct(algo, data);
+	ft_move(algo, data);
+//	init_struct(algo, data);
 	ft_ray(algo, data);
 	mlx_loop_hook(data->mlx_ptr, ft_move, algo);
 	mlx_loop(data->mlx_ptr);

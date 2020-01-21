@@ -6,15 +6,14 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:49:34 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/09 14:20:53 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/01/21 12:28:12 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-int		ft_keyparsing(int key, void *param)
+int		ft_keyparsing(int key, t_algo *algo)
 {
-	t_algo	*algo;
 	if (key == 13 || key == 126)
 		algo->move_up = 1;
 	if (key == 0 || key == 123)

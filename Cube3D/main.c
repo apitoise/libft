@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:30:32 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/09 12:48:50 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/01/21 17:56:21 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 int		main(void)
 {
-	t_data	data;
-	t_algo	algo;
+	t_twostruct	*twostruct;
 
-	init_first(&algo);
-	ft_algo(&algo, &data);
+	init_first(twostruct->algo);
+	init_struct(twostruct->algo, twostruct->data);
+	ft_raycasting(twostruct->algo, twostruct->data);
+	mlx_loop_hook(twostruct->data->mlx_ptr, ft_move, twostruct);
+	mlx_loop(twostruct->data->mlx_ptr);
 	return (0);
 }

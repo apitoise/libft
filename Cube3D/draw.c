@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_first.c                                       :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/04 16:35:12 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/21 13:53:41 by apitoise         ###   ########.fr       */
+/*   Created: 2020/01/21 16:35:47 by apitoise          #+#    #+#             */
+/*   Updated: 2020/01/21 17:01:27 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	init_first(t_algo *algo)
+void	put_pxl_to_img(t_algo *algo, int x, int y, t_data *data)
 {
-	algo->first = 0;
+	if (x < WINX && y < WINY)
+		ft_memcpy(data->img_ptr + 4 * WINX * y + x *4,
+			&data->color, sizeof(int));
+}
+
+void	draw_wall(t_algo *algo, t_data *data)
+{
+	while (++algo->drawStart <= algo->drawEnd)
+		put_pxl_to_img(algo, algo->x, algo->drawStart, data);
 }

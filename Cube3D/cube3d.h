@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:02:50 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/09 14:49:09 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/01/21 17:56:09 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <mlx.h>
 # include <math.h>
 # include <unistd.h>
+# define WINX 1920
+# define WINY 1080
 
 typedef	struct	s_data
 {
@@ -37,18 +39,18 @@ typedef	struct	s_algo
 	double		posX;
 	double		posY;
 	double		dirX;
-	double		oldDirX;
 	double		dirY;
+	double		oldDirX;
 	double		oldDirY;
+	double		rayPosX;
+	double		rayPosY;
 	double		planeX;
-	double		oldPlaneX;
 	double		planeY;
+	double		oldPlaneX;
 	double		oldPlaneY;
 	double		cameraX;
 	double		rayDirX;
 	double		rayDirY;
-	double		ms;
-	double		rs;
 	int			mapX;
 	int			mapY;
 	double		deltaDistX;
@@ -56,6 +58,13 @@ typedef	struct	s_algo
 	double		sideDistX;
 	double		sideDistY;
 	double		perpWallDist;
+	int			move_up;
+	int			move_down;
+	int			move_left;
+	int			move_right;
+	int			echapkey;
+	double			ms;
+	double			rs;
 	int			stepX;
 	int			stepY;
 	int			hit;
@@ -64,11 +73,6 @@ typedef	struct	s_algo
 	int			drawStart;
 	int			first;
 	int			drawEnd;
-	int			move_up;
-	int			move_down;
-	int			move_left;
-	int			move_right;
-	int			echapkey;
 }				t_algo;
 
 typedef	struct	s_twostruct
@@ -78,15 +82,14 @@ typedef	struct	s_twostruct
 }				t_twostruct;
 
 int		worldMap[10][10];
-void	w_key(t_algo *algo);
 void	init_struct(t_algo *algo, t_data *data);
-void	init_loop_algostruct(t_algo *algo, t_data *data);
-int		ft_algo(t_algo *algo, t_data *data);
-int		ft_keyparsing(int key, void *param);
+void	init_loop_algostruct(t_algo *algo);
+void	init_datastruct(t_data *data);
+int		ft_keyparsing(int key, t_algo *algo);
 int		main(void);
 void	init_first(t_algo *algo);
-void	ft_painting(t_data *data, t_algo *algo);
-int		ft_move(t_algo *algo);
-void	ft_ray(t_algo *algo, t_data *data);
+void	ft_raycasting(t_algo *algo, t_data *data);
+void	draw_wall(t_algo *algo, t_data *data);
+int		ft_move(t_twostruct *ts);
 
 #endif
