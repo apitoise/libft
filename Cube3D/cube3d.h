@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:02:50 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/22 14:02:21 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/01/22 15:45:49 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		worldMap[10][10];
 void	init_struct(t_algo *algo, t_data *data);
 void	init_loop_algostruct(t_algo *algo);
 void	init_datastruct(t_data *data);
-int		ft_keyparsing(int key, t_algo *algo);
+int		ft_keyparsing(int key, t_twostruct *ts);
 int		main(void);
 void	init_first(t_algo *algo);
 void	ft_raycasting(t_algo *algo, t_data *data);

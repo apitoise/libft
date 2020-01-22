@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:35:47 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/22 14:28:19 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/01/22 14:45:00 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_painting(t_algo *algo, t_data *data)
 	y = algo->drawStart;
 	while (y < algo->drawEnd)
 	{
-		*(data->data_ptr + (data->width * y) + algo->x) = data->color;
+		*(data->data_ptr + (WINX * y) + algo->x) = data->color;
 		y++;
 	}
 }
