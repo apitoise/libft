@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:02:50 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/21 17:56:09 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/01/22 14:02:21 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ typedef	struct	s_algo
 	int			move_left;
 	int			move_right;
 	int			echapkey;
-	double			ms;
-	double			rs;
+	double		ms;
+	double		rs;
 	int			stepX;
 	int			stepY;
 	int			hit;
@@ -77,8 +77,8 @@ typedef	struct	s_algo
 
 typedef	struct	s_twostruct
 {
-	t_algo		*algo;
-	t_data		*data;
+	t_algo		algo;
+	t_data		data;
 }				t_twostruct;
 
 int		worldMap[10][10];

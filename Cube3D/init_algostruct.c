@@ -6,17 +6,20 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 14:09:53 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/21 17:48:37 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/01/22 14:03:50 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void		init_datastruct(t_data *data)
+void		init_winstruct(t_data *data)
 {
 	data->mlx_ptr = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx_ptr, WINX, WINY,
-		"Cube3D");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WINX, WINY, "Cube3D");
+}
+
+void		init_datastruct(t_data *data)
+{
 	data->img_ptr = mlx_new_image(data->mlx_ptr, WINX, WINY);
 	data->data_ptr = (int *)mlx_get_data_addr(data->img_ptr, &data->bits,
 		&data->size_line, &data->endian);
@@ -37,12 +40,11 @@ void		init_algostruct(t_algo *algo)
 	algo->planeY = 0.66;
 	algo->ms = 0.05;
 	algo->rs = 0.05;
-	algo->x = 1;
 }
 
 void		init_struct(t_algo *algo, t_data *data)
 {
-	init_datastruct(data);
+	init_winstruct(data);
 	init_algostruct(algo);
-	algo->first = 1;
+//	algo->first = 1;
 }

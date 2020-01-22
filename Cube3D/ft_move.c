@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 13:43:20 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/21 17:56:25 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/01/22 14:06:08 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@ void	ft_moveleft(t_algo *algo)
 
 int		ft_move(t_twostruct *ts)
 {
-	if (ts->algo->move_up == 1)
-		ft_moveup(ts->algo);
-	if (ts->algo->move_down == 1)
-		ft_movedown(ts->algo);
-	if (ts->algo->move_left == 1)
-		ft_moveleft(ts->algo);
-	if (ts->algo->move_right == 1)
-		ft_moveright(ts->algo);
-	ft_raycasting(ts->algo, ts->data);
-	printf("posX = %f, posY = %f\n", ts->algo->posX, ts->algo->posY);
+	if (ts->algo.move_up == 1)
+		ft_moveup(&ts->algo);
+	if (ts->algo.move_down == 1)
+		ft_movedown(&ts->algo);
+	if (ts->algo.move_left == 1)
+		ft_moveleft(&ts->algo);
+	if (ts->algo.move_right == 1)
+		ft_moveright(&ts->algo);
+	ft_raycasting(&ts->algo, &ts->data);
+	printf("posX = %f, posY = %f\n", ts->algo.posX, ts->algo.posY);
 	return (0);
 }
