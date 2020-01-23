@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:02:50 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/22 15:45:49 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/01/23 14:27:09 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ typedef	struct	s_data
 	int			bits;
 	int			size_line;
 	int			endian;
-	int			color;
+	int			wall_color;
+	int			sky_color;
+	int			floor_color;
 }				t_data;
 
 typedef	struct	s_algo
@@ -89,7 +91,7 @@ int		ft_keyparsing(int key, t_twostruct *ts);
 int		main(void);
 void	init_first(t_algo *algo);
 void	ft_raycasting(t_algo *algo, t_data *data);
-void	draw_wall(t_algo *algo, t_data *data);
+void	ft_painting(t_algo *algo, t_data *data);
 int		ft_move(t_twostruct *ts);
 
 #endif

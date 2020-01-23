@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:27:26 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/21 17:27:12 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/01/23 15:15:42 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,21 @@ void	ray_algo(t_algo *algo)
 	{
 		if (algo->sideDistX < algo->sideDistY)
 		{
+			if (algo->rayPosX < 0)
+				algo->side = 0;
+			else if (algo->rayPosX > 0)
+				algo->side = 1;
 			algo->sideDistX += algo->deltaDistX;
 			algo->mapX += algo->stepX;
-			algo->side = 0;
 		}
 		else
 		{
+			if (algo->rayPosY < 0)
+				algo->side = 2;
+			else if (algo->rayPosY > 0)
+				algo->side = 3;
 			algo->sideDistY += algo->deltaDistY;
 			algo->mapY += algo->stepY;
-			algo->side = 1;
 		}
 		if (worldMap[algo->mapX][algo->mapY] > 0)
 			algo->hit = 1;
