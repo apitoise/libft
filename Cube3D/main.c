@@ -20,13 +20,12 @@ int		main(void)
 
 	if (!(ts = (t_twostruct *)malloc(sizeof(t_twostruct))))
 		return (0);
-//	init_first(ts->algo);
-	printf("move_up = %d\n", algo.move_up);
 	init_struct(&algo, &data);
-//	ft_raycasting(&algo, &data);
 	ts->algo = algo;
 	ts->data = data;
-	mlx_key_hook(data.win_ptr, ft_keyparsing, ts);
+	mlx_hook(data.win_ptr, 17, 0L, ft_close, ts);
+	mlx_hook(data.win_ptr, 2, (1L << 0), ft_keyparsing, ts);
+	mlx_hook(data.win_ptr, 3, (1L << 1), ft_keyrelease, ts);
 	ft_raycasting(&ts->algo, &ts->data);
 	mlx_loop_hook(data.mlx_ptr, ft_move, ts);
 	mlx_loop(data.mlx_ptr);

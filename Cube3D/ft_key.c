@@ -12,23 +12,46 @@
 
 #include "cube3d.h"
 
+int		ft_close(int key, t_twostruct *ts)
+{
+	exit(1);
+	return (0);
+}
+
+int		ft_keyrelease(int key, t_twostruct *ts)
+{
+	if (key == 13 || key == 126)
+		ts->algo.move_up = 0;
+	if (key == 123)
+		ts->algo.move_left = 0;
+	if (key == 0)
+		ts->algo.rot_left = 0;
+	if (key == 1 || key == 125)
+		ts->algo.move_down = 0;
+	if (key == 124)
+		ts->algo.move_right = 0;
+	if (key == 2)
+		ts->algo.rot_right = 0;
+	return (0);
+}
+
 int		ft_keyparsing(int key, t_twostruct *ts)
 {
 	printf("key = %d\n", key);
 	if (key == 13 || key == 126)
 		ts->algo.move_up = 1;
-	if (key == 0 || key == 123)
+	if (key == 123)
 		ts->algo.move_left = 1;
+	if (key == 0)
+		ts->algo.rot_left = 1;
 	if (key == 1 || key == 125)
 		ts->algo.move_down = 1;
-	if (key == 2 || key == 124)
+	if (key == 124)
 		ts->algo.move_right = 1;
+	if (key == 2)
+		ts->algo.rot_right = 1;
 	if (key == 53)
-		ts->algo.echapkey = 1;
+		exit(1);
 	ft_move(ts);
-	ts->algo.move_up = 0;
-	ts->algo.move_down = 0;
-	ts->algo.move_right = 0;
-	ts->algo.move_left = 0;
 	return (0);
 }

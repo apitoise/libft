@@ -31,7 +31,8 @@ void		init_algostruct(t_algo *algo)
 	algo->move_down = 0;
 	algo->move_right = 0;
 	algo->move_left = 0;
-	algo->echapkey = 0;
+	algo->rot_left = 0;
+	algo->rot_right = 0;
 	algo->posX = 6;
 	algo->posY = 3;
 	algo->dirX = -1;

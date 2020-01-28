@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 13:43:20 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/23 14:42:01 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/01/25 11:17:32 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_moveright(t_algo *algo)
 {
 	algo->oldDirX = algo->dirX;
 	algo->dirX = algo->dirX * cos(-algo->rs) - algo->dirY * sin(-algo->rs);
-	algo->dirY = algo->oldDirX * sin(-algo->rs) - algo->dirY * cos(-algo->rs);
+	algo->dirY = algo->oldDirX * sin(-algo->rs) + algo->dirY * cos(-algo->rs);
 	algo->oldPlaneX = algo->planeX;
 	algo->planeX = algo->planeX * cos(-algo->rs) - algo->planeY * sin(-algo->rs);
 	algo->planeY = algo->oldPlaneX * sin(-algo->rs)
@@ -47,7 +47,7 @@ void	ft_moveleft(t_algo *algo)
 {
 	algo->oldDirX = algo->dirX;
 	algo->dirX = algo->dirX * cos(algo->rs) - algo->dirY * sin(algo->rs);
-	algo->dirY = algo->oldDirX * sin(algo->rs) - algo->dirY * cos(algo->rs);
+	algo->dirY = algo->oldDirX * sin(algo->rs) + algo->dirY * cos(algo->rs);
 	algo->oldPlaneX = algo->planeX;
 	algo->planeX = algo->planeX * cos(algo->rs) - algo->planeY * sin(algo->rs);
 	algo->planeY = algo->oldPlaneX * sin(algo->rs)

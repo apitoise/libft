@@ -64,7 +64,8 @@ typedef	struct	s_algo
 	int			move_down;
 	int			move_left;
 	int			move_right;
-	int			echapkey;
+	int 		rot_right;
+	int 		rot_left;
 	double		ms;
 	double		rs;
 	int			stepX;
@@ -83,11 +84,13 @@ typedef	struct	s_twostruct
 	t_data		data;
 }				t_twostruct;
 
-int		worldMap[10][10];
+int		worldMap[24][24];
 void	init_struct(t_algo *algo, t_data *data);
 void	init_loop_algostruct(t_algo *algo);
 void	init_datastruct(t_data *data);
 int		ft_keyparsing(int key, t_twostruct *ts);
+int		ft_keyrelease(int key, t_twostruct *ts);
+int 	ft_close(int key, t_twostruct *ts);
 int		main(void);
 void	init_first(t_algo *algo);
 void	ft_raycasting(t_algo *algo, t_data *data);

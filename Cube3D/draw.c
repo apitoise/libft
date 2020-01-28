@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:35:47 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/23 15:15:33 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/01/25 13:06:32 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ void	init_colors(t_algo *algo, t_data *data)
 	data->floor_color = 0x3a9d23;
 	if (algo->side == 0)
 		data->wall_color = 0xdd8800;
-	if (algo->side == 1)
-		data->wall_color = 0x00FF00 / 2;
-	if (algo->side == 2)
+//	else
+//		data->wall_color = 0x00FF00;
+	else if (algo->side == 1)
+		data->wall_color = 0x00FF00;
+	else if (algo->side == 2)
 		data->wall_color = 0xdd8800 / 2;
-	if (algo->side == 3)
+	else if (algo->side == 3)
 		data->wall_color = 0xdd8800 / 4;
 }
 
@@ -55,11 +57,15 @@ void	draw_wall(t_algo *algo, t_data *data)
 	int		y;
 
 	y = algo->drawStart;
-	while (y < algo->drawEnd)
+
+	if (algo->x < WINX && y < WINY)
 	{
-		init_colors(algo, data);
-		*(data->data_ptr + (WINX * y) + algo->x) = data->wall_color;
-		y++;
+		while (y < algo->drawEnd )
+		{
+			init_colors(algo, data);
+			*(data->data_ptr + (WINX * y) + algo->x) = data->wall_color;
+			y++;
+		}
 	}
 }
 
