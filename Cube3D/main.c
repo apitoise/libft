@@ -11,15 +11,19 @@
 /* ************************************************************************** */
 
 #include "cube3d.h"
+#include "Libft/libft.h"
 
-int		main(void)
+int		main(int ac, char **av)
 {
 	t_twostruct	*ts;
 	t_data		data;
 	t_algo		algo;
 
+	if (!(check_arguments(ac, av)))
+		return (0);
 	if (!(ts = (t_twostruct *)malloc(sizeof(t_twostruct))))
 		return (0);
+//	get_next_line_cub(av[1], line)
 	init_struct(&algo, &data);
 	ts->algo = algo;
 	ts->data = data;

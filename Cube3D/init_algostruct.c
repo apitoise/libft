@@ -47,5 +47,4 @@ void		init_struct(t_algo *algo, t_data *data)
 {
 	init_winstruct(data);
 	init_algostruct(algo);
-//	algo->first = 1;
 }

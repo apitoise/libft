@@ -20,35 +20,35 @@ int		ft_close(int key, t_twostruct *ts)
 
 int		ft_keyrelease(int key, t_twostruct *ts)
 {
-	if (key == 13 || key == 126)
+	if (key == 13)
 		ts->algo.move_up = 0;
-	if (key == 123)
-		ts->algo.move_left = 0;
 	if (key == 0)
+		ts->algo.move_left = 0;
+	if (key == 123)
 		ts->algo.rot_left = 0;
-	if (key == 1 || key == 125)
+	if (key == 1)
 		ts->algo.move_down = 0;
-	if (key == 124)
-		ts->algo.move_right = 0;
 	if (key == 2)
+		ts->algo.move_right = 0;
+	if (key == 124)
 		ts->algo.rot_right = 0;
 	return (0);
 }
 
 int		ft_keyparsing(int key, t_twostruct *ts)
 {
-	printf("key = %d\n", key);
-	if (key == 13 || key == 126)
+
+	if (key == 13)
 		ts->algo.move_up = 1;
-	if (key == 123)
-		ts->algo.move_left = 1;
 	if (key == 0)
+		ts->algo.move_left = 1;
+	if (key == 123)
 		ts->algo.rot_left = 1;
-	if (key == 1 || key == 125)
+	if (key == 1)
 		ts->algo.move_down = 1;
-	if (key == 124)
-		ts->algo.move_right = 1;
 	if (key == 2)
+		ts->algo.move_right = 1;
+	if (key == 124)
 		ts->algo.rot_right = 1;
 	if (key == 53)
 		exit(1);

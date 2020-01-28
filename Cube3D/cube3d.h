@@ -74,7 +74,6 @@ typedef	struct	s_algo
 	int			side;
 	int			lineHeight;
 	int			drawStart;
-	int			first;
 	int			drawEnd;
 }				t_algo;
 
@@ -85,13 +84,14 @@ typedef	struct	s_twostruct
 }				t_twostruct;
 
 int		worldMap[24][24];
+int 	check_arguments(int ac, char **av);
 void	init_struct(t_algo *algo, t_data *data);
 void	init_loop_algostruct(t_algo *algo);
 void	init_datastruct(t_data *data);
 int		ft_keyparsing(int key, t_twostruct *ts);
 int		ft_keyrelease(int key, t_twostruct *ts);
 int 	ft_close(int key, t_twostruct *ts);
-int		main(void);
+int		main(int ac, char **av);
 void	init_first(t_algo *algo);
 void	ft_raycasting(t_algo *algo, t_data *data);
 void	ft_painting(t_algo *algo, t_data *data);

@@ -18,8 +18,6 @@ void	init_colors(t_algo *algo, t_data *data)
 	data->floor_color = 0x3a9d23;
 	if (algo->side == 0)
 		data->wall_color = 0xdd8800;
-//	else
-//		data->wall_color = 0x00FF00;
 	else if (algo->side == 1)
 		data->wall_color = 0x00FF00;
 	else if (algo->side == 2)
