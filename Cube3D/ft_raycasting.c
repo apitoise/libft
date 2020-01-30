@@ -12,22 +12,23 @@
 
 #include "cube3d.h"
 
-void	ft_raycasting(t_algo *algo, t_data *data)
+void	ft_raycasting(t_allstruct *all)
 {
-	algo->x = -1;
-	init_datastruct(data);
-	while (++algo->x < WINX)
+	all->algo.x = -1;
+	init_datastruct(&all->data);
+	while (++all->algo.x < all->data.width)
 	{
-		init_loop_algostruct(algo);
-		algo->lineHeight = (int)(WINY / algo->perpWallDist);
-		algo->drawStart = -algo->lineHeight / 2 + WINY / 2;
-		if (algo->drawStart < 0)
-			algo->drawStart = 0;
-		algo->drawEnd = algo->lineHeight / 2 + WINY / 2;
-		if (algo->drawEnd >= WINY)
-			algo->drawEnd = WINY - 1;
-		ft_painting(algo, data);
+		init_loop_algostruct(all);
+		all->algo.lineHeight = (int)(all->data.height / all->algo.perpWallDist);
+		all->algo.drawStart = -all->algo.lineHeight / 2 + all->data.height / 2;
+		if (all->algo.drawStart < 0)
+			all->algo.drawStart = 0;
+		all->algo.drawEnd = all->algo.lineHeight / 2 + all->data.height / 2;
+		if (all->algo.drawEnd >= all->data.height)
+			all->algo.drawEnd = all->data.height - 1;
+		ft_painting(all);
 	}
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_ptr, 0, 0);
-	mlx_destroy_image(data->mlx_ptr, data->img_ptr);
+	mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
+		all->data.img_ptr, 0, 0);
+	mlx_destroy_image(all->data.mlx_ptr, all->data.img_ptr);
 }

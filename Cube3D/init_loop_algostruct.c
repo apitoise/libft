@@ -74,17 +74,17 @@ void	ray_algo(t_algo *algo)
 	}
 }
 
-void	init_loop_algostruct(t_algo *algo)
+void	init_loop_algostruct(t_allstruct *all)
 {
-	algo->cameraX = 2 * algo->x / (double)WINX - 1;
-	algo->rayPosX = algo->posX;
-	algo->rayPosY = algo->posY;
-	algo->rayDirX = algo->dirX + algo->planeX * algo->cameraX;
-	algo->rayDirY = algo->dirY + algo->planeY * algo->cameraX;
-	algo->mapX = (int)algo->posX;
-	algo->mapY = (int)algo->posY;
-	algo->deltaDistX = fabs(1 / algo->rayDirX);
-	algo->deltaDistY = fabs(1 / algo->rayDirY);
-	algo_init(algo);
-	ray_algo(algo);
+	all->algo.cameraX = 2 * all->algo.x / (double)all->data.width - 1;
+	all->algo.rayPosX = all->algo.posX;
+	all->algo.rayPosY = all->algo.posY;
+	all->algo.rayDirX = all->algo.dirX + all->algo.planeX * all->algo.cameraX;
+	all->algo.rayDirY = all->algo.dirY + all->algo.planeY * all->algo.cameraX;
+	all->algo.mapX = (int)all->algo.posX;
+	all->algo.mapY = (int)all->algo.posY;
+	all->algo.deltaDistX = fabs(1 / all->algo.rayDirX);
+	all->algo.deltaDistY = fabs(1 / all->algo.rayDirY);
+	algo_init(&all->algo);
+	ray_algo(&all->algo);
 }

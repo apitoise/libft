@@ -16,8 +16,18 @@
 # include <mlx.h>
 # include <math.h>
 # include <unistd.h>
-# define WINX 1920
-# define WINY 1080
+# include <stdlib.h>
+# include <fcntl.h>
+
+typedef struct 	s_tex
+{
+	void		*teximg;
+	char 		*data;
+	int 		bpp;
+	int 		size_line;
+	int 		endian;
+	char 		*name;
+}				t_tex;
 
 typedef	struct	s_data
 {
@@ -77,24 +87,33 @@ typedef	struct	s_algo
 	int			drawEnd;
 }				t_algo;
 
-typedef	struct	s_twostruct
+typedef	struct	s_allstruct
 {
 	t_algo		algo;
 	t_data		data;
-}				t_twostruct;
+	t_tex		tex[4];
+}				t_allstruct;
 
 int		worldMap[24][24];
-int 	check_arguments(int ac, char **av);
-void	init_struct(t_algo *algo, t_data *data);
-void	init_loop_algostruct(t_algo *algo);
+int 	check_arguments(int ac, char **av, t_allstruct *all);
+void	init_struct(t_allstruct *all);
+void	init_loop_algostruct(t_allstruct *all);
 void	init_datastruct(t_data *data);
-int		ft_keyparsing(int key, t_twostruct *ts);
-int		ft_keyrelease(int key, t_twostruct *ts);
-int 	ft_close(int key, t_twostruct *ts);
+int		ft_keyparsing(int key, t_allstruct *all);
+int		ft_keyrelease(int key, t_allstruct *all);
+int 	ft_close(void);
 int		main(int ac, char **av);
 void	init_first(t_algo *algo);
-void	ft_raycasting(t_algo *algo, t_data *data);
-void	ft_painting(t_algo *algo, t_data *data);
-int		ft_move(t_twostruct *ts);
+void	ft_raycasting(t_allstruct *all);
+void	init_res(char *str, t_allstruct *all);
+void	init_tex(char c, char *str, t_allstruct *all);
+void	ft_painting(t_allstruct *all);
+int		ft_move(t_allstruct *all);
+char 	*ft_gnlstrdup(const char *s1);
+size_t	ft_gnlstrlen(char *str);
+char 	*ft_gnlstrchr(const char *str, int c);
+int		get_next_line(int fd, char **line);
+char 	*ft_gnlsubstr(char const *s, unsigned int start, size_t len);
+char 	*ft_gnlstrjoin(char const *s1, char const *s2);
 
 #endif

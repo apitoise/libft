@@ -12,65 +12,68 @@
 
 #include "cube3d.h"
 
-void	init_colors(t_algo *algo, t_data *data)
+void	init_colors(t_allstruct *all)
 {
-	data->sky_color = 0x77b5fe;
-	data->floor_color = 0x3a9d23;
-	if (algo->side == 0)
-		data->wall_color = 0xdd8800;
-	else if (algo->side == 1)
-		data->wall_color = 0x00FF00;
-	else if (algo->side == 2)
-		data->wall_color = 0xdd8800 / 2;
-	else if (algo->side == 3)
-		data->wall_color = 0xdd8800 / 4;
+	all->data.sky_color = 0x77b5fe;
+	all->data.floor_color = 0x3a9d23;
+	if (all->algo.side == 0)
+		all->data.wall_color = 0xdd8800;
+	else if (all->algo.side == 1)
+		all->data.wall_color = 0x00FF00;
+	else if (all->algo.side == 2)
+		all->data.wall_color = 0xdd8800 / 2;
+	else if (all->algo.side == 3)
+		all->data.wall_color = 0xdd8800 / 4;
 }
 
-void	draw_sky(t_algo *algo, t_data *data)
+void	draw_sky(t_allstruct *all)
 {
 	int		y;
 
 	y = 0;
-	while (y < WINY / 2)
+	while (y < all->data.height / 2)
 	{
-		*(data->data_ptr + (WINX * y) + algo->x) = data->sky_color;
+		*(all->data.data_ptr + (all->data.width * y)
+			+ all->algo.x) = all->data.sky_color;
 		y++;
 	}
 }
 
-void	draw_floor(t_algo *algo, t_data *data)
+void	draw_floor(t_allstruct *all)
 {
 	int		y;
 
-	y = WINY / 2;
-	while (y < WINY)
+	y = all->data.height / 2;
+	while (y < all->data.height)
 	{
-		*(data->data_ptr + (WINX * y) + algo->x) = data->floor_color;
+		*(all->data.data_ptr + (all->data.width * y)
+			+ all->algo.x) = all->data.floor_color;
 		y++;
 	}
 }
 
-void	draw_wall(t_algo *algo, t_data *data)
+void	draw_wall(t_allstruct *all)
 {
 	int		y;
 
-	y = algo->drawStart;
+	y = all->algo.drawStart;
 
-	if (algo->x < WINX && y < WINY)
+	if (all->algo.x < all->data.width && y < all->data.height)
 	{
-		while (y < algo->drawEnd )
+		while (y < all->algo.drawEnd )
 		{
-			init_colors(algo, data);
-			*(data->data_ptr + (WINX * y) + algo->x) = data->wall_color;
+			init_colors(all);
+			*(all->data.data_ptr + (all->data.width * y)
+				+ all->algo.x) = all->data.wall_color;
 			y++;
 		}
 	}
 }
 
-void	ft_painting(t_algo *algo, t_data *data)
+void	ft_painting(t_allstruct *all)
 {
-		init_colors(algo, data);
-		draw_sky(algo, data);
-		draw_floor(algo, data);
-		draw_wall(algo, data);
+		init_colors(all);
+		draw_sky(all);
+		draw_floor(all);
+		draw_wall(all);
 }
