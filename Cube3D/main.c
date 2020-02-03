@@ -18,10 +18,12 @@ int		main(int ac, char **av)
 	t_allstruct	*all;
 
 	if (!(all = (t_allstruct *)malloc(sizeof(t_allstruct))))
-		return (0);
+		return (ft_error("Malloc error."));
+	init_mapstruct(all);
 	if (!(check_arguments(ac, av, all)))
 		return (0);
 	init_struct(all);
+	get_tex(all);
 	mlx_hook(all->data.win_ptr, 17, 0L, ft_close, all);
 	mlx_hook(all->data.win_ptr, 2, (1L << 0), ft_keyparsing, all);
 	mlx_hook(all->data.win_ptr, 3, (1L << 1), ft_keyrelease, all);

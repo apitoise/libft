@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   get_tex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/11 10:50:14 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/15 15:55:59 by apitoise         ###   ########.fr       */
+/*   Created: 2020/01/31 13:20:12 by apitoise          #+#    #+#             */
+/*   Updated: 2020/01/31 13:20:14 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cube3d.h"
 
-char		*ft_strjoin(char const *s1, char const *s2)
+void		get_tex(t_allstruct *all)
 {
-	int		size;
-	char	*res;
-	int		cpy;
+	int 	w;
+	int 	h;
+	int 	i;
 
-	size = ft_strlen((char *)s1) + ft_strlen((char *)s2);
-	res = (char *)malloc(size * sizeof(char) + 1);
-	if (res == 0)
-		return (0);
-	cpy = 0;
-	while (*s1)
+	i = 0;
+	while (i < 3)
 	{
-		res[cpy] = *s1;
-		cpy++;
-		s1++;
+		all->tex[i].teximg = mlx_xpm_file_to_image(all->data.mlx_ptr,
+			all->tex[i].name, &w, &h);
+		all->tex[i].data = mlx_get_data_addr(all->tex[i].teximg,
+			&all->tex[i].bpp, &all->tex[i].size_line, &all->tex[i].endian);
+		i++;
 	}
-	while (*s2)
-	{
-		res[cpy] = *s2;
-		cpy++;
-		s2++;
-	}
-	res[cpy] = '\0';
-	return (res);
 }

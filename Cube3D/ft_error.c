@@ -1,40 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/11 10:50:14 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/15 15:55:59 by apitoise         ###   ########.fr       */
+/*   Created: 2020/02/03 14:09:35 by apitoise          #+#    #+#             */
+/*   Updated: 2020/02/03 14:09:39 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cube3d.h"
 
-char		*ft_strjoin(char const *s1, char const *s2)
+int		ft_error(char *str)
 {
-	int		size;
-	char	*res;
-	int		cpy;
-
-	size = ft_strlen((char *)s1) + ft_strlen((char *)s2);
-	res = (char *)malloc(size * sizeof(char) + 1);
-	if (res == 0)
-		return (0);
-	cpy = 0;
-	while (*s1)
-	{
-		res[cpy] = *s1;
-		cpy++;
-		s1++;
-	}
-	while (*s2)
-	{
-		res[cpy] = *s2;
-		cpy++;
-		s2++;
-	}
-	res[cpy] = '\0';
-	return (res);
+	ft_putstr_fd("Error\n");
+	ft_putstr_fd(str);
+	ft_putchar('\n');
+	return (0);
 }

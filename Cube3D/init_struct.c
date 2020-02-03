@@ -12,29 +12,6 @@
 
 #include "cube3d.h"
 
-/*void		init_tex(t_allstruct *all)
-{
-	int 	w;
-	int 	h;
-
-	all->tex[0].teximg = mlx_xpm_file_to_image(all->data.mlx_ptr,
-		"textures/wood.xpm", &w, &h);
-	all->tex[0].data = mlx_get_data_addr(all->tex[0].teximg,
-		&all->tex[0].bpp, &all->tex[0].size_line, &all->tex[0].endian);
-	all->tex[1].teximg = mlx_xpm_file_to_image(all->data.mlx_ptr,
-		"textures/redbrick.xpm", &w, &h);
-	all->tex[1].data = mlx_get_data_addr(all->tex[1].teximg,
-		&all->tex[1].bpp, &all->tex[1].size_line, &all->tex[1].endian);
-	all->tex[2].teximg = mlx_xpm_file_to_image(all->data.mlx_ptr,
-		"textures/purplestone.xpm", &w, &h);
-	all->tex[2].data = mlx_get_data_addr(all->tex[2].teximg,
-		&all->tex[2].bpp, &all->tex[2].size_line, &all->tex[2].endian);
-	all->tex[3].teximg = mlx_xpm_file_to_image(all->data.mlx_ptr,
-		"textures/mossy.xpm", &w, &h);
-	all->tex[3].data = mlx_get_data_addr(all->tex[3].teximg,
-		&all->tex[3].bpp, &all->tex[3].size_line, &all->tex[3].endian);
-}*/
-
 void		init_winstruct(t_data *data)
 {
 	data->mlx_ptr = mlx_init();

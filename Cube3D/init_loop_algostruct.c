@@ -12,65 +12,65 @@
 
 #include "cube3d.h"
 
-void	algo_init(t_algo *algo)
+void	algo_init(t_allstruct *all)
 {
-	if (algo->rayDirX < 0)
+	if (all->algo.rayDirX < 0)
 	{
-		algo->stepX = -1;
-		algo->sideDistX = (algo->rayPosX - algo->mapX)
-			* algo->deltaDistX;
+		all->algo.stepX = -1;
+		all->algo.sideDistX = (all->algo.rayPosX - all->algo.mapX)
+			* all->algo.deltaDistX;
 	}
 	else
 	{
-		algo->stepX = 1;
-		algo->sideDistX = (algo->mapX + 1.0 - algo->rayPosX)
-			* algo->deltaDistX;
+		all->algo.stepX = 1;
+		all->algo.sideDistX = (all->algo.mapX + 1.0 - all->algo.rayPosX)
+			* all->algo.deltaDistX;
 	}
-	if (algo->rayDirY < 0)
+	if (all->algo.rayDirY < 0)
 	{
-		algo->stepY = -1;
-		algo->sideDistY = (algo->rayPosY - algo->mapY)
-			* algo->deltaDistY;
+		all->algo.stepY = -1;
+		all->algo.sideDistY = (all->algo.rayPosY - all->algo.mapY)
+			* all->algo.deltaDistY;
 	}
 	else
 	{
-		algo->stepY = 1;
-		algo->sideDistY = (algo->mapY + 1.0 - algo->rayPosY)
-			* algo->deltaDistY;
+		all->algo.stepY = 1;
+		all->algo.sideDistY = (all->algo.mapY + 1.0 - all->algo.rayPosY)
+			* all->algo.deltaDistY;
 	}
 }
 
-void	ray_algo(t_algo *algo)
+void	ray_algo(t_allstruct *all)
 {
-	algo->hit = 0;
-	while (algo->hit == 0)
+	all->algo.hit = 0;
+	while (all->algo.hit == 0)
 	{
-		if (algo->sideDistX < algo->sideDistY)
+		if (all->algo.sideDistX < all->algo.sideDistY)
 		{
-			if (algo->rayDirX < 0)
-				algo->side = 0;
-			else if (algo->rayDirX > 0)
-				algo->side = 1;
-			algo->sideDistX += algo->deltaDistX;
-			algo->mapX += algo->stepX;
+			if (all->algo.rayDirX < 0)
+				all->algo.side = 0;
+			else if (all->algo.rayDirX > 0)
+				all->algo.side = 1;
+			all->algo.sideDistX += all->algo.deltaDistX;
+			all->algo.mapX += all->algo.stepX;
 		}
 		else
 		{
-			if (algo->rayDirY < 0)
-				algo->side = 2;
-			else if (algo->rayDirY > 0)
-				algo->side = 3;
-			algo->sideDistY += algo->deltaDistY;
-			algo->mapY += algo->stepY;
+			if (all->algo.rayDirY < 0)
+				all->algo.side = 2;
+			else if (all->algo.rayDirY > 0)
+				all->algo.side = 3;
+			all->algo.sideDistY += all->algo.deltaDistY;
+			all->algo.mapY += all->algo.stepY;
 		}
-		if (worldMap[algo->mapX][algo->mapY] > 0)
-			algo->hit = 1;
-		if (algo->side == 0 || algo->side == 1)
-			algo->perpWallDist = (algo->mapX - algo->posX
-				+ (1 - algo->stepX) / 2) / algo->rayDirX;
+		if (all->map.map[all->algo.mapX][all->algo.mapY] > 0)
+			all->algo.hit = 1;
+		if (all->algo.side == 0 || all->algo.side == 1)
+			all->algo.perpWallDist = (all->algo.mapX - all->algo.posX
+				+ (1 - all->algo.stepX) / 2) / all->algo.rayDirX;
 		else
-			algo->perpWallDist = (algo->mapY - algo->posY
-				+ (1 - algo->stepY) / 2) / algo->rayDirY;
+			all->algo.perpWallDist = (all->algo.mapY - all->algo.posY
+				+ (1 - all->algo.stepY) / 2) / all->algo.rayDirY;
 	}
 }
 
@@ -85,6 +85,6 @@ void	init_loop_algostruct(t_allstruct *all)
 	all->algo.mapY = (int)all->algo.posY;
 	all->algo.deltaDistX = fabs(1 / all->algo.rayDirX);
 	all->algo.deltaDistY = fabs(1 / all->algo.rayDirY);
-	algo_init(&all->algo);
-	ray_algo(&all->algo);
+	algo_init(all);
+	ray_algo(all);
 }

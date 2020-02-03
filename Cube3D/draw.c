@@ -12,10 +12,8 @@
 
 #include "cube3d.h"
 
-void	init_colors(t_allstruct *all)
+void	init_colorse(t_allstruct *all)
 {
-	all->data.sky_color = 0x77b5fe;
-	all->data.floor_color = 0x3a9d23;
 	if (all->algo.side == 0)
 		all->data.wall_color = 0xdd8800;
 	else if (all->algo.side == 1)
@@ -62,7 +60,7 @@ void	draw_wall(t_allstruct *all)
 	{
 		while (y < all->algo.drawEnd )
 		{
-			init_colors(all);
+			init_colorse(all);
 			*(all->data.data_ptr + (all->data.width * y)
 				+ all->algo.x) = all->data.wall_color;
 			y++;
@@ -72,7 +70,7 @@ void	draw_wall(t_allstruct *all)
 
 void	ft_painting(t_allstruct *all)
 {
-		init_colors(all);
+		init_colorse(all);
 		draw_sky(all);
 		draw_floor(all);
 		draw_wall(all);

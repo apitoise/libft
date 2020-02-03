@@ -12,12 +12,33 @@
 
 #include "cube3d.h"
 
-char	*get_xpm_name(char *str)
+int 	init_crd(char c, char *str)
+{
+	int 	res;
+
+	res = -1;
+	if (c == 'N' && str[1] == 'O')
+		res = 0;
+	else if (c == 'S' && str[1] == 'O')
+		res = 1;
+	else if (c == 'W' && str[1] == 'E')
+		res = 2;
+	else if (c == 'E' && str[1] == 'A')
+		res = 3;
+	return (res);
+}
+
+char	*get_xpm_name(char *str, t_allstruct *all)
 {
 	char	*res;
+	int 	j;
 	int 	i;
 
+	j = 2;
 	i = 0;
+	while (str[j] == ' ')
+		j++;
+	str = str + j;
 	if (str == NULL)
 		return (NULL);
 	while ((str[i] != ' ' || str[i] != '\n') && str[i])
@@ -26,12 +47,14 @@ char	*get_xpm_name(char *str)
 	return (res);
 }
 
+
 void	init_res(char *str, t_allstruct *all)
 {
 	int 	i;
 
 	i = 2;
 	all->data.width = ft_atoi(&str[i]);
+	all->data.width = all->data.width > 2560 ? 2560 : all->data.width;
 	while (str[i] == ' ')
 		i++;
 	while (ft_isdigit(str[i]))
@@ -39,23 +62,21 @@ void	init_res(char *str, t_allstruct *all)
 	while (str[i] == ' ')
 		i++;
 	all->data.height = ft_atoi(&str[i]);
+	all->data.height = all->data.height > 1440 ? 1440 : all->data.height;
 }
+
 
 void	init_tex(char c, char *str, t_allstruct *all)
 {
-	int 	i;
+	int 	crd;
 
-	if (c == 'N')
-	{
-		if (str[1] != 'O')
-			return ;
-		else
-		{
-			i = 2;
-			while (str[i] == ' ')
-				i++;
-			all->tex[0].name = get_xpm_name(&str[i]);
-			printf("%s\n", all->tex[0].name);
-		}
-	}
+	crd = init_crd(c, str);
+	if (crd == 0)
+		all->tex[crd].name = get_xpm_name(str, all);
+	else if (crd == 1)
+		all->tex[crd].name = get_xpm_name(str, all);
+	else if (crd == 2)
+		all->tex[crd].name = get_xpm_name(str, all);
+	else if (crd == 3)
+		all->tex[crd].name = get_xpm_name(str, all);
 }

@@ -87,11 +87,23 @@ typedef	struct	s_algo
 	int			drawEnd;
 }				t_algo;
 
+typedef struct 	s_map
+{
+	int 		first;
+	int 		width;
+	int 		height;
+	char 		*charmap;
+	int 		**map;
+	int 		lenerror;
+	int 		spawn;
+}				t_map;
+
 typedef	struct	s_allstruct
 {
 	t_algo		algo;
 	t_data		data;
 	t_tex		tex[4];
+	t_map		map;
 }				t_allstruct;
 
 int		worldMap[24][24];
@@ -107,12 +119,20 @@ void	init_first(t_algo *algo);
 void	ft_raycasting(t_allstruct *all);
 void	init_res(char *str, t_allstruct *all);
 void	init_tex(char c, char *str, t_allstruct *all);
+void	init_colors(char c, char *str, t_allstruct *all);
+void	init_mapstruct(t_allstruct *all);
 void	ft_painting(t_allstruct *all);
 int		ft_move(t_allstruct *all);
 char 	*ft_gnlstrdup(const char *s1);
 size_t	ft_gnlstrlen(char *str);
 char 	*ft_gnlstrchr(const char *str, int c);
 int		get_next_line(int fd, char **line);
+void	get_tex(t_allstruct *all);
+void 	get_map(char *line, t_allstruct *all);
+int	create_map(t_allstruct *all);
+int 	ft_error(char *str);
+int 	check_map(t_allstruct *all);
+void	ft_voiderror(char *str);
 char 	*ft_gnlsubstr(char const *s, unsigned int start, size_t len);
 char 	*ft_gnlstrjoin(char const *s1, char const *s2);
 

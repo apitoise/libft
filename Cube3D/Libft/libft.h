@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 13:06:46 by apitoise          #+#    #+#             */
-/*   Updated: 2019/11/29 15:13:19 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/01/31 18:49:20 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memset(void *b, int c, size_t len);
 char				*ft_strchr(const char *str, int c);
+char				*ft_strcpy(char *dst, char *src);
 char				*ft_strdup(const char *s1);
 size_t				ft_strlcat(char *dest, const char *src, size_t size);
 size_t				ft_strlcpy(char *dest, const char *src, size_t size);
@@ -53,6 +54,8 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
 char				*ft_itoa(int n);
+char				*ft_itoa_base(unsigned int nb, char *base);
+int 				ft_atoi_base(char *str, int base);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void				ft_putchar(char c);
 void				ft_putstr_fd(char *s);

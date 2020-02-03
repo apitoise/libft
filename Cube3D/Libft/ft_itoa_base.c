@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/11 10:50:14 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/15 15:55:59 by apitoise         ###   ########.fr       */
+/*   Created: 2020/01/31 14:23:50 by apitoise          #+#    #+#             */
+/*   Updated: 2020/01/31 14:23:56 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_strjoin(char const *s1, char const *s2)
+char	*ft_itoa_base(unsigned int nb, char *base)
 {
-	int		size;
 	char	*res;
-	int		cpy;
+	int		size;
+	int		len;
+	int		tmp;
+	int		i;
 
-	size = ft_strlen((char *)s1) + ft_strlen((char *)s2);
-	res = (char *)malloc(size * sizeof(char) + 1);
-	if (res == 0)
-		return (0);
-	cpy = 0;
-	while (*s1)
+	size = 1;
+	len = ft_strlen(base);
+	tmp = len;
+	while (tmp >= len)
 	{
-		res[cpy] = *s1;
-		cpy++;
-		s1++;
+		tmp /= len;
+		size++;
 	}
-	while (*s2)
+	res = (char *)malloc(size + 1);
+	res[size] = '\0';
+	i = size - 1;
+	while (i >= 0)
 	{
-		res[cpy] = *s2;
-		cpy++;
-		s2++;
+		res[i] = base[nb % len];
+		nb /= len;
+		i--;
 	}
-	res[cpy] = '\0';
 	return (res);
 }
