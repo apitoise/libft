@@ -6,10 +6,9 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:24:16 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/28 15:24:21 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/04 16:53:59 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cube3d.h"
 
@@ -17,8 +16,8 @@ static int	read_cub(char *cub, t_allstruct *all)
 {
 	int		fd;
 	int		ret;
-	char 	*line;
-	int 	error;
+	char	*line;
+	int		error;
 
 	ret = 1;
 	fd = open(cub, O_RDONLY);
@@ -45,37 +44,25 @@ static int	read_cub(char *cub, t_allstruct *all)
 		if (!(create_map(all)))
 		{
 			all->map.lenerror = 5;
-			return (ft_error("Invalid character in map."));
+			return (ft_error("Invalid character in map.", all));
 		}
 	}
 	else
-		return (ft_error("The map is not rectangular."));
+		return (ft_error("The map is not rectangular.", all));
 	error = check_map(all);
 	if (error == 1)
-		ft_error("Map is not closed.");
+		ft_error("Map is not closed.", all);
 	if (error == 2)
-		ft_error("Too much spawn.");
+		ft_error("Too much spawn.", all);
 	if (error == 3)
-		ft_error("There is no spawn.");
-	int i = 0;
-	while (i < all->map.height)
-	{
-		int j = 0;
-		while (j < all->map.width)
-		{
-			printf("%d", all->map.map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
+		ft_error("There is no spawn.", all);
 	return (1);
 }
 
 static int	check_cub(char *cub, t_allstruct *all)
 {
 	int		last;
-	int 	err;
+	int		err;
 
 	last = ft_strlen(cub) - 1;
 	if (!(ft_strncmp(&cub[last - 3], ".cub", 4)))
@@ -84,27 +71,27 @@ static int	check_cub(char *cub, t_allstruct *all)
 		if (err == 0)
 		{
 			if (all->map.lenerror == 0)
-				return (ft_error("Invalid .cub."));
+				return (ft_error("Invalid .cub.", all));
 			else
 				return (0);
 		}
 		else if (err == -1)
-			return (ft_error(".cub is not a file."));
+			return (ft_error(".cub is not a file.", all));
 		return (1);
 	}
 	else
-		return(ft_error("Second argument is not a .cub."));
+		return (ft_error("Second argument is not a .cub.", all));
 }
 
-int			check_arguments(int	ac, char **av, t_allstruct *all)
+int			check_arguments(int ac, char **av, t_allstruct *all)
 {
 	if (ac > 3)
-		return (ft_error("Too many arguments."));
+		return (ft_error("Too many arguments.", all));
 	if (ac == 3)
 		if (ft_strncmp(av[2], "-save", 6) != 0)
-			return (ft_error("Second argument is not accepted."));
+			return (ft_error("Second argument is not accepted.", all));
 	if (ac < 2)
-		return (ft_error("No .cub"));
+		return (ft_error("No .cub", all));
 	if (!(check_cub(av[1], all)))
 		return (0);
 	return (1);

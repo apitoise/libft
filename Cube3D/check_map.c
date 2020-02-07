@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:32:46 by apitoise          #+#    #+#             */
-/*   Updated: 2020/02/03 15:32:49 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/04 16:35:02 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		check_map(t_allstruct *all)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (all->map.map[0][i] == 1 && i < all->map.width - 1)

@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 13:36:31 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/31 13:36:33 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/04 17:17:36 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int		get_value(char c)
 {
-	if (c  == ' ')
+	if (c == ' ')
 		return (9);
 	else if (c == 'N')
 		return (8);
@@ -45,6 +45,7 @@ int				create_map(t_allstruct *all)
 {
 	int		i;
 	int		j;
+
 	i = 0;
 	if (!(all->map.map = malloc(sizeof(int *) * all->map.height)))
 		return (-1);
@@ -58,6 +59,7 @@ int				create_map(t_allstruct *all)
 			if (ft_isok(*all->map.charmap, all))
 			{
 				all->map.map[i][j] = get_value(*all->map.charmap);
+				get_spawn(all->map.map[i][j], i, j, all);
 				j++;
 			}
 			else
@@ -69,10 +71,10 @@ int				create_map(t_allstruct *all)
 	return (1);
 }
 
-void		get_map(char *line, t_allstruct *all)
+void			get_map(char *line, t_allstruct *all)
 {
-	char 	*tmp;
-	
+	char	*tmp;
+
 	all->map.height++;
 	if (all->map.first == 0)
 	{

@@ -6,16 +6,16 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:36:24 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/31 16:36:25 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/04 16:44:35 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-static char 	*get_char_color(char *str)
+static char		*get_char_color(char *str)
 {
-	int 	end;
-	char 	*res;
+	int		end;
+	char	*res;
 	char	*tmp;
 
 	end = 0;
@@ -27,13 +27,13 @@ static char 	*get_char_color(char *str)
 	return (res);
 }
 
-int 			get_color(char *str)
+int				get_color(char *str)
 {
-	char 	*r;
-	char 	*g;
-	char 	*b;
+	char	*r;
+	char	*g;
+	char	*b;
 	char	*tmp;
-	int 	res;
+	int		res;
 
 	while (*str == ' ')
 		str++;
@@ -56,11 +56,11 @@ int 			get_color(char *str)
 	return (res);
 }
 
-void 			init_colors(char c, char *str, t_allstruct *all)
+void			init_colors(char c, char *str, t_allstruct *all)
 {
-	char 	*r;
-	char 	*g;
-	char 	*b;
+	char	*r;
+	char	*g;
+	char	*b;
 	char	*tmp;
 	char	*res;
 

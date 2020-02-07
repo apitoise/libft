@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:27:26 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/23 15:15:42 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/04 17:12:51 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ray_algo(t_allstruct *all)
 			all->algo.sideDistY += all->algo.deltaDistY;
 			all->algo.mapY += all->algo.stepY;
 		}
-		if (all->map.map[all->algo.mapX][all->algo.mapY] > 0)
+		if (all->map.map[all->algo.mapX][all->algo.mapY] == 1)
 			all->algo.hit = 1;
 		if (all->algo.side == 0 || all->algo.side == 1)
 			all->algo.perpWallDist = (all->algo.mapX - all->algo.posX

@@ -6,15 +6,15 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 15:53:13 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/30 15:53:14 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/04 17:20:14 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-int 	init_crd(char c, char *str)
+int		init_crd(char c, char *str)
 {
-	int 	res;
+	int		res;
 
 	res = -1;
 	if (c == 'N' && str[1] == 'O')
@@ -31,8 +31,8 @@ int 	init_crd(char c, char *str)
 char	*get_xpm_name(char *str, t_allstruct *all)
 {
 	char	*res;
-	int 	j;
-	int 	i;
+	int		j;
+	int		i;
 
 	j = 2;
 	i = 0;
@@ -43,14 +43,13 @@ char	*get_xpm_name(char *str, t_allstruct *all)
 		return (NULL);
 	while ((str[i] != ' ' || str[i] != '\n') && str[i])
 		i++;
-	res =  ft_substr(str, 0, i);
+	res = ft_substr(str, 0, i);
 	return (res);
 }
 
-
 void	init_res(char *str, t_allstruct *all)
 {
-	int 	i;
+	int		i;
 
 	i = 2;
 	all->data.width = ft_atoi(&str[i]);
@@ -65,10 +64,9 @@ void	init_res(char *str, t_allstruct *all)
 	all->data.height = all->data.height > 1440 ? 1440 : all->data.height;
 }
 
-
 void	init_tex(char c, char *str, t_allstruct *all)
 {
-	int 	crd;
+	int		crd;
 
 	crd = init_crd(c, str);
 	if (crd == 0)

@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:49:34 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/22 15:07:25 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/04 17:20:58 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int		ft_keyrelease(int key, t_allstruct *all)
 
 int		ft_keyparsing(int key, t_allstruct *all)
 {
-
 	if (key == 13)
 		all->algo.move_up = 1;
 	if (key == 0)

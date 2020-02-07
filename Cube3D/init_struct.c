@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 14:09:53 by apitoise          #+#    #+#             */
-/*   Updated: 2020/01/23 14:18:43 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/04 16:47:15 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,6 @@ void		init_algostruct(t_allstruct *all)
 	all->algo.move_left = 0;
 	all->algo.rot_left = 0;
 	all->algo.rot_right = 0;
-	all->algo.posX = 6;
-	all->algo.posY = 3;
-	all->algo.dirX = -1;
-	all->algo.dirY = 0;
-	all->algo.planeX = 0;
-	all->algo.planeY = 0.66;
 	all->algo.ms = 0.05;
 	all->algo.rs = 0.05;
 }
