@@ -1,0 +1,11 @@
+R 500 500
+NO textures/colorstone.xpm
+SO textures/eagle.xpm
+WE textures/wood.xpm
+EA textures/mossy.xpm
+S textures/barrel.xpm
+F a255,255,255
+C 100,100,102
+111
+1N1
+111
