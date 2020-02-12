@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:35:47 by apitoise          #+#    #+#             */
-/*   Updated: 2020/02/07 18:51:58 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/12 15:32:19 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,33 @@ void	pick_tex(t_allstruct *all, int d, int *color)
 {
 	if (all->algo.side == 0)
 	{
-		all->algo.texY[0] = ((d * all->tex[0].h) / all->algo.lineHeight) / 256;
-		*color = *(all->tex[0].data + (all->tex[0].h * all->algo.texY[0])
-			+ all->algo.texX[0]);
+		all->algo.tex_y[0] = ((d * all->tex[0].h) / all->algo.line_h) / 256;
+		*color = *(all->tex[0].data + (all->tex[0].h * all->algo.tex_y[0])
+			+ all->algo.tex_x[0]);
 	}
 	else if (all->algo.side == 1)
 	{
-		all->algo.texY[1] = ((d * all->tex[1].h) / all->algo.lineHeight) / 256;
-		*color = *(all->tex[1].data + (all->tex[1].h * all->algo.texY[1])
-			+ all->algo.texX[1]);
+		all->algo.tex_y[1] = ((d * all->tex[1].h) / all->algo.line_h) / 256;
+		*color = *(all->tex[1].data + (all->tex[1].h * all->algo.tex_y[1])
+			+ all->algo.tex_x[1]);
 	}
 	else if (all->algo.side == 2)
 	{
-		all->algo.texY[2] = ((d * all->tex[2].h) / all->algo.lineHeight) / 256;
-		*color = *(all->tex[2].data + (all->tex[2].h * all->algo.texY[2])
-			+ all->algo.texX[2]);
+		all->algo.tex_y[2] = ((d * all->tex[2].h) / all->algo.line_h) / 256;
+		*color = *(all->tex[2].data + (all->tex[2].h * all->algo.tex_y[2])
+			+ all->algo.tex_x[2]);
 	}
 	else if (all->algo.side == 3)
 	{
-		all->algo.texY[3] = ((d * all->tex[3].h) / all->algo.lineHeight) / 256;
-		*color = *(all->tex[3].data + (all->tex[3].h * all->algo.texY[3])
-			+ all->algo.texX[3]);
+		all->algo.tex_y[3] = ((d * all->tex[3].h) / all->algo.line_h) / 256;
+		*color = *(all->tex[3].data + (all->tex[3].h * all->algo.tex_y[3])
+			+ all->algo.tex_x[3]);
 	}
 }
 
 void	draw_sky(t_allstruct *all)
 {
-	int 	y;
+	int		y;
 
 	y = 0;
 	while (y < all->data.height / 2)
@@ -68,30 +68,30 @@ void	draw_floor(t_allstruct *all)
 
 void	draw_tex_wall(t_allstruct *all)
 {
-	int 	j;
-	int 	d;
-	int 	color;
+	int		j;
+	int		d;
+	int		color;
 
-	j = all->algo.drawStart;
-	while (j < all->algo.drawEnd)
+	j = all->algo.d_start;
+	while (j < all->algo.d_end)
 	{
-		d = j * 256 - all->data.height * 128 + all->algo.lineHeight * 128;
+		d = j * 256 - all->data.height * 128 + all->algo.line_h * 128;
 		pick_tex(all, d, &color);
 		*(all->data.data_ptr + (all->data.width * j)
-			+ all->algo.x) = color;	
+			+ all->algo.x) = color;
 		j++;
 	}
 }
 
 void	ft_painting(t_allstruct *all)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (i < 4)
 	{
-		all->algo.texX[i] = (int)(all->algo.wallX * (double)(all->tex[i].w));
-		all->algo.texX[i] = all->tex[i].w - all->algo.texX[i] - 1;
+		all->algo.tex_x[i] = (int)(all->algo.wall_x * (double)(all->tex[i].w));
+		all->algo.tex_x[i] = all->tex[i].w - all->algo.tex_x[i] - 1;
 		i++;
 	}
 	draw_sky(all);

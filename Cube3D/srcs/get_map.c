@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 13:36:31 by apitoise          #+#    #+#             */
-/*   Updated: 2020/02/04 17:17:36 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/12 15:47:18 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,17 @@ static int		ft_isok(char c, t_allstruct *all)
 		if (c == 'N' || c == 'W' || c == 'S' || c == 'E')
 			all->map.spawn++;
 		if (c == '2')
-			all->map.nbSprites++;
+			all->map.nb_sprt++;
 		return (1);
 	}
 	else
 		return (0);
+}
+
+static int		create_map_bis(int i, int j, t_allstruct *all)
+{
+	get_spawn(all->map.map[i][j], i, j, all);
+	return (j + 1);
 }
 
 int				create_map(t_allstruct *all)
@@ -61,8 +67,7 @@ int				create_map(t_allstruct *all)
 			if (ft_isok(*all->map.charmap, all))
 			{
 				all->map.map[i][j] = get_value(*all->map.charmap);
-				get_spawn(all->map.map[i][j], i, j, all);
-				j++;
+				j = (create_map_bis(i, j, all));
 			}
 			else
 				return (0);

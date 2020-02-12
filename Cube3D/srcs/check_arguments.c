@@ -6,48 +6,20 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:24:16 by apitoise          #+#    #+#             */
-/*   Updated: 2020/02/04 16:53:59 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/12 15:30:29 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
 
-static int	read_cub(char *cub, t_allstruct *all)
+static int	read_error(int error, t_allstruct *all)
 {
-	int		fd;
-	int		ret;
-	char	*line;
-	int		error;
-
-	ret = 1;
-	error = 0;
-	fd = open(cub, O_RDONLY);
-	if (fd < 0)
+	if (!all->map.argr || !all->map.argno || !all->map.argso || !all->map.argw
+		|| !all->map.arge || !all->map.argf || !all->map.argc)
+		all->map.error = 7;
+	if (all->map.error == 6 || all->map.error == 5 || all->map.error == 7
+		|| all->map.error == 8 || all->map.error == 9)
 		return (0);
-	while (ret > 0)
-	{
-		if ((ret = get_next_line(fd, &line)) == -1)
-			return (-1);
-		else if (line[0] == 'R')
-			init_res(line, all);
-		else if (line[0] == 'N' || (line[0] == 'S' && line[1] == 'O')
-			|| line[0] == 'W' || line[0] == 'E')
-			init_tex(line[0], line, all);
-		else if (line[0] == 'S' && line[1] == ' ')
-			init_sprite(line, all);
-		else if ((line[0] == 'F' || line[0] == 'C') && line[1] == ' ')
-			init_colors(line[0], line, all);
-		else if (ft_isdigit(line[0]))
-			get_map(line, all);
-		else if (line[0] != '\n' && line[0])
-			error = 4;
-	}
-	close(fd);
-	if (error == 4)
-	{
-		all->map.error = 5;
-		return (0);
-	}
 	if (all->map.lenerror == 0)
 	{
 		if (!(create_map(all)))
@@ -68,6 +40,52 @@ static int	read_cub(char *cub, t_allstruct *all)
 	return (1);
 }
 
+static void	read_loop(char *line, t_allstruct *all)
+{
+	if (line[0] == 'R')
+		init_res(line, all);
+	else if (line[0] == 'N' || (line[0] == 'S' && line[1] == 'O')
+		|| line[0] == 'W' || line[0] == 'E')
+		init_tex(line[0], line, all);
+	else if (line[0] == 'S' && line[1] == ' ')
+		init_sprite(line, all);
+	else if ((line[0] == 'F' || line[0] == 'C') && line[1] == ' ')
+		init_colors(line[0], line, all);
+	else if (ft_isdigit(line[0]))
+	{
+		if (!all->map.argr || !all->map.argno || !all->map.argso
+			|| !all->map.argw || !all->map.arge || !all->map.argf
+			|| !all->map.argc)
+			all->map.error = 9;
+		else
+			get_map(line, all);
+	}
+	else if (line[0] != '\n' && line[0])
+		all->map.error = 5;
+}
+
+static int	read_cub(char *cub, t_allstruct *all)
+{
+	int		fd;
+	int		ret;
+	char	*line;
+	int		error;
+
+	ret = 1;
+	error = 0;
+	fd = open(cub, O_RDONLY);
+	if (fd < 0)
+		return (0);
+	while (ret > 0)
+	{
+		if ((ret = get_next_line(fd, &line)) == -1)
+			return (-1);
+		read_loop(line, all);
+	}
+	close(fd);
+	return (read_error(error, all));
+}
+
 static int	check_cub(char *cub, t_allstruct *all)
 {
 	int		last;
@@ -78,16 +96,11 @@ static int	check_cub(char *cub, t_allstruct *all)
 	{
 		err = read_cub(cub, all);
 		if (err == 0)
-		{
-			if (all->map.error == 5)
-				return (ft_error("Bad argument in .cub", all));
-			if (all->map.lenerror == 0)
-				return (ft_error("Invalid .cub.", all));
-			else
-				return (0);
-		}
+			return (find_error(all));
 		else if (err == -1)
 			return (ft_error(".cub is not a file.", all));
+		else if (err == -2)
+			return (ft_error("Duplicate arguments.", all));
 		return (1);
 	}
 	else

@@ -6,44 +6,52 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 15:53:13 by apitoise          #+#    #+#             */
-/*   Updated: 2020/02/04 17:20:14 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/12 15:57:51 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cube3d.h"
 
-int		init_crd(char c, char *str, t_allstruct *all)
+static int	init_crd_bis(char c, char *str, t_allstruct *all)
 {
 	int		res;
 
 	res = -1;
 	if (c == 'N' && str[1] == 'O')
 	{
-		all->map.argNO++;
+		all->map.argno++;
 		res = 0;
 	}
 	else if (c == 'S' && str[1] == 'O')
 	{
-		all->map.argSO++;
+		all->map.argso++;
 		res = 1;
 	}
 	else if (c == 'W' && str[1] == 'E')
 	{
-		all->map.argW++;
+		all->map.argw++;
 		res = 2;
 	}
 	else if (c == 'E' && str[1] == 'A')
 	{
-		all->map.argE++;
+		all->map.arge++;
 		res = 3;
 	}
-	if (all->map.argNO > 1 || all->map.argSO > 1 || all->map.argE > 1
-		all->map.argW > 1)
-		res = -2;
 	return (res);
 }
 
-char	*get_xpm_name(char *str)
+int			init_crd(char c, char *str, t_allstruct *all)
+{
+	int		res;
+
+	res = init_crd_bis(c, str, all);
+	if (all->map.argno > 1 || all->map.argso > 1 || all->map.arge > 1
+		|| all->map.argw > 1)
+		all->map.error = 6;
+	return (res);
+}
+
+char		*get_xpm_name(char *str)
 {
 	char	*res;
 	int		j;
@@ -62,14 +70,14 @@ char	*get_xpm_name(char *str)
 	return (res);
 }
 
-void	init_res(char *str, t_allstruct *all)
+void		init_res(char *str, t_allstruct *all)
 {
 	int		i;
 
 	i = 2;
-	all->map.argR++;
-	if (all->map.argR > 1)
-		return ;
+	all->map.argr++;
+	if (all->map.argr > 1)
+		all->map.error = 6;
 	all->data.width = ft_atoi(&str[i]);
 	all->data.width = all->data.width > 2560 ? 2560 : all->data.width;
 	while (str[i] == ' ')
@@ -79,10 +87,12 @@ void	init_res(char *str, t_allstruct *all)
 	while (str[i] == ' ')
 		i++;
 	all->data.height = ft_atoi(&str[i]);
+	if (all->data.height <= 0 || all->data.width <= 0)
+		all->map.error = 8;
 	all->data.height = all->data.height > 1440 ? 1440 : all->data.height;
 }
 
-void	init_tex(char c, char *str, t_allstruct *all)
+void		init_tex(char c, char *str, t_allstruct *all)
 {
 	int		crd;
 

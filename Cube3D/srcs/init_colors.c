@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 16:36:24 by apitoise          #+#    #+#             */
-/*   Updated: 2020/02/04 16:44:35 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/12 15:54:30 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static char		*get_char_color(char *str)
 {
 	int		end;
+	int		nb;
 	char	*res;
 	char	*tmp;
 
@@ -22,7 +23,10 @@ static char		*get_char_color(char *str)
 	while (ft_isdigit(str[end]))
 		end++;
 	tmp = ft_substr(str, 0, end);
-	res = ft_itoa_base(ft_atoi(tmp), "0123456789abcdef");
+	nb = ft_atoi(tmp);
+	if (nb > 255)
+		nb = 255;
+	res = ft_itoa_base(nb, "0123456789abcdef");
 	free(tmp);
 	return (res);
 }
@@ -60,7 +64,15 @@ void			init_colors(char c, char *str, t_allstruct *all)
 {
 	str++;
 	if (c == 'F')
+	{
+		all->map.argf++;
 		all->data.floor_color = get_color(str);
+	}
 	if (c == 'C')
+	{
+		all->map.argc++;
 		all->data.sky_color = get_color(str);
+	}
+	if (all->map.argf > 1 || all->map.argc > 1)
+		all->map.error = 6;
 }

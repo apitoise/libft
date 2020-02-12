@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 13:20:12 by apitoise          #+#    #+#             */
-/*   Updated: 2020/02/04 16:43:25 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/12 15:55:10 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	get_sprites_pos(t_allstruct *all)
 {
-	int 	i;
-	int 	j;
-	int 	nb;
+	int		i;
+	int		j;
+	int		nb;
 
 	i = 0;
 	nb = 0;
@@ -27,8 +27,8 @@ void	get_sprites_pos(t_allstruct *all)
 		{
 			if (all->map.map[i][j] == 2)
 			{
-				all->sprt[nb].posX = i;
-				all->sprt[nb].posY = j;
+				all->sprt[nb].posx = i;
+				all->sprt[nb].posy = j;
 				nb++;
 			}
 			j++;
@@ -39,33 +39,36 @@ void	get_sprites_pos(t_allstruct *all)
 
 void	get_sprite(t_allstruct *all)
 {
-	int 	i;
+	int		i;
 
 	if (!(all->sprt = malloc(sizeof(t_sprt)
-		* all->map.nbSprites)))
+		* all->map.nb_sprt)))
 		return ;
 	get_sprites_pos(all);
 	i = 0;
-	while (i < all->map.nbSprites)
+	while (i < all->map.nb_sprt)
 	{
 		if (!(all->sprt[i].sprtimg = mlx_xpm_file_to_image(all->data.mlx_ptr,
 			all->map.sprtname, &all->sprt[i].w, &all->sprt[i].h)))
 		{
-			all->sprtError = 1;
+			all->sprterror = 1;
 			return ;
 		}
 		all->sprt[i].data = (int *)mlx_get_data_addr(all->sprt[i].sprtimg,
 			&all->sprt[i].bpp, &all->sprt[i].size_line, &all->sprt[i].endian);
-		all->sprt[i].distance = ((all->algo.posX - all->sprt[i].posX)
-			* (all->algo.posX - all->sprt[i].posX) +
-			(all->algo.posY - all->sprt[i].posY) *
-			(all->algo.posY - all->sprt[i].posY));
+		all->sprt[i].distance = ((all->algo.posx - all->sprt[i].posx)
+			* (all->algo.posx - all->sprt[i].posx) +
+			(all->algo.posy - all->sprt[i].posy) *
+			(all->algo.posy - all->sprt[i].posy));
 		i++;
 	}
 }
 
 void	init_sprite(char *str, t_allstruct *all)
 {
+	all->map.args++;
+	if (all->map.args > 1)
+		all->map.error = 6;
 	all->map.sprtname = get_xpm_name(str);
 }
 
@@ -79,7 +82,7 @@ void	get_tex(t_allstruct *all)
 		if (!(all->tex[i].teximg = mlx_xpm_file_to_image(all->data.mlx_ptr,
 			all->tex[i].name, &all->tex[i].w, &all->tex[i].h)))
 		{
-			all->texError = 1;
+			all->texerror = 1;
 			return ;
 		}
 		all->tex[i].data = (int *)mlx_get_data_addr(all->tex[i].teximg,
