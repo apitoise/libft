@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 15:02:50 by apitoise          #+#    #+#             */
-/*   Updated: 2020/02/12 16:05:51 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/15 16:12:04 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ typedef struct	s_map
 	int			arge;
 	int			argf;
 	int			argc;
+	int			argm;
 	int			first;
 	int			width;
 	int			height;
@@ -153,6 +154,8 @@ typedef struct	s_map
 	int			nb_sprt;
 	char		*sprtname;
 	int			error;
+	int			d;
+	int			line;
 }				t_map;
 
 typedef	struct	s_allstruct
@@ -173,7 +176,7 @@ void			init_loop_algostruct(t_allstruct *all);
 void			init_datastruct(t_data *data);
 int				ft_keyparsing(int key, t_allstruct *all);
 int				ft_keyrelease(int key, t_allstruct *all);
-int				ft_close(void);
+int				ft_close(t_allstruct *all);
 int				main(int ac, char **av);
 void			init_first(t_algo *algo);
 void			draw_floor(t_allstruct *all);
@@ -193,14 +196,20 @@ char			*ft_gnlstrchr(const char *str, int c);
 int				get_next_line(int fd, char **line);
 void			get_tex(t_allstruct *all);
 void			get_sprite(t_allstruct *all);
-char			*get_xpm_name(char *str);
+void			get_xpm_name(char *str, int crd, t_allstruct *all);
 void			get_map(char *line, t_allstruct *all);
 int				create_map(t_allstruct *all);
 int				ft_error(char *str, t_allstruct *all);
+int				ft_free(t_allstruct *all);
 int				find_error(t_allstruct *all);
 void			get_spawn(int mapnb, int x, int y, t_allstruct *all);
 int				check_map(t_allstruct *all);
 char			*ft_gnlsubstr(char const *s, unsigned int start, size_t len);
 char			*ft_gnlstrjoin(char const *s1, char const *s2);
+int				create_bmp(char *file, t_allstruct *all);
+void			write_half_int(int fd, int nb);
+void			write_int(int fd, int nb);
+void			write_color(int fd, int color);
+void			write_empty(int fd, int nb);
 
 #endif

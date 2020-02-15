@@ -69,7 +69,7 @@ void	init_sprite(char *str, t_allstruct *all)
 	all->map.args++;
 	if (all->map.args > 1)
 		all->map.error = 6;
-	all->map.sprtname = get_xpm_name(str);
+	get_xpm_name(str, 4, all);
 }
 
 void	get_tex(t_allstruct *all)
@@ -85,6 +85,7 @@ void	get_tex(t_allstruct *all)
 			all->texerror = 1;
 			return ;
 		}
+		free(all->tex[i].name);
 		all->tex[i].data = (int *)mlx_get_data_addr(all->tex[i].teximg,
 			&all->tex[i].bpp, &all->tex[i].size_line, &all->tex[i].endian);
 		i++;

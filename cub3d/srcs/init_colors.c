@@ -31,6 +31,13 @@ static char		*get_char_color(char *str)
 	return (res);
 }
 
+static void		ft_free_colors(char *r, char *g, char *b)
+{
+	free(r);
+	free(g);
+	free(b);
+}
+
 int				get_color(char *str)
 {
 	char	*r;
@@ -41,7 +48,7 @@ int				get_color(char *str)
 
 	while (*str == ' ')
 		str++;
-	r = get_char_color(str);
+	tmp = get_char_color(str);
 	while (ft_isdigit(*str))
 		str++;
 	str++;
@@ -50,11 +57,10 @@ int				get_color(char *str)
 		str++;
 	str++;
 	b = get_char_color(str);
-	r = ft_strjoin(r, g);
+	r = ft_strjoin(tmp, g);
+	free(tmp);
 	tmp = ft_strjoin(r, b);
-	free(r);
-	free(g);
-	free(b);
+	ft_free_colors(r, g, b);
 	res = ft_atoi_base(tmp, 16);
 	free(tmp);
 	return (res);

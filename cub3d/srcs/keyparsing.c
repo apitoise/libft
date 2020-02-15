@@ -12,8 +12,10 @@
 
 #include "../header/cube3d.h"
 
-int		ft_close(void)
+int		ft_close(t_allstruct *all)
 {
+	ft_free(all);
+	mlx_destroy_window(all->data.mlx_ptr, all->data.win_ptr);
 	exit(1);
 	return (0);
 }
@@ -50,7 +52,7 @@ int		ft_keyparsing(int key, t_allstruct *all)
 	if (key == 124)
 		all->algo.rot_right = 1;
 	if (key == 53)
-		exit(1);
+		return (ft_close(all));
 	ft_move(all);
 	return (0);
 }

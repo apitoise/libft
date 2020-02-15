@@ -8,7 +8,7 @@ LIBFT_DIR = Libft
 
 HEADER = header
 
-NAME = Cub3D
+NAME = Cube3D
 
 SOURCES = check_arguments.c \
 			check_map.c \
@@ -28,8 +28,6 @@ SOURCES = check_arguments.c \
 			init_struct.c \
 			keyparsing.c \
 			main.c \
-			create_bmp.c \
-			create_bmp_utils.c
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 

@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 19:09:42 by apitoise          #+#    #+#             */
-/*   Updated: 2020/02/12 15:55:30 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/15 13:58:20 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,16 @@ void	init_mapstruct(t_allstruct *all)
 	all->map.argso = 0;
 	all->map.argno = 0;
 	all->map.argr = 0;
+	all->map.args = 0;
 	all->map.argw = 0;
 	all->map.arge = 0;
 	all->map.argf = 0;
 	all->map.argc = 0;
+	all->map.argm = 0;
+	all->map.line = 0;
 	all->map.nb_sprt = 0;
 	all->map.error = 0;
 	all->texerror = 0;
 	all->sprterror = 0;
+	all->map.d = 0;
 }

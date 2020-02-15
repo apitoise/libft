@@ -35,8 +35,8 @@ void		init_algostruct(t_allstruct *all)
 	all->algo.move_left = 0;
 	all->algo.rot_left = 0;
 	all->algo.rot_right = 0;
-	all->algo.ms = 0.07;
-	all->algo.rs = 0.05;
+	all->algo.ms = 0.06;
+	all->algo.rs = 0.04;
 }
 
 void		init_struct(t_allstruct *all)

@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 15:24:16 by apitoise          #+#    #+#             */
-/*   Updated: 2020/02/12 15:30:29 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/15 15:46:20 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 static int	read_error(int error, t_allstruct *all)
 {
+	if (all->map.error == 6 || all->map.error == 5 || all->map.error == 7
+		|| all->map.error == 8 || all->map.error == 9 || all->map.error == 10
+		|| all->map.error == 11)
+		return (0);
 	if (!all->map.argr || !all->map.argno || !all->map.argso || !all->map.argw
 		|| !all->map.arge || !all->map.argf || !all->map.argc)
 		all->map.error = 7;
-	if (all->map.error == 6 || all->map.error == 5 || all->map.error == 7
-		|| all->map.error == 8 || all->map.error == 9)
-		return (0);
 	if (all->map.lenerror == 0)
 	{
 		if (!(create_map(all)))
@@ -42,6 +43,8 @@ static int	read_error(int error, t_allstruct *all)
 
 static void	read_loop(char *line, t_allstruct *all)
 {
+	if (all->map.argm)
+		all->map.line++;
 	if (line[0] == 'R')
 		init_res(line, all);
 	else if (line[0] == 'N' || (line[0] == 'S' && line[1] == 'O')
@@ -53,6 +56,7 @@ static void	read_loop(char *line, t_allstruct *all)
 		init_colors(line[0], line, all);
 	else if (ft_isdigit(line[0]))
 	{
+		all->map.argm++;
 		if (!all->map.argr || !all->map.argno || !all->map.argso
 			|| !all->map.argw || !all->map.arge || !all->map.argf
 			|| !all->map.argc)
@@ -62,6 +66,7 @@ static void	read_loop(char *line, t_allstruct *all)
 	}
 	else if (line[0] != '\n' && line[0])
 		all->map.error = 5;
+	free(line);
 }
 
 static int	read_cub(char *cub, t_allstruct *all)
@@ -81,7 +86,13 @@ static int	read_cub(char *cub, t_allstruct *all)
 		if ((ret = get_next_line(fd, &line)) == -1)
 			return (-1);
 		read_loop(line, all);
+		if (all->map.error == 9)
+			break ;
 	}
+	if (all->map.line > all->map.argm)
+		all->map.error = 11;
+	if (!all->map.argm)
+		all->map.error = 10;
 	close(fd);
 	return (read_error(error, all));
 }

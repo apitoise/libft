@@ -51,9 +51,8 @@ int			init_crd(char c, char *str, t_allstruct *all)
 	return (res);
 }
 
-char		*get_xpm_name(char *str)
+void		get_xpm_name(char *str, int crd, t_allstruct *all)
 {
-	char	*res;
 	int		j;
 	int		i;
 
@@ -63,11 +62,13 @@ char		*get_xpm_name(char *str)
 		j++;
 	str = str + j;
 	if (str == NULL)
-		return (NULL);
+		return ;
 	while ((str[i] != ' ' || str[i] != '\n') && str[i])
 		i++;
-	res = ft_substr(str, 0, i);
-	return (res);
+	if (crd < 4)
+		all->tex[crd].name = ft_substr(str, 0, i);
+	else if (crd == 4)
+		all->map.sprtname = ft_substr(str, 0, i);
 }
 
 void		init_res(char *str, t_allstruct *all)
@@ -97,12 +98,6 @@ void		init_tex(char c, char *str, t_allstruct *all)
 	int		crd;
 
 	crd = init_crd(c, str, all);
-	if (crd == 0)
-		all->tex[crd].name = get_xpm_name(str);
-	else if (crd == 1)
-		all->tex[crd].name = get_xpm_name(str);
-	else if (crd == 2)
-		all->tex[crd].name = get_xpm_name(str);
-	else if (crd == 3)
-		all->tex[crd].name = get_xpm_name(str);
+	if (crd >= 0 && crd <= 3)
+		get_xpm_name(str, crd, all);
 }

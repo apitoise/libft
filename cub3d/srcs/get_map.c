@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 13:36:31 by apitoise          #+#    #+#             */
-/*   Updated: 2020/02/12 15:47:18 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/15 14:00:02 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ int				create_map(t_allstruct *all)
 		j = 0;
 		while (j < all->map.width)
 		{
-			if (ft_isok(*all->map.charmap, all))
+			if (ft_isok(all->map.charmap[all->map.d], all))
 			{
-				all->map.map[i][j] = get_value(*all->map.charmap);
+				all->map.map[i][j] = get_value(all->map.charmap[all->map.d]);
 				j = (create_map_bis(i, j, all));
 			}
 			else
 				return (0);
-			all->map.charmap++;
+			all->map.d++;
 		}
 		i++;
 	}
@@ -80,6 +80,8 @@ int				create_map(t_allstruct *all)
 
 void			get_map(char *line, t_allstruct *all)
 {
+	char	*tmp;
+
 	all->map.height++;
 	if (all->map.first == 0)
 	{
@@ -92,6 +94,8 @@ void			get_map(char *line, t_allstruct *all)
 	{
 		if (ft_strlen(line) != (size_t)all->map.width)
 			all->map.lenerror = 1;
-		all->map.charmap = ft_strjoin(all->map.charmap, line);
+		tmp = ft_strjoin(all->map.charmap, line);
+		free(all->map.charmap);
+		all->map.charmap = tmp;
 	}
 }

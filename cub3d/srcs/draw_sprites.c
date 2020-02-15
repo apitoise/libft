@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:12:04 by apitoise          #+#    #+#             */
-/*   Updated: 2020/02/12 15:49:15 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/02/15 13:34:02 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	init_sprites_struct(t_allstruct *all, int i)
 {
-	all->algo.s_x = all->sprt[i].posx - all->algo.posx;
-	all->algo.s_y = all->sprt[i].posy - all->algo.posy;
+	all->algo.s_x = all->sprt[i].posx - all->algo.posx + 0.5;
+	all->algo.s_y = all->sprt[i].posy - all->algo.posy + 0.5;
 	all->algo.inv = 1.0 / (all->algo.planex * all->algo.diry
 		- all->algo.dirx * all->algo.planey);
 	all->algo.trans_x = all->algo.inv * (all->algo.diry * all->algo.s_x
@@ -127,4 +127,5 @@ void		draw_sprites(t_allstruct *all)
 		}
 		i++;
 	}
+	free(all->sprt);
 }
