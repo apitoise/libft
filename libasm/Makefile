@@ -3,7 +3,8 @@ DIR_S = srcs
 DIR_O = objs
 
 SOURCES = ft_strlen.s \
-			ft_strcpy.s
+			ft_strcpy.s \
+			ft_strcmp.s
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 
