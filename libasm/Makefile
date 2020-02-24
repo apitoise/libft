@@ -4,7 +4,10 @@ DIR_O = objs
 
 SOURCES = ft_strlen.s \
 			ft_strcpy.s \
-			ft_strcmp.s
+			ft_strcmp.s \
+			ft_write.s \
+			ft_read.s \
+			ft_strdup.s
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 
@@ -29,7 +32,7 @@ clean:
 	rm -rf $(DIR_O)
 
 fclean : clean
-	rm -f $(NAME)
+	rm -f $(NAME) rm a.out
 
 re: fclean all
 
