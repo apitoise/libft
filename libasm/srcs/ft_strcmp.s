@@ -1,45 +1,24 @@
 global _ft_strcmp
 
 _ft_strcmp:
-	xor	rcx, rcx
-	xor	rdx, rdx
-
-_begin:
-	cmp	BYTE [rsi + rcx], 0
-	je	_null
-	cmp	BYTE [rdi + rcx], 0
-	je	_null
-	jmp	_compare
-
-_null:
-	mov	r9b, BYTE [rdi + rcx]
-	cmp	r9b, BYTE [rsi + rcx]
-	je	_equal
-	jmp	_compare
-
-_compare:
-	cmp	rsi, 0
-	je	_sup
-	cmp	rdi, 0
-	je	_inf
-	mov	r8b, BYTE [rdi + rcx]
-	cmp	r8b, BYTE [rsi + rcx]
-	je	_incrementation
-	jl	_inf
-	jg	_sup
-
-_incrementation:
-	inc	rcx
-	jmp	_begin
-
-_equal:
 	mov	rax, 0
-	ret
+	mov	al,	[rdi]
+	mov	bl,	[rsi]
+	cmp	al, bl
+	jne	_return
+	inc	rdi
+	inc	rsi
+	mov	bl, [rsi]
+	cmp	bl, 0
+	je	_check
+	jne	_ft_strcmp
 
-_sup:
-	mov	rax, 1
-	ret
+_check:
+	mov	al, [rdi]
+	cmp	al, 0
+	jne	_ft_strcmp
+	ret	
 
-_inf:
-	mov	rax, -1
+_return:
+	sub	rax, rbx
 	ret
