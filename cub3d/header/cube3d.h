@@ -13,7 +13,7 @@
 #ifndef CUBE3D_H
 # define CUBE3D_H
 # include "../Libft/libft.h"
-# include <mlx.h>
+# include "../minilibx/mlx.h"
 # include <math.h>
 # include <unistd.h>
 # include <stdlib.h>
