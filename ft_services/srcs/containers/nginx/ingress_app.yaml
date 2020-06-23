@@ -12,4 +12,3 @@ spec:
         backend:
           serviceName: nginx
           servicePort: 80
-          

@@ -9,6 +9,7 @@ typedef	struct		s_data
 	int				nbphi;
 	int				eat;
 	int				die;
+	int				dead;
 	int				sleep;
 	int				eatmax;
 }					t_data;

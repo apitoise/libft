@@ -15,6 +15,7 @@ int		get_data(int ac, char **av, t_data *data)
 	data->eat = ft_atoi(av[3]);
 	data->die = ft_atoi(av[2]);
 	data->sleep = ft_atoi(av[4]);
+	data->dead = 0;
 	if (ac == 5)
 		data->eatmax = -1;
 	else

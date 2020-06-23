@@ -22,8 +22,8 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 1234
-    nodePort: 1234
+  - port: 32500
+    nodePort: 32500
     protocol: TCP
     name: ssh
   - port: 443
@@ -54,7 +54,7 @@ spec:
           value: admin
         image: mynginx
         ports:
-        - containerPort: 1234
+        - containerPort: 32500
           name: ssh
         - containerPort: 80
           name: http

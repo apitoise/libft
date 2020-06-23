@@ -16,7 +16,11 @@ void	*threads_func(t_philo *st, t_data *data, int i, pthread_t *tab)
 	if (st[i].ret < data->die - st[i].begin)
 		printf("%d is thinking.\n", i);
 	else
+	{
+		data->dead = 1;
 		printf("%d is dead.\n", i);
+		return (NULL);
+	}
 /*	while (st[i].ret < data->die - st[i].begin)
 	{
 		if (!first)
@@ -27,7 +31,11 @@ void	*threads_func(t_philo *st, t_data *data, int i, pthread_t *tab)
 			pthread_create(&tab[data->nbphi], NULL, threads_func(st, data, i + 1, tab), NULL);
 	}
 	if (st[i].ret < data->die - st[i].begin)
-		printf("%d is dead.\n", i);*/
+	{
+		data->dead = 1;
+		printf("%d is dead.\n", i);
+		return (NULL);
+	}*/
 	return (NULL);
 }
 
@@ -39,9 +47,9 @@ int		get_threads(t_philo *st, t_data *data)
 	if (!(tab = malloc(data->nbphi * sizeof(pthread_t))))
 		return (0);
 	i = 1;
-	while (i <= data->nbphi)
+	while (i <= data->nbphi && data->dead == 0)
 	{
-		pthread_create(&tab[data->nbphi], NULL, threads_func(st, data, i, tab), NULL);
+		pthread_create(&tab[i], NULL, threads_func(st, data, i, tab), NULL);
 		i++;
 	}
 	printf("OK\n");

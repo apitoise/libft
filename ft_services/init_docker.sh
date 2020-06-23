@@ -24,14 +24,14 @@ docker_destination="/goinfre/$USER/docker" #=> Select docker destination (goinfr
 ################################################################################
 
 # Uninstall docker, docker-compose and docker-machine if they are installed with brew
-brew uninstall -f docker docker-compose docker-machine ;:
+#brew uninstall -f docker docker-compose docker-machine ;:
 
 # Check if Docker is installed with MSC and open MSC if not
-if [ ! -d "/Applications/Docker.app" ] && [ ! -d "~/Applications/Docker.app" ]; then
-	echo $'\033[0;34m'Please install $'\033[1;96m'Docker for Mac $'\033[0;34m'from the MSC \(Managed Software Center\)$'\033[0;39m'
-	open -a "Managed Software Center"
-	read -p $'\033[0;34m'Press\ RETURN\ when\ you\ have\ successfully\ installed\ $'\033[1;96m'Docker\ for\ Mac$'\033[0;34m'...$'\033[0;39m'
-fi
+#if [ ! -d "/Applications/Docker.app" ] && [ ! -d "~/Applications/Docker.app" ]; then
+#	echo $'\033[0;34m'Please install $'\033[1;96m'Docker for Mac $'\033[0;34m'from the MSC \(Managed Software Center\)$'\033[0;39m'
+#	open -a "Managed Software Center"
+#	read -p $'\033[0;34m'Press\ RETURN\ when\ you\ have\ successfully\ installed\ $'\033[1;96m'Docker\ for\ Mac$'\033[0;34m'...$'\033[0;39m'
+#fi
 
 function rm_and_link() {
 	rm -rf ~/Library/Containers/com.docker.docker ~/.docker
