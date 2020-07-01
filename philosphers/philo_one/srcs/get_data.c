@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_data.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/01 14:19:53 by apitoise          #+#    #+#             */
+/*   Updated: 2020/07/01 16:30:19 by apitoise         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/philo_one.h"
 
 int		check_value(t_data *data)
 {
 	if (data->nbphi <= 0 || data->eat <= 0 || data->die <= 0
-		|| data->sleep <= 0 || (data->eatmax < 0 && data->eatmax != -1))
+			|| data->sleep <= 0 || (data->eatmax < 0
+				&& data->eatmax != -1))
 		return (0);
 	else
 		return (1);

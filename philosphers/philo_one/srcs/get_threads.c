@@ -1,55 +1,62 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_threads.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/26 14:13:58 by apitoise          #+#    #+#             */
+/*   Updated: 2020/07/01 16:37:01 by apitoise         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/philo_one.h"
 
-void	*threads_func(t_philo *st, t_data *data, int i, pthread_t *tab)
-{
-	struct timeval	time;
-	int				first;
 
-	printf("%d is taking a fork.\n", i);
-	st[i].begin = get_ms_time();
-	printf("%d is eating.\n", i);
-	usleep(data->eat * 1000);
-	printf("%d is sleeping.\n", i);
-	usleep(data->sleep * 1000);
-	st[i].ret = get_ms_time();
-	first = 0;
-	if (st[i].ret < data->die - st[i].begin)
-		printf("%d is thinking.\n", i);
+void	*threads_func(void *arg)
+{
+	t_philo			*philo;
+	struct timeval	time;
+
+	philo = (t_philo *)arg;
+	printf("%d\n", philo->id);
+	printf("%d is taking a fork.\n", philo->id);
+	philo->begin = get_ms_time();
+	printf("%d is eating.\n", philo->id);
+	usleep(philo->data.eat * 1000);
+	printf("%d is sleeping.\n", philo->id);
+	usleep(philo->data.sleep * 1000);
+	philo->ret = get_ms_time();
+	if (philo->ret < philo->data.die
+			- philo->begin)
+	{
+		printf("%d is thinking.\n", philo->id);
+		threads_func(philo);
+	}
 	else
 	{
-		data->dead = 1;
-		printf("%d is dead.\n", i);
+		philo->data.dead = 1;
+		printf("%d is dead.\n", philo->id);
 		return (NULL);
 	}
-/*	while (st[i].ret < data->die - st[i].begin)
-	{
-		if (!first)
-			printf("%d is thinking.\n", i);
-		first = 1;
-		st[i].ret = get_ms_time();
-		if (st[i].ret < data->die - st[i].begin && i < data->nbphi)
-			pthread_create(&tab[data->nbphi], NULL, threads_func(st, data, i + 1, tab), NULL);
-	}
-	if (st[i].ret < data->die - st[i].begin)
-	{
-		data->dead = 1;
-		printf("%d is dead.\n", i);
-		return (NULL);
-	}*/
 	return (NULL);
 }
 
-int		get_threads(t_philo *st, t_data *data)
+int		get_threads(t_philo *philo)
 {
-	pthread_t	*tab;
-	int			i;
+	int		i;
 
-	if (!(tab = malloc(data->nbphi * sizeof(pthread_t))))
-		return (0);
 	i = 1;
-	while (i <= data->nbphi && data->dead == 0)
+	while (i <= philo->data.nbphi && philo->data.dead == 0)
 	{
-		pthread_create(&tab[i], NULL, threads_func(st, data, i, tab), NULL);
+		philo[i].id = i;
+		pthread_create(philo[i].thread, NULL, threads_func, &philo[i]);
+		i++;
+	}
+	i = 1;
+	while (i <= philo->data.nbphi)
+	{
+		pthread_join(*philo[i].thread, NULL);
 		i++;
 	}
 	printf("OK\n");
