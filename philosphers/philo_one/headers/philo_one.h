@@ -20,7 +20,7 @@ typedef	struct		s_philo
 	int				id;
 	unsigned long	begin;
 	unsigned long	ret;
-	pthread_t		*thread;
+	pthread_t		thread;
 	t_data			data;
 }					t_philo;
 
