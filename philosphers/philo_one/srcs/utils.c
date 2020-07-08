@@ -45,3 +45,19 @@ int		ft_atoi(const char *str)
 		return (-res);
 	return (res);
 }
+
+void		ft_putnbr(int n)
+{
+	unsigned int	nbr;
+
+	if (n < 0)
+	{
+		nbr = n * -1;
+		ft_putchar('-');
+	}
+	else
+		nbr = n;
+	if (n / 10)
+		ft_putnbr(nbr / 10);
+	ft_putchar((nbr % 10) + 48);
+}

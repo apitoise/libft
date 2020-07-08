@@ -6,7 +6,7 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 14:19:53 by apitoise          #+#    #+#             */
-/*   Updated: 2020/07/06 15:23:22 by apitoise         ###   ########.fr       */
+/*   Updated: 2020/07/08 16:35:07 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int		get_data(int ac, char **av, t_data *data)
 	data->eat = ft_atoi(av[3]);
 	data->die = ft_atoi(av[2]);
 	data->sleep = ft_atoi(av[4]);
-	data->dead = 0;
 	if (ac == 5)
 		data->eatmax = -1;
 	else
