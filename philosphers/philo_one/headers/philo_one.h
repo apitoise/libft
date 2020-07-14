@@ -22,6 +22,7 @@ typedef	struct		s_philo
 	unsigned long	begin;
 	unsigned long	ret;
 	unsigned long	limit;
+	int				is_eating;
 	pthread_t		thread;
 	t_data			data;
 }					t_philo;
@@ -38,3 +39,4 @@ int				get_data(int ac, char **av, t_data *data);
 int				get_threads(t_philo *philo);
 int				ft_atoi(const char *str);
 unsigned long	get_ms_time(void);
+uint64_t		get_time();

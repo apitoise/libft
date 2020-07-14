@@ -15,3 +15,11 @@ unsigned long	get_ms_time(void)
 	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000000 + time.tv_usec) / 1000 - start);
 }
+
+uint64_t	get_time(void)
+{
+	static struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * (uint64_t)1000) + (tv.tv_usec / 1000));
+}
