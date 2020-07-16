@@ -13,7 +13,7 @@ int		main()
 
 	begin = get_time();
 	printf("%llu\n", get_time());
-	usleep(1000000);
+	usleep(100000);
 	printf("%llu\n", get_time());
 	printf("%llu\n", get_time() - begin);
 	return (0);

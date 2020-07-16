@@ -19,6 +19,8 @@ typedef	struct		s_philo
 	int				id;
 	int				dead;
 	pthread_mutex_t	mutex;
+	pthread_mutex_t	write;
+	pthread_mutex_t	eat_m;
 	unsigned long	begin;
 	unsigned long	ret;
 	unsigned long	limit;
@@ -35,6 +37,7 @@ void			ft_eat(t_philo *philo);
 void			ft_sleep(t_philo *philo);
 void			ft_dead(t_philo *philo);
 void			ft_forks(t_philo *philo);
+void			display_message(int id, char *str, t_philo *philo);
 int				get_data(int ac, char **av, t_data *data);
 int				get_threads(t_philo *philo);
 int				ft_atoi(const char *str);
