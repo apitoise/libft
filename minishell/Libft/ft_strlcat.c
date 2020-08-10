@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eat.c                                              :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/08 15:21:49 by apitoise          #+#    #+#             */
-/*   Updated: 2020/07/16 16:38:38 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/08 15:03:08 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/15 16:15:46 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/philo_one.h"
+#include "libft.h"
 
-void	ft_eat(t_philo *philo)
+size_t		ft_strlcat(char *dest, const char *src, size_t size)
 {
-	pthread_mutex_lock(&philo->eat_m);
-	philo->is_eating = 1;
-	display_message(philo->id, "is eating.", philo);
-	usleep(philo->data.eat * 1000);
-	philo->is_eating = 0;
-	pthread_mutex_unlock(&philo->eat_m);
-	if (get_time() > philo->limit)
-		ft_dead(philo);
+	size_t	i;
+	size_t	len;
+
+	len = 0;
+	while (dest[len] && len < size)
+		len = len + 1;
+	i = len;
+	while (src[len - i] && len + 1 < size)
+	{
+		dest[len] = src[len - i];
+		len = len + 1;
+	}
+	if (i < size)
+		dest[len] = '\0';
+	return (i + ft_strlen((char *)src));
 }

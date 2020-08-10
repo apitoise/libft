@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eat.c                                              :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/08 15:21:49 by apitoise          #+#    #+#             */
-/*   Updated: 2020/07/16 16:38:38 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/10 13:01:52 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/17 15:35:38 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/philo_one.h"
+#include "libft.h"
 
-void	ft_eat(t_philo *philo)
+char		*ft_strdup(const char *s1)
 {
-	pthread_mutex_lock(&philo->eat_m);
-	philo->is_eating = 1;
-	display_message(philo->id, "is eating.", philo);
-	usleep(philo->data.eat * 1000);
-	philo->is_eating = 0;
-	pthread_mutex_unlock(&philo->eat_m);
-	if (get_time() > philo->limit)
-		ft_dead(philo);
+	int		len;
+	char	*res;
+
+	len = 0;
+	while (s1[len])
+		len++;
+	res = malloc(len * sizeof(char) + 1);
+	if (res == 0)
+		return (NULL);
+	len = 0;
+	while (s1[len])
+	{
+		res[len] = s1[len];
+		len++;
+	}
+	res[len] = '\0';
+	return (res);
 }

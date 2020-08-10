@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eat.c                                              :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/08 15:21:49 by apitoise          #+#    #+#             */
-/*   Updated: 2020/07/16 16:38:38 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/09 18:21:03 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/14 18:05:33 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/philo_one.h"
+#include "libft.h"
 
-void	ft_eat(t_philo *philo)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	pthread_mutex_lock(&philo->eat_m);
-	philo->is_eating = 1;
-	display_message(philo->id, "is eating.", philo);
-	usleep(philo->data.eat * 1000);
-	philo->is_eating = 0;
-	pthread_mutex_unlock(&philo->eat_m);
-	if (get_time() > philo->limit)
-		ft_dead(philo);
+	unsigned char	*str1;
+	unsigned char	*str2;
+
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	if (s1 == s2 || n == 0)
+		return (0);
+	while (n > 0)
+	{
+		if (*str1 != *str2)
+			return (*str1 - *str2);
+		n--;
+		str1++;
+		str2++;
+	}
+	return (0);
 }

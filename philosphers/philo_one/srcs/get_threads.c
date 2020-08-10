@@ -39,6 +39,8 @@ int		get_threads(t_philo *philo)
 	void	*phi;
 
 	pthread_mutex_init(&philo->mutex, NULL);
+	pthread_mutex_init(&philo->eat_m, NULL);
+	pthread_mutex_init(&philo->write, NULL);
 	i = 0;
 	while (i < philo->data.nbphi)
 	{

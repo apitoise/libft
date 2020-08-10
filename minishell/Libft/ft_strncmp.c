@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eat.c                                              :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/08 15:21:49 by apitoise          #+#    #+#             */
-/*   Updated: 2020/07/16 16:38:38 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/08 12:17:51 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/14 18:12:46 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/philo_one.h"
+#include "libft.h"
 
-void	ft_eat(t_philo *philo)
+int		ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	pthread_mutex_lock(&philo->eat_m);
-	philo->is_eating = 1;
-	display_message(philo->id, "is eating.", philo);
-	usleep(philo->data.eat * 1000);
-	philo->is_eating = 0;
-	pthread_mutex_unlock(&philo->eat_m);
-	if (get_time() > philo->limit)
-		ft_dead(philo);
+	while (n && (*s1 || *s2))
+	{
+		if (*s1 != *s2)
+			return ((unsigned char)*s1 - (unsigned char)*s2);
+		n--;
+		s1++;
+		s2++;
+	}
+	return (0);
 }

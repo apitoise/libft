@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eat.c                                              :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/08 15:21:49 by apitoise          #+#    #+#             */
-/*   Updated: 2020/07/16 16:38:38 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/08 12:19:16 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/08 12:19:18 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/philo_one.h"
-
-void	ft_eat(t_philo *philo)
+char		*ft_strrchr(const char *str, int c)
 {
-	pthread_mutex_lock(&philo->eat_m);
-	philo->is_eating = 1;
-	display_message(philo->id, "is eating.", philo);
-	usleep(philo->data.eat * 1000);
-	philo->is_eating = 0;
-	pthread_mutex_unlock(&philo->eat_m);
-	if (get_time() > philo->limit)
-		ft_dead(philo);
+	int	rev;
+	int	save;
+
+	rev = 0;
+	save = 0;
+	while (str[rev] != '\0')
+		rev++;
+	while (str[rev] != (char)c)
+	{
+		if (str[rev] == str[0] && (char)c != str[0])
+			return (0);
+		rev--;
+	}
+	while (save < rev)
+	{
+		str++;
+		save++;
+	}
+	return ((char *)str);
 }

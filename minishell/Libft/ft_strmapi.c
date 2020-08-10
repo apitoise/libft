@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eat.c                                              :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/08 15:21:49 by apitoise          #+#    #+#             */
-/*   Updated: 2020/07/16 16:38:38 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/14 12:04:42 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/14 12:05:57 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/philo_one.h"
+#include "libft.h"
 
-void	ft_eat(t_philo *philo)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	pthread_mutex_lock(&philo->eat_m);
-	philo->is_eating = 1;
-	display_message(philo->id, "is eating.", philo);
-	usleep(philo->data.eat * 1000);
-	philo->is_eating = 0;
-	pthread_mutex_unlock(&philo->eat_m);
-	if (get_time() > philo->limit)
-		ft_dead(philo);
+	int		idx;
+	char	*res;
+
+	idx = 0;
+	if (!s || !f)
+		return (0);
+	res = (char *)malloc(ft_strlen((char *)s) * sizeof(char) + 1);
+	if (res == 0)
+		return (0);
+	while (s[idx])
+	{
+		res[idx] = f(idx, s[idx]);
+		idx++;
+	}
+	res[idx] = '\0';
+	return (res);
 }

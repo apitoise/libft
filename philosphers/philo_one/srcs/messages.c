@@ -14,12 +14,12 @@
 
 void	display_message(int id, char *str, t_philo *philo)
 {
-	//pthread_mutex_lock(&philo->write);
+	pthread_mutex_lock(&philo->write);
 	printf("%llu\n", (get_time() - philo[id].begin));
 	ft_putchar(' ');
 	ft_putnbr(id);
 	ft_putchar(' ');
 	ft_putstr(str);
 	ft_putchar('\n');
-	//pthread_mutex_unlock(&philo->write);
+	pthread_mutex_unlock(&philo->write);
 }

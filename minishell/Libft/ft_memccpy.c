@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eat.c                                              :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/08 15:21:49 by apitoise          #+#    #+#             */
-/*   Updated: 2020/07/16 16:38:38 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/09 13:32:45 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/09 16:59:41 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/philo_one.h"
+#include "libft.h"
 
-void	ft_eat(t_philo *philo)
+void		*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	pthread_mutex_lock(&philo->eat_m);
-	philo->is_eating = 1;
-	display_message(philo->id, "is eating.", philo);
-	usleep(philo->data.eat * 1000);
-	philo->is_eating = 0;
-	pthread_mutex_unlock(&philo->eat_m);
-	if (get_time() > philo->limit)
-		ft_dead(philo);
+	unsigned char	*new;
+	unsigned char	*source;
+	size_t			i;
+
+	source = (unsigned char *)src;
+	new = (unsigned char *)dst;
+	i = 0;
+	while (i < n)
+	{
+		new[i] = source[i];
+		if (new[i] == (unsigned char)c)
+			return ((unsigned char *)dst + i + 1);
+		i++;
+	}
+	return (NULL);
 }

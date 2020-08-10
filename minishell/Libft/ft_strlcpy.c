@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eat.c                                              :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/08 15:21:49 by apitoise          #+#    #+#             */
-/*   Updated: 2020/07/16 16:38:38 by apitoise         ###   ########.fr       */
+/*   Created: 2019/10/08 12:22:54 by apitoise          #+#    #+#             */
+/*   Updated: 2019/10/15 16:18:05 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/philo_one.h"
+#include "libft.h"
 
-void	ft_eat(t_philo *philo)
+size_t		ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	pthread_mutex_lock(&philo->eat_m);
-	philo->is_eating = 1;
-	display_message(philo->id, "is eating.", philo);
-	usleep(philo->data.eat * 1000);
-	philo->is_eating = 0;
-	pthread_mutex_unlock(&philo->eat_m);
-	if (get_time() > philo->limit)
-		ft_dead(philo);
+	size_t	tab;
+	size_t	max;
+
+	if (size == 0)
+		return (ft_strlen((char *)src));
+	tab = 0;
+	max = size;
+	size = ft_strlen((char *)src);
+	if (max > 0)
+	{
+		while (src[tab] && tab < max - 1)
+		{
+			dest[tab] = src[tab];
+			tab++;
+		}
+	}
+	dest[tab] = '\0';
+	return (size);
 }
