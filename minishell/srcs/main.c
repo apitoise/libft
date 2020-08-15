@@ -1,11 +1,6 @@
 #include "../headers/minishell.h"
 #include "../Libft/libft.h"
 
-void	init_exit(t_struct *st)
-{
-	st->exit = 0;
-}
-
 int		isok(t_struct *st, char *str)
 {
 	int		i;
@@ -59,7 +54,7 @@ int		main(void)
 
 	ret = 1;
 	tmp = NULL;
-	init_exit(&st);
+	st.exit = 0;
 	shell_init();
 	while (!(st.exit))
 	{

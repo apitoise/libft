@@ -1,33 +1,38 @@
 #ifndef CONTACT_CLASS_HPP
 # define CONTACT_CLASS_HPP
+# include <iostream>
+# include <string>
 
 int		main(void);
-int		ft_strlen(char *str);
-int		ft_strncmp(const char *s1, const char *s2, int n);
-void	command(char *text);
+void	command(void);
 void	ft_add(void);
 void	ft_exit(void);
-void	ft_search(void);
 
 class contact
 {
 public:
+	std::string			information[11];
+	static std::string			nameinfo[11];
 
-	int		id;
-	char	*firstname;
-	char	*lastname;
-	char	*nickname;
-	char	*login;
-	char	*postaladdress;
-	char	*email;
-	char	*phonenb;
-	char	*bday;
-	char	*favmeal;
-	char	*underwrclr;
-	char	*secret;
+	enum info
+	{
+		Fname = 0,
+		Lname,
+		Nname,
+		Login,
+		Address,
+		Email,
+		Phone,
+		Bday,
+		Mea,
+		Underwear,
+		Secret,
+	};
 	contact();
 	~contact();
-	
+
+	void		getinfo(int id);
+	void		searchcontact(int id);
 };
 
 #endif
