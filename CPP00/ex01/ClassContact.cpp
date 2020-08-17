@@ -1,6 +1,6 @@
-#include "contact.class.hpp"
+#include "ClassContact.hpp"
 
-std::string			contact::nameinfo[11] = {
+std::string			Contact::nameinfo[11] = {
 	"First Name : ",
 	"Last Name : ",
 	"Nickname : ",
@@ -14,24 +14,24 @@ std::string			contact::nameinfo[11] = {
 	"Darkest Secret : ",
 };
 
-contact::contact() {
+Contact::Contact() {
 
 	for (int i = Fname; i <= Secret; i++)
 		this->information[i] = std::string();
 
 }
 
-contact::~contact() {
+Contact::~Contact() {
 
 }
 
-void	contact::displayinfo(void)
+void	Contact::displayinfo(void)
 {
 	for (int i = Fname; i <= Secret; i++)
-		std::cout << contact::nameinfo[i] << this->information[i] << std::endl;
+		std::cout << Contact::nameinfo[i] << this->information[i] << std::endl;
 }
 
-void	contact::getinfo(void)
+void	Contact::getinfo(void)
 {
 	for (int i = Fname; i <= Secret; i++)
 	{
@@ -41,14 +41,14 @@ void	contact::getinfo(void)
 		{
 			if (!first)
 				std::cout << "Empty entry." << std::endl;
-			std::cout << contact::nameinfo[i];
+			std::cout << Contact::nameinfo[i];
 			std::getline(std::cin, this->information[i]);
 			first = false;
 		}
 	};
 }
 
-void	contact::displayrepository(int id)
+void	Contact::displayrepository(int id)
 {
 	std::cout << "|     " << id << "    ";
 	for (int j = Fname; j <= Nname; j++)
@@ -60,32 +60,27 @@ void	contact::displayrepository(int id)
 			std::cout << this->information[j].substr(0, 9) << ".";
 		else if (this->information[j].size() < 10)
 		{
+			std::cout << std::setw(10);
 			std::cout << this->information[j];
-			for (int len = this->information[j].size(); len < 10; len++)
-				std::cout << " ";
 		}
 	}
 	std::cout << "|" << std::endl;
 	std::cout << "|-------------------------------------------|" << std::endl;
 }
 
-int		contact::searchcontact(int id, int nb)
+int		Contact::searchcontact(int nb)
 {
 	std::string	index;
 	bool		first(true);
 
-	while (!index.size() || index.size() > 1 || index < "1" || index > "8")
+	while (!index.size() || index.size() > 1 || index < "1" || index > "8"
+		|| std::stoi(index) < 1 || std::stoi(index) > nb)
 	{
 		if (!first)
 			std::cout << "Wrong entry." << std::endl;
 		std::cout << "Wich contact ? (write index): ";
 		std::getline(std::cin, index);
 		first = false;
-	}
-	if (std::stoi(index) < 1 || std::stoi(index) > nb)
-	{
-		std::cout << "Wrong index." << std::endl;
-		contact::searchcontact(id, nb);
 	}
 	return (std::stoi(index));
 }

@@ -1,14 +1,10 @@
-#ifndef CONTACT_CLASS_HPP
-# define CONTACT_CLASS_HPP
+#ifndef CLASSCONTACT_HPP
+# define CLASSCONTACT_HPP
 # include <iostream>
 # include <string>
+# include <iomanip>
 
-int		main(void);
-void	command(void);
-void	ft_add(void);
-void	ft_exit(void);
-
-class contact
+class Contact
 {
 public:
 	std::string			information[11];
@@ -28,11 +24,11 @@ public:
 		Underwear,
 		Secret,
 	};
-	contact();
-	~contact();
+	Contact();
+	~Contact();
 
 	void	getinfo(void);
-	int 	searchcontact(int id, int nb);
+	int 	searchcontact(int nb);
 	void	displayrepository(int id);
 	void	displayinfo(void);
 };

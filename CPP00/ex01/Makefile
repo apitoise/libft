@@ -1,7 +1,7 @@
 NAME = PhoneBook
 
-SRCS = contact.class.cpp \
-		repo.class.cpp \
+SRCS = ClassContact.cpp \
+		ClassRepo.cpp \
 		main.cpp
 OBJS = $(SRCS:.pp=.o)
 

@@ -1,16 +1,16 @@
-#include "repo.class.hpp"
-#include "contact.class.hpp"
+#include "ClassRepo.hpp"
+#include "ClassContact.hpp"
 
-repo::repo()
+Repo::Repo()
 {
 	this->id = 0;
 }
 
-repo::~repo()
+Repo::~Repo()
 {
 }
 
-void	repo::fieldentry()
+void	Repo::fieldentry()
 {
 	std::string	text;
 	bool		stop(false);
@@ -20,20 +20,20 @@ void	repo::fieldentry()
 		std::cout << "Put your command (ADD, SEARCH, EXIT): ";
 		std::getline(std::cin, text);
 		if (text == "ADD")
-			repo::addcontact();
+			Repo::addcontact();
 		else if (text == "SEARCH")
-			repo::searchcontact();
+			Repo::searchcontact();
 		else if (text == "EXIT")
 		{
 			stop = true;
-			repo::~repo();
+			Repo::~Repo();
 		}
 		else
 			std::cout << "Invalid command." << std::endl;
 	}
 }
 
-void	repo::addcontact()
+void	Repo::addcontact()
 {
 	if (this->id >= 8)
 		std::cout << "The repository is full !" << std::endl;
@@ -44,7 +44,7 @@ void	repo::addcontact()
 	}
 }
 
-void	repo::searchcontact(void)
+void	Repo::searchcontact(void)
 {
 	int	i(0);
 	int	index;
@@ -61,7 +61,7 @@ void	repo::searchcontact(void)
 			this->contact[i].displayrepository(i + 1);
 			i++;
 		}
-		index = contact[i].searchcontact(id, this->id);
+		index = contact[i].searchcontact(this->id);
 		contact[index - 1].displayinfo();
 	}
 }

@@ -1,8 +1,8 @@
-#include "repo.class.hpp"
+#include "ClassRepo.hpp"
 
 int		main(void)
 {
-	repo		repo;
+	Repo		repo;
 
 	repo.fieldentry();
 	return (0);
