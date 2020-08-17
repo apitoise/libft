@@ -14,6 +14,7 @@ public:
 
 	void	addcontact();
 	void	searchcontact();
+	void	fieldentry();
 };
 
 #endif

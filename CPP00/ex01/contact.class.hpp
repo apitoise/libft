@@ -12,7 +12,7 @@ class contact
 {
 public:
 	std::string			information[11];
-	static std::string			nameinfo[11];
+	static std::string	nameinfo[11];
 
 	enum info
 	{
@@ -31,8 +31,10 @@ public:
 	contact();
 	~contact();
 
-	void		getinfo(int id);
-	void		searchcontact(int id);
+	void	getinfo(void);
+	int 	searchcontact(int id, int nb);
+	void	displayrepository(int id);
+	void	displayinfo(void);
 };
 
 #endif
