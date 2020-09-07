@@ -3,96 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/11 10:56:50 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/17 16:23:30 by apitoise         ###   ########.fr       */
+/*   Created: 2019/12/06 11:37:06 by cnotin            #+#    #+#             */
+/*   Updated: 2020/04/23 17:07:39 by cnotin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
+#include <string.h>
 
-static int			ft_conststrlen(char const *str)
+static size_t	ft_trim(char const *set, char c)
 {
-	int	len;
-
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
-}
-
-static int			ft_isset(char c, char const *set)
-{
-	int	i;
+	size_t		i;
 
 	i = 0;
 	while (set[i])
 	{
-		if (c == set[i])
+		if (c == set[i] || c == '\0')
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-static int			ft_nbset(char const *s1, char const *set)
+char			*ft_strtrim(char const *s1, char const *set)
 {
-	int	idx;
-	int	nb;
-	int	end;
+	size_t		start;
+	size_t		end;
+	size_t		len;
+	char		*res;
 
-	idx = 0;
-	nb = 0;
-	while (ft_isset(s1[idx], set) == 1 && s1[idx])
-	{
-		nb++;
-		idx++;
-	}
-	end = ft_conststrlen(s1);
-	while (ft_isset(s1[end], set) == 1 && end > 0)
-	{
-		nb++;
-		end--;
-	}
-	return (nb);
-}
-
-static int			ft_nbsetmax(char const *s1, char const *set)
-{
-	int	len;
-
-	len = ft_conststrlen(s1) - 1;
-	while (ft_isset(s1[len], set) == 1 && len > 0)
-		len--;
-	return (len);
-}
-
-char				*ft_strtrim(char const *s1, char const *set)
-{
-	char	*res;
-	int		idx;
-	int		min;
-	int		max;
-	int		len;
-
-	if (!set || !s1)
+	if (!s1 || !set)
 		return (NULL);
-	min = 0;
-	while (ft_isset(s1[min], set) == 1)
-		min++;
-	max = ft_nbsetmax(s1, set);
-	len = ft_strlen((char *)s1) - ft_nbset(s1, set);
-	res = (char *)malloc((len) * sizeof(char) + 1);
-	if (res == 0)
-		return (0);
-	idx = 0;
-	while (min <= max)
+	start = 0;
+	while (ft_trim(set, s1[start]))
 	{
-		res[idx] = s1[min];
-		min++;
-		idx++;
+		if (s1[start] == '\0')
+			return (ft_strdup(""));
+		start++;
 	}
-	res[idx] = '\0';
+	end = ft_strlen((char *)s1) - 1;
+	while (ft_trim(set, s1[end]))
+		end--;
+	len = end - start + 1;
+	res = ft_substr(s1, start, len);
 	return (res);
 }

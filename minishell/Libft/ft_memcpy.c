@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 12:23:18 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/17 12:34:08 by apitoise         ###   ########.fr       */
+/*   Created: 2019/12/06 11:20:21 by cnotin            #+#    #+#             */
+/*   Updated: 2019/12/06 12:17:20 by cnotin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
+#include <string.h>
 
-void				*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned char		*new;
-	unsigned char		*source;
+	unsigned char	*cdst;
+	unsigned char	*csrc;
+	size_t			len;
 
-	if (dst == NULL && src == NULL)
+	len = 0;
+	cdst = (unsigned char *)dst;
+	csrc = (unsigned char *)src;
+	if (!cdst && !csrc)
 		return (NULL);
-	new = (unsigned char *)dst;
-	source = (unsigned char *)src;
-	if (n == 0)
-		return (dst);
-	while (n)
+	while (len < n)
 	{
-		*new = *source;
-		new++;
-		source++;
-		n--;
+		cdst[len] = csrc[len];
+		len++;
 	}
-	return (dst);
+	return (cdst);
 }

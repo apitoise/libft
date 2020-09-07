@@ -3,40 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/11 10:50:14 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/15 15:55:59 by apitoise         ###   ########.fr       */
+/*   Created: 2019/12/06 11:28:56 by cnotin            #+#    #+#             */
+/*   Updated: 2019/12/06 12:18:01 by cnotin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
+#include <string.h>
 
-char		*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		size;
 	char	*res;
-	int		cpy;
+	size_t	i;
+	size_t	j;
 
-	if (s1 == NULL || s2 == NULL)
+	if (!s1 || !s2)
 		return (NULL);
-	size = ft_strlen((char *)s1) + ft_strlen((char *)s2);
-	res = (char *)malloc(size * sizeof(char) + 1);
-	if (res == 0)
-		return (0);
-	cpy = 0;
-	while (*s1)
+	i = ft_strlen(s1) + ft_strlen(s2);
+	if (!(res = (char *)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	i = 0;
+	while (s1[i])
 	{
-		res[cpy] = *s1;
-		cpy++;
-		s1++;
+		res[i] = s1[i];
+		i++;
 	}
-	while (*s2)
+	j = 0;
+	while (s2[j])
 	{
-		res[cpy] = *s2;
-		cpy++;
-		s2++;
+		res[i + j] = s2[j];
+		j++;
 	}
-	res[cpy] = '\0';
+	res[i + j] = '\0';
 	return (res);
 }

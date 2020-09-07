@@ -3,39 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/11 10:48:49 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/15 17:14:03 by apitoise         ###   ########.fr       */
+/*   Created: 2019/12/06 11:38:30 by cnotin            #+#    #+#             */
+/*   Updated: 2019/12/06 12:07:43 by cnotin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
+#include <string.h>
 
-char		*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*res;
-	int		cpy;
-	size_t	lalen;
+	size_t	i;
+	size_t	j;
 
-	if (s == NULL || start < 0)
+	if (!s)
 		return (NULL);
-	lalen = ft_strlen((char *)s);
-	if (start >= lalen)
-		len = 0;
-	else
-		len = lalen - start < len ? lalen - start : len;
-	res = (char *)malloc((len + 1) * sizeof(char));
-	if (res == 0)
+	i = ft_strlen(s);
+	if (start > i)
+		return (ft_strdup(""));
+	if (!(res = (char *)malloc(sizeof(char) * len + 1)))
 		return (NULL);
-	cpy = 0;
-	while (len)
+	j = 0;
+	while (j < len)
 	{
-		res[cpy] = s[start];
-		cpy++;
+		*(res + j) = *(s + start);
+		j++;
 		start++;
-		len--;
 	}
-	res[cpy] = '\0';
+	res[j] = '\0';
 	return (res);
 }

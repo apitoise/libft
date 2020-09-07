@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/25 21:22:41 by cnotin            #+#    #+#             */
+/*   Updated: 2020/08/26 19:31:00 by cnotin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/minishell.h"
-#include "../Libft/libft.h"
+#include "../libft/libft.h"
 
 int		isok(t_struct *st, char *str)
 {
@@ -16,13 +28,7 @@ int		isok(t_struct *st, char *str)
 		return (0);
 }
 
-int		ft_error(char *s)
-{
-	ft_putstr("zsh: command not found: ");
-	ft_putstr(s);
-	return (-1);
-}
-
+/*
 int		ft_dispatcher(t_struct *st)
 {
 	static char commande[7][7] = {{"cd"}, {"echo"}, {"pwd"}, {"export"}, {"unset"}, {"env"}, {"exit"}};
@@ -43,32 +49,73 @@ int		ft_dispatcher(t_struct *st)
 			i++;
 	}
 	return (ft_error(st->s));
+}*/
+
+void	if_builtin(t_struct *st)
+{
+	if (!ft_strcmp(st->cmd[0], "pwd"))
+		ft_pwd(st->cmd);
+	else if (!ft_strcmp(st->cmd[0], "echo"))
+		ft_echo(st->cmd);
+	else if (!ft_strcmp(st->cmd[0], "exit"))
+		ft_exit(st->cmd);
+	else if (!ft_strcmp(st->cmd[0], "env"))
+		ft_env(st->env);
+//	else if (!ft_strcmp(st->cmd[0], "unset"))
+//		ft_unset(st->cmd);
+	else if (!ft_strcmp(st->cmd[0], "cd"))
+		ft_cd(st->cmd[1]);
+	else if (ft_strchr(st->cmd[0], '='))
+		ft_varenv(st->cmd, &st->lst);
+	else
+	{
+		ft_putstr_fd("bash: ", 1);
+		ft_putstr_fd(st->cmd[0], 1);
+		ft_putstr_fd(" command not found\n", 1);
+	}
 }
 
-int		main(void)
+void print_tab(char **map)
+{
+    int i;
+
+    i = 0;
+    if (!map)
+        return ;
+    while (map && map[i])
+    {
+        ft_putendl_fd(map[i++], 1);
+    }
+}
+
+
+int		main(int ac, char **av, char **env)
 {
 	t_struct	st;
 	int			ret;
 	char		*tmp;
-	char		buf[BUFFER_SIZE + 1];
 
-	ret = 1;
+	(void)ac;
+	(void)av;
 	tmp = NULL;
-	st.exit = 0;
+	init_struct(&st, env);
 	shell_init();
 	while (!(st.exit))
 	{
-		while ((ret = (read(0, buf, BUFFER_SIZE))) > 0 && !(st.exit))
+		while ((ret = get_next_line(1, &tmp)) > 0 && !(st.exit))
 		{
-			buf[ret] = '\0';
-			if (!(st.s = ft_strdup(buf)))
-				return (-1);
-			ft_dispatcher(&st);
-			free(st.s);
+			st.cmd = ft_split(tmp, ' ');
+			if_builtin(&st);
+			//if (st.cmd[0] == NULL)
+			//	ft_error("");
+			//print_map(st.cmd);
+			//ft_dispatcher(&st);
+			//free(st.s);
 			shell_init();
-			if (ft_strchr(st.s, '\n'))
-				break ;
 		}
 	}
+	ft_free_tab(st.env);
 	return (0);
 }
+
+

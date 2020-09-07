@@ -3,33 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 12:22:54 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/15 16:18:05 by apitoise         ###   ########.fr       */
+/*   Created: 2019/12/06 11:30:36 by cnotin            #+#    #+#             */
+/*   Updated: 2019/12/06 11:55:00 by cnotin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-size_t		ft_strlcpy(char *dest, const char *src, size_t size)
+size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t	tab;
-	size_t	max;
+	size_t	i;
+	size_t	len;
 
-	if (size == 0)
-		return (ft_strlen((char *)src));
-	tab = 0;
-	max = size;
-	size = ft_strlen((char *)src);
-	if (max > 0)
+	i = 0;
+	if (!src)
+		return (0);
+	len = ft_strlen(src);
+	if (dstsize == 0)
+		return (len);
+	while (src[i] && i < (dstsize - 1))
 	{
-		while (src[tab] && tab < max - 1)
-		{
-			dest[tab] = src[tab];
-			tab++;
-		}
+		dst[i] = src[i];
+		i++;
 	}
-	dest[tab] = '\0';
-	return (size);
+	dst[i] = '\0';
+	return (len);
 }

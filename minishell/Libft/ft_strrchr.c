@@ -3,32 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 12:19:16 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/08 12:19:18 by apitoise         ###   ########.fr       */
+/*   Created: 2019/11/05 17:42:20 by angrybud          #+#    #+#             */
+/*   Updated: 2019/12/06 11:57:00 by cnotin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char		*ft_strrchr(const char *str, int c)
-{
-	int	rev;
-	int	save;
+#include "libft.h"
+#include <string.h>
 
-	rev = 0;
-	save = 0;
-	while (str[rev] != '\0')
-		rev++;
-	while (str[rev] != (char)c)
-	{
-		if (str[rev] == str[0] && (char)c != str[0])
-			return (0);
-		rev--;
-	}
-	while (save < rev)
-	{
+char	*ft_strrchr(const char *s, int c)
+{
+	char	*str;
+
+	str = (char *)s;
+	while (*str)
 		str++;
-		save++;
-	}
-	return ((char *)str);
+	while ((*str) != c && (*str) != s[0])
+		str--;
+	return ((*str == c) ? str : NULL);
 }

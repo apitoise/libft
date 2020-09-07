@@ -7,17 +7,19 @@ int		main()
 	ZombieEvent	boss;
 	Zombie 		*redzomb[5];
 	Zombie 		*bluezomb[5];
-	Zombie		*bigboss;
+	Zombie		bigboss("boss", "bigboss");
+	Zombie 		*littleboss;
 	std::string	type;
 
 	type = "Red";
 	red.setZombieType(type);
 	type = "Blue";
 	blue.setZombieType(type);
-	type = "Boss";
+	type = "LittleBoss";
 	boss.setZombieType(type);
-	bigboss = boss.newZombie("bigboss");
-	bigboss->announce();
+	littleboss = boss.newZombie("LittleBoss");
+	littleboss->announce();
+	bigboss.announce();
 	for (int i = 0; i < 5; i++)
 		redzomb[i] = red.randomChump();
 	for (int i = 0; i < 5; i++)
@@ -27,6 +29,5 @@ int		main()
 		delete	redzomb[i];
 		delete	bluezomb[i];
 	}
-	delete	bigboss;
 	return (0);
 }

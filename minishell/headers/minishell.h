@@ -1,25 +1,50 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
-# define BUFFER_SIZE 42
+# include <string.h>
+# include <limits.h>
+# include <errno.h>
+//# define BUFFER_SIZE 42
+
+int						EXIT_CODE;
+
+typedef struct			s_varlist
+{
+	char				*name;
+	char				*content;
+	void				*next;
+}						t_varlist;
 
 typedef struct			s_struct
 {
 	int					exit;
 	char				*s;
+	char				**cmd;
+	char				**env;
+	t_varlist			*lst;
 }						t_struct;
 
-void	shell_init(void);
-int	ft_cd(t_struct *st);
-int	ft_echo(t_struct *st);
-int	ft_exit(t_struct *st);
-int	ft_pwd(t_struct *st);
-int	ft_unset(t_struct *st);
-int	ft_env(t_struct *st);
-int	ft_export(t_struct *st);
+void					print_tab(char **map);
 
+void					shell_init(void);
+void					init_struct(t_struct *st, char **env);
+void					ft_cd(char *path);
+int						ft_echo(char **cmd);
+void					ft_exit(char **cmd);
+int						ft_pwd(char **cmd);
+int						ft_unset(t_struct *st);
+void					ft_varenv(char **cmd, t_varlist **lst);
+
+int						ft_env(char **env);
+char					**get_env(char **env);
+
+int						ft_export(t_struct *st);
+int						ft_error(char *s);
+
+char					*ft_trim(char const *s1);
 
 #endif

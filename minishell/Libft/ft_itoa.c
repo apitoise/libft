@@ -3,60 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/14 12:26:27 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/17 15:02:02 by apitoise         ###   ########.fr       */
+/*   Created: 2019/12/06 11:06:55 by cnotin            #+#    #+#             */
+/*   Updated: 2020/03/03 14:45:39 by cnotin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-static int			ft_len(long int n)
+static int	ft_nb_len(long n)
 {
-	int		res;
+	int		count;
 
-	res = 0;
+	count = 0;
+	if (n <= 0)
+	{
+		count++;
+		n *= -1;
+	}
+	while (n != 0)
+	{
+		n /= 10;
+		count++;
+	}
+	return (count);
+}
+
+char		*ft_itoa(long n)
+{
+	char	*res;
+	long	i;
+
+	i = ft_nb_len(n);
+	if (!(res = (char *)malloc(sizeof(char) * i + 1)))
+		return (NULL);
+	if (n == -2147483648)
+		return ("-2147483648");
+	res[i] = '\0';
+	i--;
 	if (n == 0)
-		return (1);
+		res[i] = '0';
 	if (n < 0)
 	{
-		res++;
-		n = n * -1;
+		res[0] = '-';
+		n *= -1;
 	}
 	while (n > 0)
 	{
-		n = n / 10;
-		res++;
-	}
-	return (res);
-}
-
-char				*ft_itoa(int n)
-{
-	char		*res;
-	long long	nb;
-	int			idx;
-
-	nb = n;
-	idx = ft_len(nb);
-	res = (char *)malloc((idx + 1) * sizeof(char));
-	if (res == 0)
-		return (0);
-	res[idx] = '\0';
-	idx = idx - 1;
-	if (nb == 0)
-		res[idx] = 48;
-	if (nb < 0)
-	{
-		res[0] = '-';
-		nb = -nb;
-	}
-	while (nb > 0)
-	{
-		res[idx] = (nb % 10) + 48;
-		nb = nb / 10;
-		idx--;
+		res[i] = n % 10 + '0';
+		n /= 10;
+		i--;
 	}
 	return (res);
 }

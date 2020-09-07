@@ -3,30 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 18:41:33 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/15 15:42:22 by apitoise         ###   ########.fr       */
+/*   Created: 2019/12/06 11:04:32 by cnotin            #+#    #+#             */
+/*   Updated: 2019/12/06 11:47:46 by cnotin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-void		*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
-	void	*res;
-	size_t	remplir;
+	unsigned char	*p;
+	size_t			i;
 
-	if (count == 0 || size == 0)
+	i = 0;
+	if (!(p = (unsigned char *)malloc(sizeof(unsigned char) * (size * count))))
 		return (NULL);
-	res = malloc(size * count);
-	if (res == 0)
-		return (NULL);
-	remplir = 0;
-	while (remplir < count * size)
+	while (i < size * count)
 	{
-		((char *)res)[remplir] = 0;
-		remplir++;
+		p[i] = 0;
+		i++;
 	}
-	return (res);
+	return (p);
 }

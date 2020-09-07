@@ -1,8 +1,29 @@
-#include "../headers/minishell.h"
-#include "../Libft/libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/25 21:23:08 by cnotin            #+#    #+#             */
+/*   Updated: 2020/08/25 21:41:08 by cnotin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	ft_pwd(t_struct *st)
+#include "../headers/minishell.h"
+#include "../libft/libft.h"
+
+int	ft_pwd(char **cmd)
 {
-	printf("pwd\n");
+	char path[PATH_MAX];
+
+	(void)cmd;
+	if (!(getcwd(path, PATH_MAX)))
+		return (ft_error(""));
+	else
+	{
+		ft_putstr_fd(path, 2);
+		ft_putstr_fd("\n", 2);
+	}
 	return (0);
 }

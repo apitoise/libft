@@ -3,31 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cnotin <cnotin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/14 12:04:42 by apitoise          #+#    #+#             */
-/*   Updated: 2019/10/14 12:05:57 by apitoise         ###   ########.fr       */
+/*   Created: 2019/12/06 11:32:08 by cnotin            #+#    #+#             */
+/*   Updated: 2019/12/06 12:18:14 by cnotin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
+#include <string.h>
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int		idx;
-	char	*res;
+	unsigned int	i;
+	char			*res;
 
-	idx = 0;
-	if (!s || !f)
-		return (0);
-	res = (char *)malloc(ft_strlen((char *)s) * sizeof(char) + 1);
-	if (res == 0)
-		return (0);
-	while (s[idx])
+	i = 0;
+	if (!s)
+		return (NULL);
+	while (s[i])
+		i++;
+	if (!(res = (char *)malloc(sizeof(char) * i + 1)))
+		return (NULL);
+	i = 0;
+	while (s[i])
 	{
-		res[idx] = f(idx, s[idx]);
-		idx++;
+		res[i] = f(i, s[i]);
+		i++;
 	}
-	res[idx] = '\0';
+	res[i] = '\0';
 	return (res);
 }
