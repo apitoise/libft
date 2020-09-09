@@ -15,7 +15,7 @@
 
 int	ft_export(t_struct *st)
 {
-	st = NULL;
+	printf("%s", st->s);
 	printf("export\n");
 	return (0);
 }

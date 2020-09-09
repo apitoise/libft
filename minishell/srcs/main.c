@@ -61,8 +61,8 @@ void	if_builtin(t_struct *st)
 		ft_exit(st->cmd);
 	else if (!ft_strcmp(st->cmd[0], "env"))
 		ft_env(st->env);
-//	else if (!ft_strcmp(st->cmd[0], "unset"))
-//		ft_unset(st->cmd);
+	else if (!ft_strcmp(st->cmd[0], "unset"))
+		ft_unset(st);
 	else if (!ft_strcmp(st->cmd[0], "cd"))
 		ft_cd(st->cmd[1]);
 	else if (ft_strchr(st->cmd[0], '='))

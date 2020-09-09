@@ -16,6 +16,7 @@
 int	ft_unset(t_struct *st)
 {
 	st = NULL;
+	printf("%s \n", st->s);
 	printf("unset\n");
 	return (0);
 }

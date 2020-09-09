@@ -12,13 +12,12 @@
 
 #include "../headers/minishell.h"
 
-int	init_struct(t_struct *st, char **env)
+void	init_struct(t_struct *st, char **env)
 {
 	st->exit = 0;
 	st->s = NULL;
 	st->cmd = NULL;
-	st->first = NULL;
 	st->lst = NULL;
 	st->env = get_env(env);
-	return (0);
+	return ;
 }
