@@ -66,7 +66,9 @@ void	if_builtin(t_struct *st)
 	else if (!ft_strcmp(st->cmd[0], "cd"))
 		ft_cd(st->cmd[1]);
 	else if (ft_strchr(st->cmd[0], '='))
-		ft_varenv(st->cmd, &st->lst);
+		ft_export(st->cmd, &st->lst, 1);
+	else if (!ft_strcmp(st->cmd[0], "export"))
+		ft_export(st->cmd, &st->lst, 2);
 	else
 	{
 		ft_putstr_fd("bash: ", 1);

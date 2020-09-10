@@ -37,12 +37,11 @@ int						ft_echo(char **cmd);
 void					ft_exit(char **cmd);
 int						ft_pwd(char **cmd);
 int						ft_unset(t_struct *st);
-void					ft_varenv(char **cmd, t_varlist **lst);
+void					ft_export(char **cmd, t_varlist **lst, int i);
 
 int						ft_env(char **env);
 char					**get_env(char **env);
 
-int						ft_export(t_struct *st);
 int						ft_error(char *s);
 
 char					*ft_trim(char const *s1);

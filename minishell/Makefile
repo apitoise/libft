@@ -31,8 +31,7 @@ SRCS =  srcs/ft_cd.c \
 		srcs/main.c \
 		srcs/shell_init.c \
 		srcs/ft_error.c \
-		srcs/utils.c \
-		srcs/ft_varenv.c
+		srcs/utils.c 
 
 OBJS = $(SRCS:.c=.o)
 
