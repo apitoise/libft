@@ -1,11 +1,16 @@
-global	_ft_read
+global	ft_read
+extern	__errno_location
 
-_ft_read:
+ft_read:
 	mov	rax, 0x2000003
-	jc	_err
+	jc	err
 	syscall
 	ret
 
-_err:
-	mov	rax, -1
+err:
+	neg	rax
+	mov rdi, rax
+	call __errno_location
+	mov	[rax], rdi
+	mov rax, -1
 	ret

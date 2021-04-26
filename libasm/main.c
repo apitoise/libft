@@ -6,21 +6,11 @@
 /*   By: apitoise <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:52:07 by apitoise          #+#    #+#             */
-/*   Updated: 2020/02/24 21:44:02 by apitoise         ###   ########.fr       */
+/*   Updated: 2021/04/26 14:37:11 by apitoise         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <string.h>
-
-extern size_t	ft_strlen(char *str);
-extern char		*ft_strcpy(char *dest, char *src);
-extern int		ft_strcmp(char *s1, char *s2);
-extern ssize_t	ft_write(int fd, const void *buf, size_t nbyte);
-extern ssize_t	ft_read(int fd, void *buf, size_t nbyte);
-extern char		*ft_strdup(const char *s1);
+#include "libasm.h"
 
 void	test_strlen(void)
 {
