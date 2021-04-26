@@ -15,9 +15,13 @@ OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.s=.o))
 
 NAME = libasm.a
 
-CC = nasm
+CC = gcc
 
-CFLAGS = -f macho64
+CFLAGS = -Wall -Wextra -Werror
+
+NASM = nasm
+
+NASMFLAGS = -f macho64
 
 all: $(NAME)
 
@@ -26,7 +30,10 @@ $(NAME): $(OBJS)
 
 $(DIR_O)/%.o: $(DIR_S)/%.s
 	mkdir -p objs
-	${CC} ${CFLAGS} -o $@ $<
+	${NASM} ${NASMFLAGS} -o $@ $<
+
+test: 
+	$(CC) $(CFLAGS) main.c $(NAME)
 
 clean:
 	rm -rf $(DIR_O)
